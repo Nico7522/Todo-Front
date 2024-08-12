@@ -1,0 +1,36 @@
+import {
+  Component,
+  EventEmitter,
+  inject,
+  Inject,
+  Output,
+  Signal,
+  ViewChild,
+} from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { LoginComponent } from '../../auth/login/login.component';
+import { AuthService } from '../../auth/auth.service';
+import { MatSidenav } from '@angular/material/sidenav';
+
+@Component({
+  selector: 'app-header',
+  templateUrl: './header.component.html',
+  styleUrl: './header.component.scss',
+})
+export class HeaderComponent {
+  readonly dialog = inject(MatDialog);
+  private readonly _authService = inject(AuthService);
+  openDialog() {
+    const dialogRef = this.dialog.open(LoginComponent, {
+      height: '400px',
+      width: '600px',
+    });
+  }
+
+  isLogged: Signal<string | null> = this._authService.isLogged;
+
+  @Output() openEmitter = new EventEmitter<boolean>();
+  openMenu() {
+    this.openEmitter.emit(true);
+  }
+}

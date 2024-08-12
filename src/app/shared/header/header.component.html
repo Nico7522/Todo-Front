@@ -1,0 +1,57 @@
+<!-- <mat-sidenav #start mode="over" (click)="start.close()" hasBackdrop>
+  <mat-nav-list>
+    <a mat-list-item routerLink="/">
+      <mat-icon>person</mat-icon>
+      <span class="aligned-with-icon">Profile</span>
+    </a>
+
+    <a mat-list-item routerLink="/search-lessons">
+      <mat-icon>task</mat-icon>
+      <span class="aligned-with-icon">My tasks</span>
+    </a>
+
+    <a mat-list-item routerLink="about">
+      <mat-icon>groups</mat-icon>
+      <span class="aligned-with-icon">My Team</span>
+    </a>
+    <a routerLink="/register" mat-list-item>
+      <mat-icon>person_add</mat-icon>
+      <span class="aligned-with-icon">Register</span>
+    </a>
+
+    <a mat-list-item>
+      <mat-icon>exit_to_app</mat-icon>
+      <span class="aligned-with-icon">Logout</span>
+    </a>
+  </mat-nav-list>
+</mat-sidenav> -->
+
+<mat-toolbar color="primary">
+  <button
+    mat-icon-button
+    (click)="openMenu()"
+    class="example-icon"
+    aria-label="Example icon-button with menu icon"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <span>Todo App by Nico</span>
+  <span class="example-spacer"></span>
+  <button
+    (click)="openDialog()"
+    mat-icon-button
+    class="example-icon favorite-icon"
+    aria-label="Example icon-button with heart icon"
+  >
+    @if(!isLogged()) {
+    <mat-icon>login</mat-icon>
+
+    }
+  </button>
+  @if (isLogged()) {
+  <button mat-icon-button><mat-icon>account_circle</mat-icon></button>
+  <button mat-icon-button><mat-icon>logout</mat-icon></button>
+
+  }
+</mat-toolbar>

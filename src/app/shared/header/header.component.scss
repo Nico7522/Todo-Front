@@ -1,0 +1,17 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+mat-sidenav {
+  width: 150px;
+}
+
+.aligned-with-icon {
+  position: absolute;
+  margin-top: 5px;
+  margin-left: 5px; /* optional */
+}
+
+mat-sidenav-container {
+  margin-bottom: 100px !important;
+}

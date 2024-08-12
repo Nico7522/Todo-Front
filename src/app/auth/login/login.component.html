@@ -1,0 +1,18 @@
+<div class="mat-typography form" mat-dialog-content>
+  <h2 class="">Login</h2>
+  <form [formGroup]="loginForm">
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input formControlName="email" matInput />
+      @if (loginForm.get('email')?.hasError("email")) {
+      <mat-error>Required</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input formControlName="password" matInput />
+    </mat-form-field>
+    <button mat-flat-button (click)="handleSubmit()">Submit</button>
+  </form>
+</div>

@@ -11,7 +11,17 @@
 
     <mat-form-field>
       <mat-label>Password</mat-label>
-      <input formControlName="password" matInput />
+      <input
+        [type]="hide ? 'password' : 'text'"
+        formControlName="password"
+        matInput
+      />
+      <mat-icon matSuffix (click)="hide = !hide">{{
+        hide ? "visibility_off" : "visibility"
+      }}</mat-icon>
+      @if (loginForm.get('password')?.hasError("required")) {
+      <mat-error>Required</mat-error>
+      }
     </mat-form-field>
     <button mat-flat-button (click)="handleSubmit()">Submit</button>
   </form>

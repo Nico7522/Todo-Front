@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal, WritableSignal } from '@angular/core';
-import { environment } from '../environment';
+import { environment } from '../../environment';
 import { map, Observable } from 'rxjs';
 import * as jwt_decode from 'jwt-decode';
-import { LoggedUser } from './login/interfaces/logged-user.interface';
+import { LoggedUser } from '../../interfaces/logged-user.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -28,6 +28,11 @@ export class AuthService {
           return res;
         })
       );
+  }
+
+  logout() {
+    localStorage.removeItem('token');
+    this.token.set(null);
   }
 
   decodeToken(): LoggedUser {

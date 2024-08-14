@@ -8,8 +8,8 @@ import {
   ViewChild,
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { LoginComponent } from '../../auth/login/login.component';
-import { AuthService } from '../../auth/auth.service';
+import { LoginComponent } from '../../components/login/login.component';
+import { AuthService } from '../../services/auth/auth.service';
 import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
@@ -32,5 +32,11 @@ export class HeaderComponent {
   @Output() openEmitter = new EventEmitter<boolean>();
   openMenu() {
     this.openEmitter.emit(true);
+  }
+
+  logout() {
+    console.log('cc');
+
+    this._authService.logout();
   }
 }

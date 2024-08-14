@@ -51,7 +51,9 @@
   </button>
   @if (isLogged()) {
   <button mat-icon-button><mat-icon>account_circle</mat-icon></button>
-  <button mat-icon-button><mat-icon>logout</mat-icon></button>
+  <button mat-icon-button (click)="logout()">
+    <mat-icon>logout</mat-icon>
+  </button>
 
   }
 </mat-toolbar>

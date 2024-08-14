@@ -10,6 +10,7 @@ import { LoggedUser } from '../../interfaces/logged-user.interface';
 })
 export class AuthService {
   private _httpClient = inject(HttpClient);
+
   constructor() {}
   private token: WritableSignal<string | null> = signal(
     localStorage.getItem('token')

@@ -14,6 +14,7 @@ import {
   MatSidenavModule,
 } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 const material = [
   MatToolbarModule,
@@ -27,6 +28,7 @@ const material = [
   MatSidenavContainer,
   MatSidenavModule,
   MatListModule,
+  MatGridListModule,
 ];
 
 @NgModule({

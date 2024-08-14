@@ -34,7 +34,7 @@ $custom-primary-palette: (
   ),
 );
 
-$primary: mat.define-palette($custom-primary-palette, 700);
+$primary: mat.define-palette($custom-primary-palette, 300);
 
 $accent: mat.define-palette($custom-primary-palette, A200, A100, A400);
 $theme: mat.define-light-theme(
@@ -68,4 +68,16 @@ body {
 form {
   display: flex;
   flex-direction: column;
+}
+
+.background {
+  margin: 0;
+  background-image: url("../public/images/background.jpg");
+  min-height: 100vh;
+  background-size: cover;
+  position: fixed;
+  width: 100%;
+  z-index: -1;
+  filter: opacity(0.2);
+  background-position: center;
 }

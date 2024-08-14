@@ -14,6 +14,7 @@ import {
 } from '@angular/common/http';
 import { RegisterComponent } from './components/register/register.component';
 import { ToastrModule } from 'ngx-toastr';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent, RegisterComponent],
@@ -25,6 +26,7 @@ import { ToastrModule } from 'ngx-toastr';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     ToastrModule.forRoot(),
+    NgxSpinnerModule,
   ],
   providers: [
     provideAnimationsAsync(),

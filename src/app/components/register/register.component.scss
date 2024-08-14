@@ -1,4 +1,12 @@
-h1 {
-  color: black;
-  padding-top: 10px;
+.register-form {
+  width: 70%;
+  margin: auto;
+  margin-top: 5px;
+  border: 2px solid #ffb74d;
+  background: rgb(240, 236, 236);
+}
+
+mat-form-field {
+  width: 100%;
+  padding: 15px;
 }

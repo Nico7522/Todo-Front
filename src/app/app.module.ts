@@ -15,6 +15,7 @@ import {
 import { RegisterComponent } from './components/register/register.component';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { provideNativeDateAdapter } from '@angular/material/core';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent, RegisterComponent],
@@ -31,6 +32,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
   providers: [
     provideAnimationsAsync(),
     provideHttpClient(withInterceptorsFromDi()),
+    provideNativeDateAdapter(),
   ],
   bootstrap: [AppComponent],
 })

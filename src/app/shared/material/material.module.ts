@@ -15,6 +15,7 @@ import {
 } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 const material = [
   MatToolbarModule,
@@ -29,6 +30,7 @@ const material = [
   MatSidenavModule,
   MatListModule,
   MatGridListModule,
+  MatDatepickerModule,
 ];
 
 @NgModule({

@@ -36,7 +36,7 @@ $custom-primary-palette: (
 
 $primary: mat.define-palette($custom-primary-palette, 300);
 
-$accent: mat.define-palette($custom-primary-palette, A200, A100, A400);
+$accent: mat.define-palette($custom-primary-palette, 900);
 $theme: mat.define-light-theme(
   (
     color: (
@@ -51,6 +51,7 @@ $theme: mat.define-light-theme(
 
 $my-typography: mat.define-typography-config();
 @include mat.typography-hierarchy($my-typography);
+
 html,
 body {
   height: 100%;
@@ -80,4 +81,8 @@ form {
   z-index: -1;
   filter: opacity(0.2);
   background-position: center;
+}
+
+.white {
+  color: white;
 }

@@ -33,19 +33,19 @@
     class="example-icon"
     aria-label="Example icon-button with menu icon"
   >
-    <mat-icon>menu</mat-icon>
+    <mat-icon class="white">menu</mat-icon>
   </button>
 
-  <span>Todo App by Nico</span>
-  <span class="example-spacer"></span>
+  <span class="white">Todo App by Nico</span>
+  <span class="example-spacer white"></span>
   <button
     (click)="openDialog()"
     mat-icon-button
-    class="example-icon favorite-icon"
+    class="example-icon favorite-icon white"
     aria-label="Example icon-button with heart icon"
   >
     @if(!isLogged()) {
-    <mat-icon>login</mat-icon>
+    <mat-icon class="white">login</mat-icon>
 
     }
   </button>

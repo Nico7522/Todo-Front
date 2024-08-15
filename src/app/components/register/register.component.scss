@@ -1,12 +1,28 @@
 .register-form {
-  width: 70%;
+  width: 50%;
   margin: auto;
-  margin-top: 5px;
-  border: 2px solid #ffb74d;
+  margin-top: 25px;
+  border: 4px solid #ffb74d;
   background: rgb(240, 236, 236);
 }
 
 mat-form-field {
   width: 100%;
   padding: 15px;
+}
+
+.title {
+  border-bottom: 1px solid #ffb74d;
+  background: #ffb74d;
+}
+
+h2 {
+  padding-top: 5px;
+}
+.mat-mdc-unelevated-button.mat-primary {
+  color: white;
+}
+
+span {
+  display: inline-block;
 }

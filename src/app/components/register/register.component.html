@@ -1,36 +1,142 @@
 <div class="register-form">
-  <form>
+  <div class="title">
+    <h2 class="white">Register a account</h2>
+  </div>
+  <form [formGroup]="registerForm">
     <mat-grid-list [cols]="cols" rowHeight="100px">
       <mat-grid-tile [colspan]="cols">
         <mat-form-field>
-          <mat-label>Email</mat-label>
-          <input matInput type="text" name="" id="" />
+          <mat-label id="email">Email</mat-label>
+          <input
+            formControlName="email"
+            matInput
+            type="text"
+            name="email"
+            id="email"
+          />
+          @if (hasErrorAndTouched(registerForm, 'email', 'required')) {
+          <mat-error>Email required</mat-error>
+          } @if (hasErrorAndTouched(registerForm, 'email', 'pattern')) {
+          <mat-error>Email invalid</mat-error>
+          }
         </mat-form-field>
       </mat-grid-tile>
       <mat-grid-tile>
         <mat-form-field>
-          <mat-label>Name</mat-label>
-          <input matInput type="text" name="" id="" />
+          <mat-label id="name">Name</mat-label>
+          <input
+            formControlName="name"
+            matInput
+            type="text"
+            name="name"
+            id="name"
+          />
+          @if (hasErrorAndTouched(registerForm, 'name', 'required')) {
+          <mat-error>Name required</mat-error>
+          }
         </mat-form-field>
       </mat-grid-tile>
       <mat-grid-tile>
         <mat-form-field>
-          <mat-label>Surname</mat-label>
-          <input matInput type="text" name="" id="" />
+          <mat-label id="surname">Surname</mat-label>
+          <input
+            formControlName="surname"
+            matInput
+            type="text"
+            name="surname"
+            id="surname"
+          />
+          @if (hasErrorAndTouched(registerForm, 'surname', 'required')) {
+          <mat-error>Surname required</mat-error>
+          }
         </mat-form-field>
       </mat-grid-tile>
       <mat-grid-tile>
         <mat-form-field>
-          <mat-label>Password</mat-label>
-          <input matInput type="password" name="" id="" />
+          <mat-label id="password">Password</mat-label>
+          <input
+            formControlName="password"
+            matInput
+            type="password"
+            name="password"
+            id="password"
+          />
+          @if (hasErrorAndTouched(registerForm, 'password', 'required')) {
+          <mat-error>Password required</mat-error>
+          } @if (hasErrorAndTouched(registerForm, 'password', 'pattern')) {
+          <mat-error>Password invalid</mat-error>
+          }
         </mat-form-field>
       </mat-grid-tile>
       <mat-grid-tile>
         <mat-form-field>
-          <mat-label>Confirm password</mat-label>
-          <input matInput type="password" name="" id="" />
+          <mat-label id="confirmPassword">Confirm password</mat-label>
+          <input
+            formControlName="confirmPassword"
+            matInput
+            type="password"
+            name="confirmPassword"
+            id="confirmPassword"
+          />
+          @if (hasErrorAndTouched(registerForm, 'confirmPassword', 'required'))
+          {
+          <mat-error>Password required</mat-error>
+          } @if (registerForm.errors?.['passwordMatchError']) {
+          <mat-error>Password not match</mat-error>
+          }
         </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-form-field>
+          <mat-label id="birthdate">Birthdate</mat-label>
+          <input
+            formControlName="birthdate"
+            matInput
+            [matDatepicker]="birthdate"
+            name="birthdate"
+            id="birthdate"
+          />
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="birthdate"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #birthdate></mat-datepicker>
+          @if (hasErrorAndTouched(registerForm, 'birthdate', 'required')) {
+          <mat-error>Birthdate required</mat-error> }
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-form-field>
+          <mat-label id="hiredate">Hiredate</mat-label>
+          <input
+            formControlName="hiredate"
+            matInput
+            [matDatepicker]="hiredate"
+            name="hiredate"
+            id="hiredate"
+            [errorStateMatcher]="matcher"
+          />
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="hiredate"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #hiredate></mat-datepicker>
+          @if (registerForm.errors?.['wrongHireDate']) {
+          <mat-error>Hiredate must be higher than birthdate</mat-error>
+          }
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="cols">
+        <button (click)="handleSubmit()" mat-flat-button color="primary">
+          Submit
+        </button>
       </mat-grid-tile>
     </mat-grid-list>
   </form>
 </div>
+
+@if ( registerForm.errors?.['wrongHireDate'] ) {
+<h1>qdqsdqsdqsds</h1>
+}

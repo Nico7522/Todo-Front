@@ -43,9 +43,7 @@ export class RegisterComponent implements OnInit {
       ],
       name: ['', Validators.required],
       surname: ['', Validators.required],
-      phoneNumber: new FormControl(new MyTel('', '', '', ''), [
-        Validators.required,
-      ]),
+      phoneNumber: ['', Validators.required],
       birthdate: ['', Validators.required],
       hiredate: ['', Validators.required],
     },

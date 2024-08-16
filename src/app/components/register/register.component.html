@@ -137,18 +137,15 @@
           <mat-label>Phone number</mat-label>
           <input-phone formControlName="phoneNumber" required></input-phone>
           <mat-icon matSuffix>phone</mat-icon>
-          @if (this.registerForm.get('phoneNumber')?.errors) {
+          @if ((this.registerForm.get('phoneNumber')?.touched)) {
+          <mat-error>Required</mat-error>
+          } @if ((this.registerForm.get('phoneNumber')?.errors)) {
           <mat-error>Invalid</mat-error>
           }
         </mat-form-field>
       </mat-grid-tile>
       <mat-grid-tile [colspan]="cols">
-        <button
-          [disabled]="!this.registerForm.valid"
-          (click)="handleSubmit()"
-          mat-flat-button
-          color="primary"
-        >
+        <button (click)="handleSubmit()" mat-flat-button color="primary">
           Submit
         </button>
       </mat-grid-tile>

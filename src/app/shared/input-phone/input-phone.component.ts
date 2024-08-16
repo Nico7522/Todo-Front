@@ -64,7 +64,7 @@ export class InputPhoneComponent
   }
 
   get errorState(): boolean {
-    return this.parts.touched;
+    return this.parts.invalid && this.parts.touched;
   }
   get empty() {
     const {

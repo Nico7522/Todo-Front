@@ -77,6 +77,7 @@
             type="password"
             name="confirmPassword"
             id="confirmPassword"
+            [errorStateMatcher]="passwordMatcher"
           />
           @if (hasErrorAndTouched(registerForm, 'confirmPassword', 'required'))
           {
@@ -115,7 +116,7 @@
             [matDatepicker]="hiredate"
             name="hiredate"
             id="hiredate"
-            [errorStateMatcher]="matcher"
+            [errorStateMatcher]="hireDatematcher"
           />
           <mat-hint>MM/DD/YYYY</mat-hint>
           <mat-datepicker-toggle
@@ -130,8 +131,24 @@
           }
         </mat-form-field>
       </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field appearance="fill">
+          <mat-label>Phone number</mat-label>
+          <input-phone formControlName="phoneNumber" required></input-phone>
+          <mat-icon matSuffix>phone</mat-icon>
+          @if (this.registerForm.get('phoneNumber')?.errors) {
+          <mat-error>Invalid</mat-error>
+          }
+        </mat-form-field>
+      </mat-grid-tile>
       <mat-grid-tile [colspan]="cols">
-        <button (click)="handleSubmit()" mat-flat-button color="primary">
+        <button
+          [disabled]="!this.registerForm.valid"
+          (click)="handleSubmit()"
+          mat-flat-button
+          color="primary"
+        >
           Submit
         </button>
       </mat-grid-tile>

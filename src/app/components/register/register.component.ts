@@ -3,17 +3,21 @@ import {
   AbstractControl,
   FormBuilder,
   FormControl,
+  FormGroup,
   FormGroupDirective,
   NgForm,
   Validators,
 } from '@angular/forms';
 import { emailRegex, passwordRegex } from '../../utils/regex';
 import {
+  ConfirmPasswordStateMatcher,
   hasErrorAndTouched,
-  MyErrorStateMatcher,
+  HireDateStateMatcher,
   passwordMatch,
   validHireDate,
 } from '../../utils/validators';
+import { MatFormFieldControl } from '@angular/material/form-field';
+import { MyTel } from '../../shared/input-phone/input-phone.component';
 
 @Component({
   selector: 'app-register',
@@ -21,9 +25,11 @@ import {
   styleUrl: './register.component.scss',
 })
 export class RegisterComponent implements OnInit {
+  onChange = (_: any) => {};
   private readonly _formBuilder = inject(FormBuilder);
   hasErrorAndTouched = hasErrorAndTouched;
-  matcher = new MyErrorStateMatcher();
+  hireDatematcher = new HireDateStateMatcher();
+  passwordMatcher = new ConfirmPasswordStateMatcher();
   registerForm = this._formBuilder.group(
     {
       email: [
@@ -37,6 +43,9 @@ export class RegisterComponent implements OnInit {
       ],
       name: ['', Validators.required],
       surname: ['', Validators.required],
+      phoneNumber: new FormControl(new MyTel('', '', '', ''), [
+        Validators.required,
+      ]),
       birthdate: ['', Validators.required],
       hiredate: ['', Validators.required],
     },
@@ -51,10 +60,10 @@ export class RegisterComponent implements OnInit {
   }
 
   handleSubmit() {
-    console.log(this.registerForm.errors?.['wrongHireDate']);
+    console.log(this.registerForm.get('phoneNumber'));
 
     if (this.registerForm.valid) {
-      console.log('OK');
+      console.log('valid');
     }
   }
 }

@@ -1,0 +1,48 @@
+<div [formGroup]="parts" class="example-tel-input-container">
+  <input
+    class="example-tel-input-element"
+    formControlName="area"
+    size="3"
+    maxLength="3"
+    aria-label="Area code"
+    (input)="_handleInput(parts.controls['area'], exchange)"
+    (focus)="onFocus(parts.controls['area'])"
+    #area
+  />
+  <span class="example-tel-input-spacer">&ndash;</span>
+  <input
+    class="example-tel-input-element"
+    formControlName="exchange"
+    maxLength="3"
+    size="3"
+    aria-label="Exchange code"
+    (input)="_handleInput(parts.controls['exchange'], subscriber)"
+    (keyup.backspace)="autoFocusPrev(parts.controls['exchange'], area)"
+    (focus)="onFocus(parts.controls['exchange'])"
+    #exchange
+  />
+  <span class="example-tel-input-spacer">&ndash;</span>
+  <input
+    class="example-tel-input-element"
+    formControlName="subscriber"
+    maxLength="2"
+    size="2"
+    aria-label="Subscriber number"
+    (input)="_handleInput(parts.controls['subscriber'], final)"
+    (keyup.backspace)="autoFocusPrev(parts.controls['subscriber'], exchange)"
+    (focus)="onFocus(parts.controls['subscriber'])"
+    #subscriber
+  />
+  <span class="example-tel-input-spacer">&ndash;</span>
+  <input
+    class="example-tel-input-element"
+    formControlName="final"
+    maxLength="2"
+    size="2"
+    aria-label="Subscriber number"
+    (input)="_handleInput(parts.controls['final'])"
+    (keyup.backspace)="autoFocusPrev(parts.controls['final'], subscriber)"
+    (focus)="onFocus(parts.controls['final'])"
+    #final
+  />
+</div>

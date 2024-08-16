@@ -16,6 +16,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { provideNativeDateAdapter } from '@angular/material/core';
+import { InputPhoneComponent } from './shared/input-phone/input-phone.component';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent, RegisterComponent],

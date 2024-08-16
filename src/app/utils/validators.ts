@@ -15,6 +15,8 @@ export const passwordMatch: ValidatorFn = (
   let password = control.get('password');
   let passwordConfirm = control.get('confirmPassword');
   if (password && passwordConfirm && password.value != passwordConfirm.value) {
+    console.log('ici');
+
     return {
       passwordMatchError: true,
     };
@@ -47,7 +49,7 @@ export const hasErrorAndTouched = (
   );
 };
 
-export class MyErrorStateMatcher implements ErrorStateMatcher {
+export class HireDateStateMatcher implements ErrorStateMatcher {
   isErrorState(
     control: FormControl | null,
     form: FormGroupDirective | NgForm | null
@@ -57,6 +59,21 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
       control &&
       form &&
       (form?.errors?.['wrongHireDate'] ||
+        (control.errors?.['required'] && control.touched))
+    );
+  }
+}
+
+export class ConfirmPasswordStateMatcher implements ErrorStateMatcher {
+  isErrorState(
+    control: FormControl | null,
+    form: FormGroupDirective | NgForm | null
+  ): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(
+      control &&
+      form &&
+      (form?.errors?.['passwordMatchError'] ||
         (control.errors?.['required'] && control.touched))
     );
   }

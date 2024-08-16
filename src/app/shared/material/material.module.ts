@@ -7,7 +7,11 @@ import {
   MatDialogActions,
   MatDialogContent,
 } from '@angular/material/dialog';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import {
+  MAT_FORM_FIELD,
+  MatFormFieldControl,
+  MatFormFieldModule,
+} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import {
   MatSidenavContainer,
@@ -31,6 +35,7 @@ const material = [
   MatListModule,
   MatGridListModule,
   MatDatepickerModule,
+  MatFormFieldModule,
 ];
 
 @NgModule({

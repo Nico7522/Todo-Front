@@ -123,7 +123,9 @@
             [for]="hiredate"
           ></mat-datepicker-toggle>
           <mat-datepicker #hiredate></mat-datepicker>
-          @if (registerForm.errors?.['wrongHireDate']) {
+          @if (hasErrorAndTouched(registerForm, 'hiredate', 'required')) {
+          <mat-error>Hiredate required</mat-error> } @if
+          (registerForm.errors?.['wrongHireDate']) {
           <mat-error>Hiredate must be higher than birthdate</mat-error>
           }
         </mat-form-field>
@@ -136,7 +138,3 @@
     </mat-grid-list>
   </form>
 </div>
-
-@if ( registerForm.errors?.['wrongHireDate'] ) {
-<h1>qdqsdqsdqsds</h1>
-}

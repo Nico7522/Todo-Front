@@ -53,13 +53,11 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
     form: FormGroupDirective | NgForm | null
   ): boolean {
     const isSubmitted = form && form.submitted;
-    console.log(!!control?.invalid);
-
     return !!(
       control &&
       form &&
-      form.invalid &&
-      (control.dirty || control.touched || isSubmitted)
+      (form?.errors?.['wrongHireDate'] ||
+        (control.errors?.['required'] && control.touched))
     );
   }
 }

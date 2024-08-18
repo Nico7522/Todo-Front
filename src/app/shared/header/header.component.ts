@@ -24,6 +24,7 @@ export class HeaderComponent {
     const dialogRef = this.dialog.open(LoginComponent, {
       height: '400px',
       width: '600px',
+      panelClass: 'dialog',
     });
   }
 

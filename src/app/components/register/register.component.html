@@ -81,7 +81,7 @@
           />
           @if (hasErrorAndTouched(registerForm, 'confirmPassword', 'required'))
           {
-          <mat-error>Password required</mat-error>
+          <mat-error>Confirm password required</mat-error>
           } @if (registerForm.errors?.['passwordMatchError']) {
           <mat-error>Password not match</mat-error>
           }
@@ -135,16 +135,18 @@
       <mat-grid-tile>
         <mat-form-field appearance="fill">
           <mat-label>Phone number</mat-label>
-          <input-phone formControlName="phoneNumber" required></input-phone>
+          <input-phone
+            #phoneInput
+            formControlName="phoneNumber"
+            required
+          ></input-phone>
           <mat-icon matSuffix>phone</mat-icon>
-          @if ((this.registerForm.get('phoneNumber')?.touched)) {
-          <mat-error>Required</mat-error>
-          } @if ((this.registerForm.get('phoneNumber')?.errors)) {
-          <mat-error>Invalid</mat-error>
+          @if ((this.registerForm.get('phoneNumber')?.errors)) {
+          <mat-error>Invalid phone number</mat-error>
           }
         </mat-form-field>
       </mat-grid-tile>
-      <mat-grid-tile [colspan]="cols">
+      <mat-grid-tile>
         <button (click)="handleSubmit()" mat-flat-button color="primary">
           Submit
         </button>

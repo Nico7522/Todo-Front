@@ -1,5 +1,5 @@
 <div class="mat-typography form" mat-dialog-content>
-  <h2 class="">Login</h2>
+  <h2 class="title">Login</h2>
   <form [formGroup]="loginForm">
     <mat-form-field>
       <mat-label>Email</mat-label>
@@ -23,7 +23,9 @@
       <mat-error>Required</mat-error>
       }
     </mat-form-field>
-    <button mat-flat-button (click)="handleSubmit()">Submit</button>
+    <button mat-flat-button color="primary" (click)="handleSubmit()">
+      Submit
+    </button>
   </form>
   <ngx-spinner type="ball-scale-multiple"></ngx-spinner>
 </div>

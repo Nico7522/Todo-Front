@@ -63,6 +63,11 @@ export class InputPhoneComponent
     this.stateChanges.next();
   }
 
+  markAsTouched() {
+    this.parts.markAsTouched();
+    this.stateChanges.next();
+  }
+
   get errorState(): boolean {
     return this.parts.invalid && this.parts.touched;
   }

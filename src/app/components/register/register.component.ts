@@ -1,13 +1,12 @@
-import { Component, inject, OnInit } from '@angular/core';
 import {
-  AbstractControl,
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  FormGroupDirective,
-  NgForm,
-  Validators,
-} from '@angular/forms';
+  Component,
+  inject,
+  OnInit,
+  QueryList,
+  ViewChild,
+  ViewChildren,
+} from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { emailRegex, passwordRegex } from '../../utils/regex';
 import {
   ConfirmPasswordStateMatcher,
@@ -16,8 +15,7 @@ import {
   passwordMatch,
   validHireDate,
 } from '../../utils/validators';
-import { MatFormFieldControl } from '@angular/material/form-field';
-import { MyTel } from '../../shared/input-phone/input-phone.component';
+import { InputPhoneComponent } from '../../shared/input-phone/input-phone.component';
 
 @Component({
   selector: 'app-register',
@@ -25,7 +23,8 @@ import { MyTel } from '../../shared/input-phone/input-phone.component';
   styleUrl: './register.component.scss',
 })
 export class RegisterComponent implements OnInit {
-  onChange = (_: any) => {};
+  markPhoneNumberInputAsTouched: boolean = false;
+  @ViewChild('phoneInput') phoneInput!: InputPhoneComponent;
   private readonly _formBuilder = inject(FormBuilder);
   hasErrorAndTouched = hasErrorAndTouched;
   hireDatematcher = new HireDateStateMatcher();
@@ -58,10 +57,15 @@ export class RegisterComponent implements OnInit {
   }
 
   handleSubmit() {
-    console.log(this.registerForm.get('phoneNumber'));
+    console.log(this.registerForm.get('confirmPassword'));
 
-    if (this.registerForm.valid) {
-      console.log('valid');
+    if (!this.registerForm.valid) {
+      this.markFormAsTouched();
     }
+  }
+
+  markFormAsTouched() {
+    this.registerForm.markAllAsTouched();
+    this.phoneInput.markAsTouched();
   }
 }

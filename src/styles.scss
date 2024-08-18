@@ -86,3 +86,10 @@ form {
 .white {
   color: white;
 }
+
+.dialog .mat-mdc-dialog-content {
+  padding: 0px !important;
+}
+mat-sidenav {
+  width: 200px !important;
+}

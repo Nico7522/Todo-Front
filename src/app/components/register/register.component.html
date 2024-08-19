@@ -23,31 +23,31 @@
       </mat-grid-tile>
       <mat-grid-tile>
         <mat-form-field>
-          <mat-label id="name">Name</mat-label>
+          <mat-label id="firstname">Firstname</mat-label>
           <input
-            formControlName="name"
+            formControlName="firstname"
             matInput
             type="text"
-            name="name"
-            id="name"
+            name="firstname"
+            id="firstname"
           />
-          @if (hasErrorAndTouched(registerForm, 'name', 'required')) {
-          <mat-error>Name required</mat-error>
+          @if (hasErrorAndTouched(registerForm, 'firstname', 'required')) {
+          <mat-error>Firstname required</mat-error>
           }
         </mat-form-field>
       </mat-grid-tile>
       <mat-grid-tile>
         <mat-form-field>
-          <mat-label id="surname">Surname</mat-label>
+          <mat-label id="lastname">Lastname</mat-label>
           <input
-            formControlName="surname"
+            formControlName="lastname"
             matInput
             type="text"
-            name="surname"
-            id="surname"
+            name="lastname"
+            id="lastname"
           />
-          @if (hasErrorAndTouched(registerForm, 'surname', 'required')) {
-          <mat-error>Surname required</mat-error>
+          @if (hasErrorAndTouched(registerForm, 'lastname', 'required')) {
+          <mat-error>Lastname required</mat-error>
           }
         </mat-form-field>
       </mat-grid-tile>
@@ -57,10 +57,15 @@
           <input
             formControlName="password"
             matInput
-            type="password"
+            [type]="passwordFieldHide ? 'password' : 'text'"
             name="password"
             id="password"
           />
+          <mat-icon
+            matSuffix
+            (click)="passwordFieldHide = !passwordFieldHide"
+            >{{ passwordFieldHide ? "visibility_off" : "visibility" }}</mat-icon
+          >
           @if (hasErrorAndTouched(registerForm, 'password', 'required')) {
           <mat-error>Password required</mat-error>
           } @if (hasErrorAndTouched(registerForm, 'password', 'pattern')) {
@@ -70,16 +75,24 @@
       </mat-grid-tile>
       <mat-grid-tile>
         <mat-form-field>
-          <mat-label id="confirmPassword">Confirm password</mat-label>
+          <mat-label id="passwordConfirm">Confirm password</mat-label>
           <input
-            formControlName="confirmPassword"
+            formControlName="passwordConfirm"
             matInput
             type="password"
-            name="confirmPassword"
-            id="confirmPassword"
+            name="passwordConfirm"
+            id="passwordConfirm"
+            [type]="confirmPasswordFieldHide ? 'password' : 'text'"
             [errorStateMatcher]="passwordMatcher"
           />
-          @if (hasErrorAndTouched(registerForm, 'confirmPassword', 'required'))
+          <mat-icon
+            matSuffix
+            (click)="confirmPasswordFieldHide = !confirmPasswordFieldHide"
+            >{{
+              confirmPasswordFieldHide ? "visibility_off" : "visibility"
+            }}</mat-icon
+          >
+          @if (hasErrorAndTouched(registerForm, 'passwordConfirm', 'required'))
           {
           <mat-error>Confirm password required</mat-error>
           } @if (registerForm.errors?.['passwordMatchError']) {
@@ -147,10 +160,18 @@
         </mat-form-field>
       </mat-grid-tile>
       <mat-grid-tile>
-        <button (click)="handleSubmit()" mat-flat-button color="primary">
+        <button
+          [disabled]="!this.registerForm.valid"
+          (click)="handleSubmit()"
+          mat-flat-button
+          color="primary"
+        >
           Submit
         </button>
       </mat-grid-tile>
     </mat-grid-list>
   </form>
+  @if (errorMessage) {
+  <span class="error">{{ errorMessage }}</span>
+  }
 </div>

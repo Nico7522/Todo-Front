@@ -4,6 +4,7 @@ import { environment } from '../../environment';
 import { map, Observable } from 'rxjs';
 import * as jwt_decode from 'jwt-decode';
 import { LoggedUser } from '../../interfaces/logged-user.interface';
+import { RegisterForm } from '../../interfaces/register-from.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -29,6 +30,12 @@ export class AuthService {
           return res;
         })
       );
+  }
+
+  register(form: RegisterForm): Observable<any> {
+    console.log(form);
+
+    return this._httpClient.post(`${environment.API_URL}/auth/register`, form);
   }
 
   logout() {

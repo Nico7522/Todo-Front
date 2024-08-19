@@ -20,7 +20,7 @@ h2 {
   padding-top: 5px;
 }
 
-// Text color button
+// // Text color button
 .mat-mdc-unelevated-button.mat-primary {
   color: white;
 }
@@ -32,4 +32,12 @@ span {
 button {
   width: 80%;
   margin-bottom: 10px;
+}
+
+.error {
+  display: table;
+  margin: 0 auto;
+  color: red;
+  font-size: 1.5rem;
+  padding-bottom: 15px;
 }

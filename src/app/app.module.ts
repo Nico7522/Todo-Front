@@ -17,6 +17,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { InputPhoneComponent } from './shared/input-phone/input-phone.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent, RegisterComponent],
@@ -34,6 +35,7 @@ import { InputPhoneComponent } from './shared/input-phone/input-phone.component'
     provideAnimationsAsync(),
     provideHttpClient(withInterceptorsFromDi()),
     provideNativeDateAdapter(),
+    DatePipe,
   ],
   bootstrap: [AppComponent],
 })

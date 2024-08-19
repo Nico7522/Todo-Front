@@ -24,7 +24,7 @@ export class LoginComponent {
 
   handleSubmit(): void {
     if (this.loginForm.valid) {
-      this._spinnerService.show();
+      this._spinnerService.show('all');
       this._authService
         .login(
           this.loginForm.get('email')?.value as string,

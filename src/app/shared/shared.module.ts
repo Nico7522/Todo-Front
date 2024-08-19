@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { MaterialModule } from './material/material.module';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -11,9 +11,10 @@ import {
   MyTel,
 } from './input-phone/input-phone.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AccountCreatedConfirmationComponent } from './account-created-confirmation/account-created-confirmation.component';
 
 @NgModule({
-  declarations: [HeaderComponent, NavListComponent, InputPhoneComponent],
+  declarations: [HeaderComponent, NavListComponent, InputPhoneComponent, AccountCreatedConfirmationComponent],
   imports: [
     CommonModule,
     MaterialModule,

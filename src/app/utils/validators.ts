@@ -13,10 +13,8 @@ export const passwordMatch: ValidatorFn = (
   control: AbstractControl
 ): ValidationErrors | null => {
   let password = control.get('password');
-  let passwordConfirm = control.get('confirmPassword');
+  let passwordConfirm = control.get('passwordConfirm');
   if (password && passwordConfirm && password.value != passwordConfirm.value) {
-    console.log('ici');
-
     return {
       passwordMatchError: true,
     };

@@ -18,9 +18,10 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { InputPhoneComponent } from './shared/input-phone/input-phone.component';
 import { DatePipe } from '@angular/common';
+import { AccountConfirmationComponent } from './components/account-confirmation/account-confirmation.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, RegisterComponent],
+  declarations: [AppComponent, LoginComponent, RegisterComponent, AccountConfirmationComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

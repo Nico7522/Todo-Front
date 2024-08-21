@@ -1,10 +1,35 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { AuthService } from '../../services/auth/auth.service';
+import { ActivatedRoute } from '@angular/router';
+import { catchError, EMPTY, map } from 'rxjs';
 
 @Component({
   selector: 'app-account-confirmation',
   templateUrl: './account-confirmation.component.html',
-  styleUrl: './account-confirmation.component.scss'
+  styleUrl: './account-confirmation.component.scss',
 })
 export class AccountConfirmationComponent {
-
+  private readonly _authService = inject(AuthService);
+  private readonly _activatedRoute = inject(ActivatedRoute);
+  isConfirmed: boolean = false;
+  message: string = 'Checking ...';
+  ngOnInit() {
+    let userId = this._activatedRoute.snapshot.queryParamMap.get('userId');
+    let token = this._activatedRoute.snapshot.queryParamMap.get('token');
+    if (userId && token) {
+      this._authService
+        .confirmAccount(userId, token)
+        .pipe(
+          map(() => {
+            this.isConfirmed = true;
+            this.message = 'Account confirmed';
+          }),
+          catchError((err) => {
+            this.message = 'Account not confirmed';
+            return EMPTY;
+          })
+        )
+        .subscribe();
+    }
+  }
 }

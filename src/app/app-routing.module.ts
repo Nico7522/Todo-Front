@@ -9,7 +9,7 @@ const routes: Routes = [
     component: RegisterComponent,
   },
   {
-    path: ':id/:token/confirm',
+    path: 'confirmaccount',
     component: AccountConfirmationComponent,
   },
 ];

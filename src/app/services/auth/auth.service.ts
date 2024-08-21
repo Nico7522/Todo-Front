@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable, signal, WritableSignal } from '@angular/core';
 import { environment } from '../../environment';
 import { map, Observable } from 'rxjs';
@@ -33,14 +33,24 @@ export class AuthService {
   }
 
   register(form: RegisterForm): Observable<any> {
-    console.log(form);
-
     return this._httpClient.post(`${environment.API_URL}/auth/register`, form);
   }
 
   logout() {
     localStorage.removeItem('token');
     this.token.set(null);
+  }
+
+  confirmAccount(userId: string, token: string): Observable<any> {
+    const params = new HttpParams().set('userId', userId).set('token', token);
+
+    return this._httpClient.post<any>(
+      `${environment.API_URL}/auth/confirmaccount`,
+      null,
+      {
+        params: params,
+      }
+    );
   }
 
   decodeToken(): LoggedUser {

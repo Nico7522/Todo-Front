@@ -12,6 +12,7 @@ export class AccountConfirmationComponent {
   private readonly _authService = inject(AuthService);
   private readonly _activatedRoute = inject(ActivatedRoute);
   isConfirmed: boolean = false;
+  isLoading: boolean = true;
   message: string = 'Checking ...';
   ngOnInit() {
     let userId = this._activatedRoute.snapshot.queryParamMap.get('userId');
@@ -21,11 +22,19 @@ export class AccountConfirmationComponent {
         .confirmAccount(userId, token)
         .pipe(
           map(() => {
+            this.isLoading = false;
+
             this.isConfirmed = true;
             this.message = 'Account confirmed';
           }),
           catchError((err) => {
-            this.message = 'Account not confirmed';
+            console.log(err);
+
+            this.isLoading = false;
+            this.message =
+              err.status > 0
+                ? 'Account has not been confirmed'
+                : 'Server error';
             return EMPTY;
           })
         )

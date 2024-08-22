@@ -7,6 +7,20 @@ h2 {
   margin-top: 5px;
 }
 
+.bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgb(241, 236, 236);
+  filter: opacity(0.7);
+  z-index: -1;
+}
+
+.loading {
+  color: #ffb74d;
+}
 .success {
   color: rgb(98, 182, 77);
 }
@@ -14,11 +28,19 @@ h2 {
 .failed {
   color: rgb(206, 48, 21);
 }
-div {
-  width: 50%;
+.confirmation {
+  width: 30%;
+  max-width: 30%;
   text-align: center;
-  margin-top: 100px;
   margin: 100px auto;
-  border: 3px solid #ffb74d;
-  padding: 100px;
+  border: 5px solid #ffb74d;
+  padding: 100px 0 100px 0;
+  position: relative;
+}
+
+@media screen and (max-width: 400px) {
+  .confirmation {
+    width: 90%;
+    max-width: 100%;
+  }
 }

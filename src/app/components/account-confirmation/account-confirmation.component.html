@@ -1,5 +1,14 @@
-<div>
-  @if (isConfirmed) {
+<div class="confirmation">
+  <div class="bg"></div>
+  @if (isLoading) {
+  <h2>{{ message }}</h2>
+  <mat-icon
+    aria-hidden="false"
+    aria-label="Example home icon"
+    fontIcon="pending"
+    class="icon loading"
+  ></mat-icon>
+  } @if (isConfirmed && !isLoading) {
   <h2>{{ message }}</h2>
   <mat-icon
     aria-hidden="false"
@@ -8,7 +17,7 @@
     class="icon success"
   ></mat-icon>
 
-  } @else {
+  } @else if(!isConfirmed && !isLoading) {
   <h2>{{ message }}</h2>
   <mat-icon
     aria-hidden="false"

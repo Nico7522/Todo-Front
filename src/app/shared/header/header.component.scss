@@ -5,3 +5,11 @@
 mat-sidenav-container {
   margin-bottom: 100px !important;
 }
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 100% !important;
+}

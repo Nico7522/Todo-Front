@@ -12,6 +12,11 @@ const routes: Routes = [
     path: 'confirmaccount',
     component: AccountConfirmationComponent,
   },
+  {
+    path: 'team',
+    loadChildren: () =>
+      import('./components/team/team.module').then((m) => m.TeamModule),
+  },
 ];
 
 @NgModule({

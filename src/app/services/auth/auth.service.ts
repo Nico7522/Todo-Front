@@ -13,10 +13,13 @@ export class AuthService {
   private _httpClient = inject(HttpClient);
 
   constructor() {}
-  private token: WritableSignal<string | null> = signal(
+  private _token: WritableSignal<string | null> = signal(
     localStorage.getItem('token')
   );
-  isLogged = this.token.asReadonly();
+  token = this._token.asReadonly();
+
+  private _user: WritableSignal<LoggedUser | null> = signal(this.decodeToken());
+  user = this._user.asReadonly();
   login(email: string, password: string): Observable<{ token: string }> {
     return this._httpClient
       .post<{ token: string }>(`${environment.API_URL}/auth/login`, {
@@ -26,7 +29,9 @@ export class AuthService {
       .pipe(
         map((res) => {
           localStorage.setItem('token', res.token);
-          this.token.set(res.token);
+          this._token.set(res.token);
+          this._user.set(this.decodeToken());
+
           return res;
         })
       );
@@ -38,7 +43,7 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('token');
-    this.token.set(null);
+    this._token.set(null);
   }
 
   confirmAccount(userId: string, token: string): Observable<any> {
@@ -53,22 +58,29 @@ export class AuthService {
     );
   }
 
-  decodeToken(): LoggedUser {
+  decodeToken(): LoggedUser | null {
     let token: string = localStorage.getItem('token') ?? '';
     let jwt: any;
     if (token !== '') {
       jwt = jwt_decode.jwtDecode(token);
-    }
-    return {
-      id: jwt[
-        'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'
-      ],
-
-      role: jwt['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'],
-      email:
-        jwt[
-          'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress'
+      return {
+        id: jwt[
+          'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'
         ],
-    };
+
+        role: jwt[
+          'http://schemas.microsoft.com/ws/2008/06/identity/claims/role'
+        ],
+        email:
+          jwt[
+            'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress'
+          ],
+        teamId: jwt['TeamId'],
+        firstname: jwt['Firstname'],
+        lastname: jwt['Lastname'],
+      };
+    }
+
+    return null;
   }
 }

@@ -21,7 +21,12 @@ import { DatePipe } from '@angular/common';
 import { AccountConfirmationComponent } from './components/account-confirmation/account-confirmation.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, RegisterComponent, AccountConfirmationComponent],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    RegisterComponent,
+    AccountConfirmationComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

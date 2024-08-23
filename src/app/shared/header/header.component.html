@@ -43,12 +43,12 @@
     class="example-icon favorite-icon white"
     aria-label="Example icon-button with heart icon"
   >
-    @if(!isLogged()) {
+    @if(!isTokenPresent()) {
     <mat-icon class="white">login</mat-icon>
 
     }
   </button>
-  @if (isLogged()) {
+  @if (isTokenPresent()) {
   <button mat-icon-button><mat-icon>account_circle</mat-icon></button>
   <button mat-icon-button (click)="logout()">
     <mat-icon>logout</mat-icon>

@@ -1,0 +1,45 @@
+<div class="chat">
+  <h2>Team chat room</h2>
+
+  <div class="total">
+    <div class="join-message">
+      @for (message of joinMessageList(); track $index) {
+      <h3>{{ message }}</h3>
+      }
+    </div>
+    <div class="messages">
+      @for (message of messageList(); track $index) {
+      <div
+        [ngClass]="
+          message.firstname === user?.firstname
+            ? 'message-left'
+            : 'message-right'
+        "
+      >
+        <h3>{{ message.firstname }} {{ message.lastname }} :</h3>
+        <p>{{ message.message }}</p>
+      </div>
+      }
+    </div>
+
+    <div class="text-area">
+      <mat-form-field class="example-full-width">
+        <mat-label>Leave your message</mat-label>
+        <textarea
+          [formControl]="message"
+          required
+          matInput
+          placeholder="Hello ..."
+        ></textarea>
+      </mat-form-field>
+    </div>
+  </div>
+</div>
+<button
+  (click)="sendMessage()"
+  mat-raised-button
+  color="primary"
+  [disabled]="!message.valid"
+>
+  Send
+</button>

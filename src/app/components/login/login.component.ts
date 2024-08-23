@@ -32,12 +32,12 @@ export class LoginComponent {
         )
         .pipe(
           map(() => {
-            this._spinnerService.hide(),
+            this._spinnerService.hide('all'),
               this._toastrService.success('Succefully logged', 'Welcome');
             this.dialogRef.close();
           }),
           catchError((err) => {
-            this._spinnerService.hide();
+            this._spinnerService.hide('all');
             let errorMessage =
               err.status === 400 ? 'Bad credentials' : 'Server error';
             this._toastrService.error(errorMessage, 'Error');

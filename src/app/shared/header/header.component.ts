@@ -27,7 +27,7 @@ export class HeaderComponent {
     });
   }
 
-  isLogged: Signal<string | null> = this._authService.isLogged;
+  isTokenPresent: Signal<string | null> = this._authService.token;
 
   @Output() openEmitter = new EventEmitter<boolean>();
   openMenu() {

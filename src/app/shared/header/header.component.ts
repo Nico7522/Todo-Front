@@ -27,7 +27,7 @@ export class HeaderComponent {
     });
   }
 
-  isTokenPresent: Signal<string | null> = this._authService.token;
+  isTokenExist: Signal<string | null> = this._authService.isTokenExist;
 
   @Output() openEmitter = new EventEmitter<boolean>();
   openMenu() {

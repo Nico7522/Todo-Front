@@ -24,7 +24,7 @@ export class LoginComponent {
 
   handleSubmit(): void {
     if (this.loginForm.valid) {
-      this._spinnerService.show('all');
+      this._spinnerService.show('login');
       this._authService
         .login(
           this.loginForm.get('email')?.value as string,
@@ -32,12 +32,12 @@ export class LoginComponent {
         )
         .pipe(
           map(() => {
-            this._spinnerService.hide('all'),
+            this._spinnerService.hide('login'),
               this._toastrService.success('Succefully logged', 'Welcome');
             this.dialogRef.close();
           }),
           catchError((err) => {
-            this._spinnerService.hide('all');
+            this._spinnerService.hide('login');
             let errorMessage =
               err.status === 400 ? 'Bad credentials' : 'Server error';
             this._toastrService.error(errorMessage, 'Error');

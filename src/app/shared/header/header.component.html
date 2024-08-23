@@ -43,15 +43,17 @@
     class="example-icon favorite-icon white"
     aria-label="Example icon-button with heart icon"
   >
-    @if(!isTokenPresent()) {
+    @if(!isTokenExist()) {
     <mat-icon class="white">login</mat-icon>
 
     }
   </button>
-  @if (isTokenPresent()) {
-  <button mat-icon-button><mat-icon>account_circle</mat-icon></button>
+  @if (isTokenExist()) {
+  <button mat-icon-button>
+    <mat-icon class="white">account_circle</mat-icon>
+  </button>
   <button mat-icon-button (click)="logout()">
-    <mat-icon>logout</mat-icon>
+    <mat-icon class="white">logout</mat-icon>
   </button>
 
   }

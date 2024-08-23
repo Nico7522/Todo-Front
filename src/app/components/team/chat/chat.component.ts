@@ -17,7 +17,9 @@ export class ChatComponent {
   private readonly _hubService = inject(HubService);
   private readonly _authService = inject(AuthService);
   user = this._authService.user();
+  isTokenExist = this._authService.isTokenExist;
   messageList = this._hubService.messageList;
+  connectionState = this._hubService.connectionState;
   message = new FormControl('', { nonNullable: true });
   joinMessageList = this._hubService.joinMessageList;
   constructor() {

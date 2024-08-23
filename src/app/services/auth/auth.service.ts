@@ -13,10 +13,10 @@ export class AuthService {
   private _httpClient = inject(HttpClient);
 
   constructor() {}
-  private _token: WritableSignal<string | null> = signal(
+  private _isTokenExist: WritableSignal<string | null> = signal(
     localStorage.getItem('token')
   );
-  token = this._token.asReadonly();
+  isTokenExist = this._isTokenExist.asReadonly();
 
   private _user: WritableSignal<LoggedUser | null> = signal(this.decodeToken());
   user = this._user.asReadonly();
@@ -29,7 +29,7 @@ export class AuthService {
       .pipe(
         map((res) => {
           localStorage.setItem('token', res.token);
-          this._token.set(res.token);
+          this._isTokenExist.set(res.token);
           this._user.set(this.decodeToken());
 
           return res;
@@ -43,7 +43,7 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('token');
-    this._token.set(null);
+    this._isTokenExist.set(null);
   }
 
   confirmAccount(userId: string, token: string): Observable<any> {

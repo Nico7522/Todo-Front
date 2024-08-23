@@ -34,6 +34,7 @@ export class HubService {
           this._connectionState.set(true);
         })
         .catch((err) => {
+          this._connectionState.set(false);
           console.log(err);
         });
     }

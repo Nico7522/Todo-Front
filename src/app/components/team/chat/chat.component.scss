@@ -2,7 +2,7 @@
   border: 4px solid orange;
   border-radius: 10px;
   background-color: white;
-  width: 70%;
+  width: 90%;
   height: 700px;
   margin: 10px auto;
   display: flex;
@@ -18,6 +18,16 @@ h2 {
   padding-bottom: 10px;
   color: white;
   text-align: center;
+}
+
+p {
+  word-break: break-all;
+}
+
+.alert-login {
+  text-align: center;
+  color: red;
+  font-size: 2rem;
 }
 
 button {
@@ -60,8 +70,19 @@ textarea {
   display: flex;
   flex-direction: column;
 }
-
+.scroll {
+  overflow-y: scroll;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 .join-message {
   width: 30%;
   margin-left: 5px;
+}
+
+// Text color button
+.mat-mdc-unelevated-button.mat-primary {
+  color: white;
 }

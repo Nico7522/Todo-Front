@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RegisterComponent } from './components/register/register.component';
 import { AccountConfirmationComponent } from './components/account-confirmation/account-confirmation.component';
+import { authGuard } from './guards/auth/auth.guard';
 
 const routes: Routes = [
   {
@@ -14,6 +15,7 @@ const routes: Routes = [
   },
   {
     path: 'team',
+    canActivate: [authGuard],
     loadChildren: () =>
       import('./components/team/team.module').then((m) => m.TeamModule),
   },

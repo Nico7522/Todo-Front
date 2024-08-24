@@ -5,13 +5,14 @@ import { map, Observable } from 'rxjs';
 import * as jwt_decode from 'jwt-decode';
 import { LoggedUser } from '../../interfaces/logged-user.interface';
 import { RegisterForm } from '../../interfaces/register-from.interface';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private _httpClient = inject(HttpClient);
-
+  private readonly _httpClient = inject(HttpClient);
+  private readonly _toastrService = inject(ToastrService);
   constructor() {}
   private _isTokenExist: WritableSignal<string | null> = signal(
     localStorage.getItem('token')
@@ -82,5 +83,9 @@ export class AuthService {
     }
 
     return null;
+  }
+
+  showMustLogInAlert() {
+    this._toastrService.error('You must be logged');
   }
 }

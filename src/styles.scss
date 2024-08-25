@@ -1,42 +1,46 @@
 @use "@angular/material" as mat;
+
 @include mat.core();
 
+$heading-font-family: "Moderustic", sans-serif;
+$regular-font-family: "Moderustic", sans-serif;
+
 $custom-primary-palette: (
-  50: #fff3e0,
-  100: #ffe0b2,
-  200: #ffcc80,
-  300: #ffb74d,
-  400: #ffa726,
-  500: #ff9800,
-  600: #fb8c00,
-  700: #f57c00,
-  800: #ef6c00,
-  900: #e65100,
-  A100: #ffd180,
-  A200: #ffab40,
-  A400: #ff9100,
-  A700: #ff6d00,
+  50: #e7e7e7,
+  100: #c3c3c3,
+  200: #9c9c9c,
+  300: #747474,
+  400: #565656,
+  500: #383838,
+  600: #323232,
+  700: #2b2b2b,
+  800: #242424,
+  900: #171717,
+  A100: #ef7171,
+  A200: #ea4343,
+  A400: #fa0000,
+  A700: #e00000,
   contrast: (
     50: #000000,
     100: #000000,
     200: #000000,
-    300: #000000,
-    400: #000000,
+    300: #ffffff,
+    400: #ffffff,
     500: #ffffff,
     600: #ffffff,
     700: #ffffff,
     800: #ffffff,
     900: #ffffff,
     A100: #000000,
-    A200: #000000,
-    A400: #000000,
-    A700: #000000,
+    A200: #ffffff,
+    A400: #ffffff,
+    A700: #ffffff,
   ),
 );
 
-$primary: mat.define-palette($custom-primary-palette, 300);
+$primary: mat.define-palette($custom-primary-palette, 800);
 
-$accent: mat.define-palette($custom-primary-palette, 900);
+$accent: mat.define-palette($custom-primary-palette, A700);
 $theme: mat.define-light-theme(
   (
     color: (
@@ -47,9 +51,15 @@ $theme: mat.define-light-theme(
     density: 0,
   )
 );
+
 @include mat.all-component-themes($theme);
 
-$my-typography: mat.define-typography-config();
+$my-typography: mat.define-typography-config(
+  $font-family: $regular-font-family,
+  $headline-5: mat.define-typography-level(30px, 32px, 400),
+  $headline-6: mat.define-typography-level(25px, 32px, 400),
+  $subtitle-1: mat.define-typography-level(20px, 32px, 400),
+);
 @include mat.typography-hierarchy($my-typography);
 
 html,
@@ -73,13 +83,14 @@ form {
 
 .background {
   margin: 0;
-  background-image: url("../public/images/background.jpg");
+  // background-image: url("../public/images/background.jpg");
+  background: #201e1e;
   min-height: 100vh;
   background-size: cover;
   position: fixed;
   width: 100%;
   z-index: -1;
-  filter: opacity(0.2);
+  // filter: opacity(0.2);
   background-position: center;
 }
 

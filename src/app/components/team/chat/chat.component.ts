@@ -7,6 +7,8 @@ import {
   NonNullableFormBuilder,
   Validators,
 } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { Message } from '../../../interfaces/message.interface';
 
 @Component({
   selector: 'app-chat',
@@ -16,18 +18,21 @@ import {
 export class ChatComponent {
   private readonly _hubService = inject(HubService);
   private readonly _authService = inject(AuthService);
+  private readonly _activatedRoute = inject(ActivatedRoute);
   user = this._authService.user();
+  teamId: string = '';
   isTokenExist = this._authService.isTokenExist;
   messageList = this._hubService.messageList;
   connectionState = this._hubService.connectionState;
   message = new FormControl('', { nonNullable: true });
   joinMessageList = this._hubService.joinMessageList;
   constructor() {
+    this.teamId = this._activatedRoute.snapshot.params['teamId'];
     effect(() => {
       if (this._hubService.connectionState()) {
         if (this.user) {
           this._hubService.joinChatRoom(
-            this.user.teamId,
+            this.teamId,
             this.user.firstname,
             this.user.lastname
           );
@@ -37,14 +42,13 @@ export class ChatComponent {
   }
 
   sendMessage() {
-    console.log(this.message.value);
     if (this.user && this.message.valid) {
-      this._hubService.sendMessage(
-        this.user.teamId,
-        this.message.value,
-        this.user.firstname,
-        this.user.lastname
-      );
+      const messageForm: Message = {
+        message: this.message.value,
+        firstname: this.user.firstname,
+        lastname: this.user.lastname,
+      };
+      this._hubService.sendMessage(this.user.teamId, messageForm);
     }
   }
   ngOnInit() {

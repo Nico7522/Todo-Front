@@ -1,5 +1,17 @@
+@if (teamId) {
 <div>
-  <button mat-flat-button color="primary" routerLink="/team/my-team/chat">
+  <button
+    mat-flat-button
+    color="primary"
+    routerLink="/team/my-team/{{ teamId }}/chat"
+  >
     Join chat
   </button>
 </div>
+} @else {
+
+<div class="no-team">
+  <h2>Team</h2>
+  <h3>You are not currently in any team</h3>
+</div>
+}

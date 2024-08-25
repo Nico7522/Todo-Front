@@ -57,23 +57,17 @@ export class HubService {
   joinChatRoom(teamId: string, firstname: string, lastname: string) {
     this._httpC
       .post(
-        `https://localhost:7109/Join?connectionId=${this._connectionId}&teamId=${teamId}&firstname=${firstname}&lastname=${lastname}`,
+        `https://localhost:7109/api/hub/joinchatroom/${teamId}?connectionId=${this._connectionId}&teamId=${teamId}&firstname=${firstname}&lastname=${lastname}`,
         null
       )
       .subscribe();
   }
 
-  sendMessage(
-    teamId: string,
-    message: string,
-    firstname: string,
-    lastname: string
-  ) {
+  sendMessage(teamId: string, messageForm: Message) {
     this._httpC
-      .post(
-        `https://localhost:7109/SendMessage?message=${message}&teamId=${teamId}&firstname=${firstname}&lastname=${lastname}`,
-        null
-      )
+      .post(`https://localhost:7109/api/hub/sendmessage/${teamId}`, {
+        ...messageForm,
+      })
       .subscribe();
   }
 }

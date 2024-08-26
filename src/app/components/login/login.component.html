@@ -1,5 +1,5 @@
 <div class="mat-typography form" mat-dialog-content>
-  <h2 class="title">Login</h2>
+  <h2 class="title primary">Login</h2>
   <form [formGroup]="loginForm">
     <mat-form-field>
       <mat-label>Email</mat-label>
@@ -25,7 +25,12 @@
       <mat-error>Required</mat-error>
       }
     </mat-form-field>
-    <button mat-flat-button color="primary" (click)="handleSubmit()">
+    <button
+      mat-flat-button
+      color="primary"
+      [disabled]="!this.loginForm.valid"
+      (click)="handleSubmit()"
+    >
       Submit
     </button>
   </form>

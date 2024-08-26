@@ -16,4 +16,15 @@ mat-sidenav-container {
 
 h1 {
   padding-top: 10px;
+  color: white;
+}
+
+.hide {
+  display: none;
+}
+
+@media screen and (min-width: 400px) {
+  .hide {
+    display: block;
+  }
 }

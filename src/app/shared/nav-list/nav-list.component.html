@@ -1,4 +1,5 @@
 <mat-nav-list>
+  @if (isTokenExist()) {
   <a mat-list-item routerLink="/">
     <mat-icon>person</mat-icon>
     <span class="aligned-with-icon">Profile</span>
@@ -13,13 +14,20 @@
     <mat-icon>groups</mat-icon>
     <span class="aligned-with-icon">My Team</span>
   </a>
+  <a class="hide" (click)="logout()" mat-list-item>
+    <mat-icon>exit_to_app</mat-icon>
+    <span class="aligned-with-icon">Logout</span>
+  </a>
+
+  } @if(!isTokenExist()) {
   <a routerLink="/register" mat-list-item>
     <mat-icon>person_add</mat-icon>
     <span class="aligned-with-icon">Register</span>
   </a>
-
-  <a mat-list-item>
-    <mat-icon>exit_to_app</mat-icon>
-    <span class="aligned-with-icon">Logout</span>
+  <a (click)="openDialog()" mat-list-item>
+    <mat-icon>login</mat-icon>
+    <span class="aligned-with-icon">Login</span>
   </a>
+
+  }
 </mat-nav-list>

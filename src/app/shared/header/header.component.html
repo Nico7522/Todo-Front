@@ -37,23 +37,10 @@
 
   <h1 class="mat-h1">Todo App by Nico</h1>
   <span class="example-spacer white"></span>
-  <button
-    (click)="openDialog()"
-    mat-icon-button
-    class="example-icon favorite-icon white"
-    aria-label="Example icon-button with heart icon"
-  >
-    @if(!isTokenExist()) {
-    <mat-icon class="white">login</mat-icon>
 
-    }
-  </button>
   @if (isTokenExist()) {
-  <button mat-icon-button>
-    <mat-icon class="white">account_circle</mat-icon>
-  </button>
   <button mat-icon-button (click)="logout()">
-    <mat-icon class="white">logout</mat-icon>
+    <mat-icon class="white hide">logout</mat-icon>
   </button>
 
   }

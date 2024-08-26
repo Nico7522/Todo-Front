@@ -1,3 +1,5 @@
-To fix : 
-couleur des logos.
-loader quand on se connecte.
+TODO : 
+
+- Continuer à changer le style.
+- Ajouter un popup dans on se déconnecte.
+- Gérer les erreurs par rapport au chat.

@@ -1,31 +1,12 @@
-import {
-  Component,
-  EventEmitter,
-  inject,
-  Inject,
-  Output,
-  Signal,
-  ViewChild,
-} from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { LoginComponent } from '../../components/login/login.component';
+import { Component, EventEmitter, inject, Output, Signal } from '@angular/core';
 import { AuthService } from '../../services/auth/auth.service';
-import { MatSidenav } from '@angular/material/sidenav';
-
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
-  readonly dialog = inject(MatDialog);
   private readonly _authService = inject(AuthService);
-  openDialog() {
-    const dialogRef = this.dialog.open(LoginComponent, {
-      height: '400px',
-      width: '600px',
-    });
-  }
 
   isTokenExist: Signal<string | null> = this._authService.isTokenExist;
 

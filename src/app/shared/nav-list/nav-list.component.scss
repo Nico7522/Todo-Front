@@ -11,3 +11,12 @@ a {
 .mdc-list {
   padding: 0;
 }
+
+.hide {
+  display: block;
+}
+@media screen and (min-width: 400px) {
+  .hide {
+    display: none;
+  }
+}

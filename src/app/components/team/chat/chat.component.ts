@@ -49,6 +49,7 @@ export class ChatComponent {
         lastname: this.user.lastname,
       };
       this._hubService.sendMessage(this.user.teamId, messageForm);
+      this.message.reset();
     }
   }
   ngOnInit() {

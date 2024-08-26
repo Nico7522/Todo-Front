@@ -138,7 +138,12 @@ $my-typography: mat.define-typography-config(
 );
 @include mat.typography-hierarchy($my-typography);
 .primary {
-  background: #007c33;
+  background: rgb(121, 207, 104);
+  background: linear-gradient(
+    90deg,
+    rgba(121, 207, 104, 1) 5%,
+    rgba(0, 124, 51, 1) 87%
+  );
 }
 
 .box-shadow {

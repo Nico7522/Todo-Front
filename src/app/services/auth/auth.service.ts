@@ -6,6 +6,9 @@ import * as jwt_decode from 'jwt-decode';
 import { LoggedUser } from '../../interfaces/logged-user.interface';
 import { RegisterForm } from '../../interfaces/register-from.interface';
 import { ToastrService } from 'ngx-toastr';
+import { MatDialog } from '@angular/material/dialog';
+import { LogoutConfirmationComponent } from '../../components/logout-confirmation/logout-confirmation.component';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -13,6 +16,8 @@ import { ToastrService } from 'ngx-toastr';
 export class AuthService {
   private readonly _httpClient = inject(HttpClient);
   private readonly _toastrService = inject(ToastrService);
+  readonly dialog = inject(MatDialog);
+  private readonly _router = inject(Router);
   constructor() {}
   private _isTokenExist: WritableSignal<string | null> = signal(
     localStorage.getItem('token')
@@ -42,9 +47,24 @@ export class AuthService {
     return this._httpClient.post(`${environment.API_URL}/auth/register`, form);
   }
 
+  openLogoutConfirmationDialog() {
+    const dialogRef = this.dialog.open(LogoutConfirmationComponent, {
+      height: '200px',
+      width: '600px',
+    });
+
+    dialogRef.afterClosed().subscribe((res: boolean) => {
+      if (res) {
+        this.logout();
+        this._toastrService.success('Disconnected');
+      }
+    });
+  }
+
   logout() {
     localStorage.removeItem('token');
     this._isTokenExist.set(null);
+    this._router.navigate(['/']);
   }
 
   confirmAccount(userId: string, token: string): Observable<any> {

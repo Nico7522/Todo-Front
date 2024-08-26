@@ -15,7 +15,7 @@ export class HeaderComponent {
     this.openEmitter.emit(true);
   }
 
-  logout() {
-    this._authService.logout();
+  openLogoutConfirmationDialog() {
+    this._authService.openLogoutConfirmationDialog();
   }
 }

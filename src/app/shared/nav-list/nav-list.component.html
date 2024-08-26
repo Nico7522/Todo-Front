@@ -1,4 +1,8 @@
 <mat-nav-list>
+  <a mat-list-item routerLink="/">
+    <mat-icon>home</mat-icon>
+    <span class="aligned-with-icon">Home</span>
+  </a>
   @if (isTokenExist()) {
   <a mat-list-item routerLink="/">
     <mat-icon>person</mat-icon>
@@ -14,7 +18,7 @@
     <mat-icon>groups</mat-icon>
     <span class="aligned-with-icon">My Team</span>
   </a>
-  <a class="hide" (click)="logout()" mat-list-item>
+  <a class="hide" (click)="openLogoutConfirmationDialog()" mat-list-item>
     <mat-icon>exit_to_app</mat-icon>
     <span class="aligned-with-icon">Logout</span>
   </a>

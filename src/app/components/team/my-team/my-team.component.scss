@@ -12,17 +12,45 @@ div {
 }
 
 h2 {
-  font-size: 2.2rem;
-
-  background: orange;
-  width: 100%;
   color: white;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding: 10px;
+  background: rgb(121, 207, 104);
+  background: linear-gradient(
+    90deg,
+    rgba(121, 207, 104, 1) 5%,
+    rgba(0, 124, 51, 1) 87%
+  );
 }
 
 h3 {
   font-size: 2rem;
   text-align: center;
   margin-top: 100px;
+}
+
+main {
+  display: flex;
+}
+
+.old-team,
+.actual-team {
+  width: 40%;
+  border: 1px solid green;
+  margin: auto;
+  background: white;
+  padding: 0;
+}
+
+@media screen and (max-width: 1050px) {
+  main {
+    flex-direction: column;
+  }
+
+  main > div {
+    width: 90%;
+  }
+
+  .actual-team {
+    margin-top: 20px;
+  }
 }

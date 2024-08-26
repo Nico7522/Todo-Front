@@ -19,6 +19,7 @@ import { provideNativeDateAdapter } from '@angular/material/core';
 import { InputPhoneComponent } from './shared/input-phone/input-phone.component';
 import { DatePipe } from '@angular/common';
 import { AccountConfirmationComponent } from './components/account-confirmation/account-confirmation.component';
+import { LogoutConfirmationComponent } from './components/logout-confirmation/logout-confirmation.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { AccountConfirmationComponent } from './components/account-confirmation/
     LoginComponent,
     RegisterComponent,
     AccountConfirmationComponent,
+    LogoutConfirmationComponent,
   ],
   imports: [
     BrowserModule,

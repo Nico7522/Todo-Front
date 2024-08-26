@@ -5,6 +5,8 @@ import { AuthService } from '../../services/auth/auth.service';
 import { catchError, EMPTY, map } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { emailRegex, passwordRegex } from '../../utils/regex';
+import { hasErrorAndTouched } from '../../utils/validators';
 
 @Component({
   selector: 'app-login',
@@ -17,9 +19,17 @@ export class LoginComponent {
   private readonly _authService = inject(AuthService);
   private readonly _toastrService = inject(ToastrService);
   private readonly _spinnerService = inject(NgxSpinnerService);
+  hasErrorAndTouched = hasErrorAndTouched;
   loginForm = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required]),
+    email: new FormControl('', [
+      Validators.required,
+      Validators.email,
+      Validators.pattern(emailRegex),
+    ]),
+    password: new FormControl('', [
+      Validators.required,
+      Validators.pattern(passwordRegex),
+    ]),
   });
 
   handleSubmit(): void {

@@ -7,6 +7,7 @@ import { MyTeamComponent } from './my-team/my-team.component';
 import { MaterialModule } from '../../shared/material/material.module';
 import { ChatComponent } from './chat/chat.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
   declarations: [TeamComponent, MyTeamComponent, ChatComponent],
@@ -15,6 +16,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     TeamRoutingModule,
     MaterialModule,
     ReactiveFormsModule,
+    SharedModule,
   ],
 })
 export class TeamModule {}

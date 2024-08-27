@@ -12,17 +12,30 @@ import {
 } from './input-phone/input-phone.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AccountCreatedConfirmationComponent } from './account-created-confirmation/account-created-confirmation.component';
+import { TeamDisplayComponent } from './team-display/team-display.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
-  declarations: [HeaderComponent, NavListComponent, InputPhoneComponent, AccountCreatedConfirmationComponent],
+  declarations: [
+    HeaderComponent,
+    NavListComponent,
+    InputPhoneComponent,
+    AccountCreatedConfirmationComponent,
+    TeamDisplayComponent,
+  ],
   imports: [
     CommonModule,
     MaterialModule,
     MatSidenavModule,
     MatListModule,
-    AppRoutingModule,
     ReactiveFormsModule,
+    RouterModule,
   ],
-  exports: [HeaderComponent, NavListComponent, InputPhoneComponent],
+  exports: [
+    HeaderComponent,
+    NavListComponent,
+    InputPhoneComponent,
+    TeamDisplayComponent,
+  ],
 })
 export class SharedModule {}

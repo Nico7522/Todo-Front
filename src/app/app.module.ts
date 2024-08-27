@@ -16,7 +16,6 @@ import { RegisterComponent } from './components/register/register.component';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { provideNativeDateAdapter } from '@angular/material/core';
-import { InputPhoneComponent } from './shared/input-phone/input-phone.component';
 import { DatePipe } from '@angular/common';
 import { AccountConfirmationComponent } from './components/account-confirmation/account-confirmation.component';
 import { LogoutConfirmationComponent } from './components/logout-confirmation/logout-confirmation.component';

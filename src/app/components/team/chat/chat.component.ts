@@ -1,7 +1,7 @@
 import { Component, effect, inject } from '@angular/core';
 import { HubService } from '../../../services/hub/hub.service';
 import { AuthService } from '../../../services/auth/auth.service';
-import { LoggedUser } from '../../../interfaces/logged-user.interface';
+import { LoggedUser } from '../../../interfaces/users/logged-user.interface';
 import {
   FormControl,
   NonNullableFormBuilder,

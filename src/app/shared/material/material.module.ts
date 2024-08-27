@@ -7,11 +7,7 @@ import {
   MatDialogActions,
   MatDialogContent,
 } from '@angular/material/dialog';
-import {
-  MAT_FORM_FIELD,
-  MatFormFieldControl,
-  MatFormFieldModule,
-} from '@angular/material/form-field';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import {
   MatSidenavContainer,
@@ -20,7 +16,7 @@ import {
 import { MatListModule } from '@angular/material/list';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-
+import { MatTabsModule } from '@angular/material/tabs';
 const material = [
   MatToolbarModule,
   MatIconModule,
@@ -36,6 +32,7 @@ const material = [
   MatGridListModule,
   MatDatepickerModule,
   MatFormFieldModule,
+  MatTabsModule,
 ];
 
 @NgModule({

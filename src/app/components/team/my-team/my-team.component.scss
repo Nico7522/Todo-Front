@@ -41,6 +41,20 @@ main {
   padding: 0;
 }
 
+mat-icon {
+  color: green;
+}
+
+.attendance {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.attendance > span {
+  margin-right: 10px;
+}
+
 @media screen and (max-width: 1050px) {
   main {
     flex-direction: column;

@@ -20,5 +20,38 @@
   <div class="old-team box-shadow">
     <h2 class="primary">Your old teams</h2>
   </div>
-  <div class="actual-team box-shadow"><h2 class="primary">Actual Team</h2></div>
+  <div class="actual-team box-shadow">
+    <h2 class="primary">Actual Team</h2>
+    @if (team$ | async; as team) {
+    <h3 class="mat-subtitle-1">{{ team.name }}</h3>
+    <mat-tab-group>
+      <mat-tab label="Users">
+        <h4 class="mat-subtitle-2">Total members : {{ team.users.length }}</h4>
+        @for (user of team.users; track $index) {
+        <mat-list role="list">
+          <mat-list-item>
+            <span matListItemLine
+              >{{ user.lastname }} {{ user.firstname }}</span
+            >
+            <span class="attendance" matListItemMeta>
+              <span>Present</span>
+              <mat-icon>check_circle</mat-icon></span
+            >
+          </mat-list-item>
+        </mat-list>
+
+        }
+      </mat-tab>
+      <mat-tab label="Tasks"> Tasks </mat-tab>
+      <mat-tab label="Notes">
+        <div>
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Velit,
+          voluptatem nihil at deleniti sit sint cumque in eius, et, laudantium
+          non. Dolore libero impedit doloribus error, recusandae tempore
+          consequatur fugit.
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+    }
+  </div>
 </main>

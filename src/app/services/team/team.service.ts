@@ -16,4 +16,10 @@ export class TeamService {
       `${environment.API_URL}/user/${userId}/team`
     );
   }
+
+  getOldTeamByUser(userId: string): Observable<Team[]> {
+    return this._httpClient.get<Team[]>(
+      `${environment.API_URL}/user/${userId}/oldteam`
+    );
+  }
 }

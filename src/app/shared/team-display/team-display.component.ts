@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { Team } from '../../interfaces/teams/team.interface';
+import { TeamService } from '../../services/team/team.service';
 
 @Component({
   selector: 'app-team-display',
@@ -7,5 +8,8 @@ import { Team } from '../../interfaces/teams/team.interface';
   styleUrl: './team-display.component.scss',
 })
 export class TeamDisplayComponent {
+  private _teamService = inject(TeamService);
+
+  teamMembers = this._teamService.teamMembers;
   @Input() team: Team | null = null;
 }

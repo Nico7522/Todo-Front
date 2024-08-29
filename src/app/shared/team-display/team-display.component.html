@@ -3,20 +3,32 @@
 <mat-tab-group>
   <mat-tab label="Users">
     <h4 class="mat-subtitle-2">Total members : {{ team.users.length }}</h4>
-    @for (user of team.users; track $index) {
+    <app-user-list
+      [users]="teamMembers()"
+      [text]="'Present'"
+      [icon]="'check_circle'"
+    ></app-user-list>
+  </mat-tab>
+  <mat-tab label="Tasks"
+    ><h4 class="mat-subtitle-2">Total Tasks : {{ team.tasks.length }}</h4>
+    @for (task of team.tasks; track $index) {
     <mat-list role="list">
       <mat-list-item>
-        <span matListItemLine>{{ user.lastname }} {{ user.firstname }}</span>
-        <span class="attendance" matListItemMeta>
-          <span>Present</span>
-          <mat-icon>check_circle</mat-icon></span
-        >
+        <span matListItemTitle>{{ task.title }}</span>
+        <span matListItemLine>{{ task.description }}</span>
+        <div class="attendance completed" matListItemMeta>
+          <span>{{ task.isComplete ? "Completed" : "Uncompleted" }}</span>
+          <mat-icon
+            [ngClass]="
+              task.isComplete ? 'green-icon completed-icon' : ' completed-icon'
+            "
+            >check_circle</mat-icon
+          >
+        </div>
       </mat-list-item>
     </mat-list>
-
     }
   </mat-tab>
-  <mat-tab label="Tasks"> Tasks </mat-tab>
   <mat-tab label="Notes">
     <div>
       Lorem ipsum dolor, sit amet consectetur adipisicing elit. Velit,

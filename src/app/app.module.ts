@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { SharedModule } from './shared/shared.module';
 import { MaterialModule } from './shared/material/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -19,7 +18,7 @@ import { provideNativeDateAdapter } from '@angular/material/core';
 import { DatePipe } from '@angular/common';
 import { AccountConfirmationComponent } from './components/account-confirmation/account-confirmation.component';
 import { LogoutConfirmationComponent } from './components/logout-confirmation/logout-confirmation.component';
-
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +28,6 @@ import { LogoutConfirmationComponent } from './components/logout-confirmation/lo
     LogoutConfirmationComponent,
   ],
   imports: [
-    BrowserModule,
     AppRoutingModule,
     SharedModule,
     MaterialModule,

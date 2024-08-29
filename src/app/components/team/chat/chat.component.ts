@@ -1,41 +1,51 @@
 import { Component, effect, inject } from '@angular/core';
 import { HubService } from '../../../services/hub/hub.service';
 import { AuthService } from '../../../services/auth/auth.service';
-import { LoggedUser } from '../../../interfaces/users/logged-user.interface';
-import {
-  FormControl,
-  NonNullableFormBuilder,
-  Validators,
-} from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Message } from '../../../interfaces/message.interface';
+import { Message } from '../../../interfaces/message/message.interface';
+import { animate, style, transition, trigger } from '@angular/animations';
+import { TeamService } from '../../../services/team/team.service';
+import { map } from 'rxjs';
+import { UserStatus } from '../../../interfaces/users/user-status.interface';
+
+const hidden = { transform: 'translateX(20%)' };
+const visible = { transform: 'translateX(0)' };
+const timing = '0.3s ease-in';
 
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
   styleUrl: './chat.component.scss',
+  animations: [
+    trigger('openClose', [
+      transition(':enter', [style(hidden), animate(timing, style(visible))]),
+      transition(':leave', [style(visible), animate(timing, style(hidden))]),
+    ]),
+  ],
 })
 export class ChatComponent {
+  test = false;
   private readonly _hubService = inject(HubService);
   private readonly _authService = inject(AuthService);
   private readonly _activatedRoute = inject(ActivatedRoute);
+  private readonly _teamService = inject(TeamService);
   user = this._authService.user();
   teamId: string = '';
+  teamMembers = this._teamService.teamMembers;
+
   isTokenExist = this._authService.isTokenExist;
   messageList = this._hubService.messageList;
   connectionState = this._hubService.connectionState;
   message = new FormControl('', { nonNullable: true });
-  joinMessageList = this._hubService.joinMessageList;
+  joinMessage = this._hubService.joinMessage;
   constructor() {
     this.teamId = this._activatedRoute.snapshot.params['teamId'];
+
     effect(() => {
-      if (this._hubService.connectionState()) {
+      if (this.connectionState()) {
         if (this.user) {
-          this._hubService.joinChatRoom(
-            this.teamId,
-            this.user.firstname,
-            this.user.lastname
-          );
+          this._hubService.joinChatRoom(this.teamId, this.user.id);
         }
       }
     });
@@ -54,5 +64,6 @@ export class ChatComponent {
   }
   ngOnInit() {
     this._hubService.connect();
+    this._teamService.userId.set(this.user?.id ?? '');
   }
 }

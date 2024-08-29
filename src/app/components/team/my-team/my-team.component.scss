@@ -32,34 +32,15 @@ main {
   display: flex;
 }
 
-.old-team,
 .actual-team {
-  width: 40%;
+  width: 70%;
   border: 1px solid green;
   margin: auto;
   background: white;
   padding: 0;
 }
 
-mat-icon {
-  color: green;
-}
-
-.attendance {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.attendance > span {
-  margin-right: 10px;
-}
-
 @media screen and (max-width: 1050px) {
-  main {
-    flex-direction: column;
-  }
-
   main > div {
     width: 90%;
   }

@@ -4,7 +4,7 @@ import { environment } from '../../environment';
 import { map, Observable } from 'rxjs';
 import * as jwt_decode from 'jwt-decode';
 import { LoggedUser } from '../../interfaces/users/logged-user.interface';
-import { RegisterForm } from '../../interfaces/register-from.interface';
+import { RegisterForm } from '../../interfaces/forms/register-from.interface';
 import { ToastrService } from 'ngx-toastr';
 import { MatDialog } from '@angular/material/dialog';
 import { LogoutConfirmationComponent } from '../../components/logout-confirmation/logout-confirmation.component';

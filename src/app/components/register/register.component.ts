@@ -23,7 +23,7 @@ import {
   InputPhoneComponent,
   MyTel,
 } from '../../shared/input-phone/input-phone.component';
-import { RegisterForm } from '../../interfaces/register-from.interface';
+import { RegisterForm } from '../../interfaces/forms/register-from.interface';
 import { AuthService } from '../../services/auth/auth.service';
 import { DatePipe } from '@angular/common';
 import { catchError, EMPTY, map } from 'rxjs';

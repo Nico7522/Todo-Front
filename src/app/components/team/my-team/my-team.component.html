@@ -17,21 +17,12 @@
 }
 
 <main>
-  <div class="old-team box-shadow">
-    <h2 class="primary">Your old teams</h2>
-    @if (oldTeamErrorMessage) {
-    <h3 class="mat-subtitle-1 error">{{ oldTeamErrorMessage }}</h3>
-    } @for (oldTeam of oldTeam$ | async; track $index) {
-    <app-team-display [team]="oldTeam"></app-team-display>
-
-    }
-  </div>
   <div class="actual-team box-shadow">
     <h2 class="primary">Actual Team</h2>
     @if (actualTeamErrorMessage) {
     <h3 class="mat-subtitle-1 error">{{ actualTeamErrorMessage }}</h3>
-    } @if (team$ | async; as team) {
-    <app-team-display [team]="team"></app-team-display>
+    } @if (team()) {
+    <app-team-display [team]="team()"></app-team-display>
 
     }
   </div>

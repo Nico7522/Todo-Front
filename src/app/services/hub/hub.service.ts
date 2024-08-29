@@ -1,7 +1,8 @@
 import { inject, Injectable, Signal, signal } from '@angular/core';
 import * as signalR from '@microsoft/signalr';
-import { Message } from '../../interfaces/message.interface';
+import { Message } from '../../interfaces/message/message.interface';
 import { HttpClient } from '@angular/common/http';
+import { TeamService } from '../team/team.service';
 
 @Injectable({
   providedIn: 'root',
@@ -9,13 +10,14 @@ import { HttpClient } from '@angular/common/http';
 export class HubService {
   private readonly _hubConnection: signalR.HubConnection;
   private readonly _httpC = inject(HttpClient);
+  private readonly _teamService = inject(TeamService);
   // Connection state
   private _connectionState = signal<boolean>(false);
   connectionState = this._connectionState.asReadonly();
 
   // Join message list
-  private _joinMessageList = signal<string[]>([]);
-  joinMessageList = this._joinMessageList.asReadonly();
+  private _joinMessage = signal<string>('');
+  joinMessage = this._joinMessage.asReadonly();
   private _connectionId: string = '';
   // Message list
   private _messageList = signal<Message[]>([]);
@@ -40,8 +42,8 @@ export class HubService {
           console.log(err);
         });
     }
-    this._hubConnection.on('JoinChatRoom', (message: string) => {
-      this._joinMessageList.update((prev) => [...prev, message]);
+    this._hubConnection.on('JoinChatRoom', (userId: string) => {
+      this._teamService.setUserOnline(userId);
     });
 
     this._hubConnection.on(
@@ -54,10 +56,10 @@ export class HubService {
       }
     );
   }
-  joinChatRoom(teamId: string, firstname: string, lastname: string) {
+  joinChatRoom(teamId: string, userId: string) {
     this._httpC
       .post(
-        `https://localhost:7109/api/hub/joinchatroom/${teamId}?connectionId=${this._connectionId}&teamId=${teamId}&firstname=${firstname}&lastname=${lastname}`,
+        `https://localhost:7109/api/hub/joinchatroom/${teamId}?connectionId=${this._connectionId}&teamId=${teamId}&userId=${userId}`,
         null
       )
       .subscribe();

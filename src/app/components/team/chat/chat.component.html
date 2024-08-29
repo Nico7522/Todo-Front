@@ -1,48 +1,67 @@
-<div class="chat box-shadow">
-  <h2 class="primary">Team chat room</h2>
-  <div class="scroll">
-    @if (!isTokenExist()) {
-    <h3 class="alert-login">Please log in</h3>
-    } @if(!connectionState()) {
-    <h3 class="alert-login">Chat offline, try later</h3>
+<main>
+  <div class="members box-shadow">
+    <h2 class="primary">Members</h2>
+    @if (teamMembers()) {
+    <app-user-list
+      [users]="teamMembers()"
+      [text]="'Offline'"
+      [icon]="'radio_button_checked'"
+      [iconColor]="'green'"
+    ></app-user-list>
+
     }
-    <div class="join-message">
-      @for (message of joinMessageList(); track $index) {
-      <h3>{{ message }}</h3>
-      }
-    </div>
-    <div class="messages">
-      @for (message of messageList(); track $index) {
-      <div
-        [ngClass]="
-          message.firstname === user?.firstname
-            ? 'message-left'
-            : 'message-right'
-        "
-      >
-        <h3>{{ message.firstname }} {{ message.lastname }} :</h3>
-        <p>{{ message.message }}</p>
+    <div class="member-list"></div>
+  </div>
+  <div class="discution">
+    <div class="chat box-shadow">
+      <h2 class="primary">Team chat room</h2>
+      <div class="scroll">
+        @if (!isTokenExist()) {
+        <h3 class="alert-login">Please log in</h3>
+        } @if(!connectionState()) {
+        <h3 class="alert-login">Chat offline, try later</h3>
+        }
+        <div class="join-message">
+          @if (joinMessage()) {
+          {{ joinMessage() }}
+          }
+        </div>
+        <div class="messages">
+          @for (message of messageList(); track $index) {
+          <div
+            @openClose
+            [ngClass]="
+              message.firstname === user?.firstname
+                ? 'message-left'
+                : 'message-right'
+            "
+          >
+            <h3>{{ message.firstname }} {{ message.lastname }} :</h3>
+            <p>{{ message.message }}</p>
+          </div>
+
+          }
+        </div>
       </div>
-      }
+      <div class="text-area">
+        <mat-form-field class="example-full-width">
+          <mat-label>Leave your message</mat-label>
+          <textarea
+            [formControl]="message"
+            required
+            matInput
+            placeholder="Hello ..."
+          ></textarea>
+        </mat-form-field>
+      </div>
     </div>
+    <button
+      (click)="sendMessage()"
+      mat-flat-button
+      color="primary"
+      [disabled]="!message.valid"
+    >
+      Send
+    </button>
   </div>
-  <div class="text-area">
-    <mat-form-field class="example-full-width">
-      <mat-label>Leave your message</mat-label>
-      <textarea
-        [formControl]="message"
-        required
-        matInput
-        placeholder="Hello ..."
-      ></textarea>
-    </mat-form-field>
-  </div>
-</div>
-<button
-  (click)="sendMessage()"
-  mat-flat-button
-  color="primary"
-  [disabled]="!message.valid"
->
-  Send
-</button>
+</main>

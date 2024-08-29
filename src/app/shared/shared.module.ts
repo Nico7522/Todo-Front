@@ -14,6 +14,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AccountCreatedConfirmationComponent } from './account-created-confirmation/account-created-confirmation.component';
 import { TeamDisplayComponent } from './team-display/team-display.component';
 import { RouterModule } from '@angular/router';
+import { UserListComponent } from './user-list/user-list.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { RouterModule } from '@angular/router';
     InputPhoneComponent,
     AccountCreatedConfirmationComponent,
     TeamDisplayComponent,
+    UserListComponent,
   ],
   imports: [
     CommonModule,
@@ -36,6 +38,7 @@ import { RouterModule } from '@angular/router';
     NavListComponent,
     InputPhoneComponent,
     TeamDisplayComponent,
+    UserListComponent,
   ],
 })
 export class SharedModule {}

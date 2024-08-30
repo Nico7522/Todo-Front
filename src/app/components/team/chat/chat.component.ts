@@ -6,8 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Message } from '../../../interfaces/message/message.interface';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { TeamService } from '../../../services/team/team.service';
-import { map } from 'rxjs';
-import { UserStatus } from '../../../interfaces/users/user-status.interface';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 const hidden = { transform: 'translateX(20%)' };
 const visible = { transform: 'translateX(0)' };
@@ -30,27 +29,26 @@ export class ChatComponent {
   private readonly _authService = inject(AuthService);
   private readonly _activatedRoute = inject(ActivatedRoute);
   private readonly _teamService = inject(TeamService);
+  private readonly _spinnerService = inject(NgxSpinnerService);
   user = this._authService.user();
   teamId: string = '';
   teamMembers = this._teamService.teamMembers;
-
   isTokenExist = this._authService.isTokenExist;
   messageList = this._hubService.messageList;
   connectionState = this._hubService.connectionState;
+
   message = new FormControl('', { nonNullable: true });
-  joinMessage = this._hubService.joinMessage;
   constructor() {
     this.teamId = this._activatedRoute.snapshot.params['teamId'];
-
     effect(() => {
-      if (this.connectionState()) {
+      if (this.connectionState() && this.teamMembers().length > 0) {
+        this._spinnerService.hide('teamMembers');
         if (this.user) {
           this._hubService.joinChatRoom(this.teamId, this.user.id);
         }
       }
     });
   }
-
   sendMessage() {
     if (this.user && this.message.valid) {
       const messageForm: Message = {
@@ -63,7 +61,14 @@ export class ChatComponent {
     }
   }
   ngOnInit() {
-    this._hubService.connect();
+    this._spinnerService.show('teamMembers');
+    if (!this._hubService.connectionState()) {
+      this._hubService.connect();
+    }
     this._teamService.userId.set(this.user?.id ?? '');
+  }
+
+  ngOnDestroy() {
+    if (this.user) this._hubService.leftChatRoom(this.teamId, this.user.id);
   }
 }

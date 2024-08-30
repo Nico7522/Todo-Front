@@ -8,6 +8,7 @@ import { MaterialModule } from '../../shared/material/material.module';
 import { ChatComponent } from './chat/chat.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../../shared/shared.module';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [TeamComponent, MyTeamComponent, ChatComponent],
@@ -17,6 +18,7 @@ import { SharedModule } from '../../shared/shared.module';
     MaterialModule,
     ReactiveFormsModule,
     SharedModule,
+    NgxSpinnerModule,
   ],
 })
 export class TeamModule {}

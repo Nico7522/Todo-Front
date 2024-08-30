@@ -1,9 +1,6 @@
 import { Component, inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../../services/auth/auth.service';
 import { TeamService } from '../../../services/team/team.service';
-import { catchError, EMPTY, map, Observable } from 'rxjs';
-import { Team } from '../../../interfaces/teams/team.interface';
 
 @Component({
   selector: 'app-my-team',

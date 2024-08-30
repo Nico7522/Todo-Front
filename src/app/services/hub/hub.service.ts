@@ -3,6 +3,9 @@ import * as signalR from '@microsoft/signalr';
 import { Message } from '../../interfaces/message/message.interface';
 import { HttpClient } from '@angular/common/http';
 import { TeamService } from '../team/team.service';
+import { catchError, EMPTY, take } from 'rxjs';
+import { UserStatus } from '../../interfaces/users/user-status.interface';
+import { environment } from '../../environment';
 
 @Injectable({
   providedIn: 'root',
@@ -15,10 +18,8 @@ export class HubService {
   private _connectionState = signal<boolean>(false);
   connectionState = this._connectionState.asReadonly();
 
-  // Join message list
-  private _joinMessage = signal<string>('');
-  joinMessage = this._joinMessage.asReadonly();
   private _connectionId: string = '';
+
   // Message list
   private _messageList = signal<Message[]>([]);
   messageList = this._messageList.asReadonly();
@@ -42,8 +43,12 @@ export class HubService {
           console.log(err);
         });
     }
-    this._hubConnection.on('JoinChatRoom', (userId: string) => {
-      this._teamService.setUserOnline(userId);
+    this._hubConnection.on('JoinChatRoom', (membersList: UserStatus[]) => {
+      this._teamService.refreshMembersList(membersList);
+    });
+
+    this._hubConnection.on('LeftChatRoom', (membersList: UserStatus[]) => {
+      this._teamService.refreshMembersList(membersList);
     });
 
     this._hubConnection.on(
@@ -59,15 +64,29 @@ export class HubService {
   joinChatRoom(teamId: string, userId: string) {
     this._httpC
       .post(
-        `https://localhost:7109/api/hub/joinchatroom/${teamId}?connectionId=${this._connectionId}&teamId=${teamId}&userId=${userId}`,
-        null
+        `${environment.API_URL}/hub/joinchatroom/${teamId}?connectionId=${this._connectionId}&teamId=${teamId}&userId=${userId}`,
+        {
+          isOnline: true,
+        }
       )
+      .subscribe();
+  }
+
+  leftChatRoom(teamId: string, userId: string) {
+    this._httpC
+      .post(
+        `${environment.API_URL}/hub/leftchatroom/${teamId}?teamId=${teamId}&userId=${userId}`,
+        {
+          isOnline: false,
+        }
+      )
+
       .subscribe();
   }
 
   sendMessage(teamId: string, messageForm: Message) {
     this._httpC
-      .post(`https://localhost:7109/api/hub/sendmessage/${teamId}`, {
+      .post(`${environment.API_URL}/hub/sendmessage/${teamId}`, {
         ...messageForm,
       })
       .subscribe();

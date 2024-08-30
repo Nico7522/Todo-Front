@@ -1,15 +1,19 @@
 <main>
   <div class="members box-shadow">
     <h2 class="primary">Members</h2>
-    @if (teamMembers()) {
+    @if (teamMembers().length > 0) {
     <app-user-list
       [users]="teamMembers()"
       [text]="'Offline'"
       [icon]="'radio_button_checked'"
       [iconColor]="'green'"
     ></app-user-list>
-
     }
+    <ngx-spinner
+      name="teamMembers"
+      [fullScreen]="false"
+      type="ball-scale-multiple"
+    ></ngx-spinner>
     <div class="member-list"></div>
   </div>
   <div class="discution">
@@ -21,11 +25,7 @@
         } @if(!connectionState()) {
         <h3 class="alert-login">Chat offline, try later</h3>
         }
-        <div class="join-message">
-          @if (joinMessage()) {
-          {{ joinMessage() }}
-          }
-        </div>
+        <div class="join-message"></div>
         <div class="messages">
           @for (message of messageList(); track $index) {
           <div

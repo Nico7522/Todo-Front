@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { Team } from '../../interfaces/teams/team.interface';
 import { UserStatus } from '../../interfaces/users/user-status.interface';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
+import { setLocalStorageMembersList } from '../../utils/methods';
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +22,9 @@ export class TeamService {
     toObservable(this.userId).pipe(
       switchMap((userId) =>
         this.getTeamByUserId(userId).pipe(
-          tap((team) => this._teamMembers.set(team.users as UserStatus[]))
+          tap((team) => {
+            const members = this._teamMembers.set(team.users as UserStatus[]);
+          })
         )
       )
     ),
@@ -34,10 +37,14 @@ export class TeamService {
     );
   }
 
-  setUserOnline(userId: string) {
-    let user = this._teamMembers().find((m) => m.id === userId);
-    if (user) {
-      user.status = true;
-    }
+  refreshMembersList(membersList: UserStatus[]) {
+    console.log(membersList);
+
+    membersList.forEach((u) => {
+      let user = this._teamMembers().find((m) => m.id === u.id);
+      if (user) {
+        user.isOnline = u.isOnline;
+      }
+    });
   }
 }

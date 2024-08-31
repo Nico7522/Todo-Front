@@ -25,7 +25,6 @@ main {
   margin: 10px auto;
   display: flex;
   flex-direction: column;
-  position: relative;
   height: 400px;
 }
 
@@ -114,4 +113,12 @@ textarea {
   .members {
     width: 80%;
   }
+}
+
+.example-container {
+  height: calc(100vh - 3px);
+}
+
+mat-drawer-content {
+  background: #000;
 }

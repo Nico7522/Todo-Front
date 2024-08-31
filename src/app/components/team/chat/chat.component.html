@@ -1,4 +1,9 @@
 <main>
+  <ngx-spinner
+    name="teamMembers"
+    [fullScreen]="false"
+    type="ball-scale-multiple"
+  ></ngx-spinner>
   <div class="members box-shadow">
     <h2 class="primary">Members</h2>
     @if (teamMembers().length > 0) {
@@ -9,11 +14,6 @@
       [iconColor]="'green'"
     ></app-user-list>
     }
-    <ngx-spinner
-      name="teamMembers"
-      [fullScreen]="false"
-      type="ball-scale-multiple"
-    ></ngx-spinner>
     <div class="member-list"></div>
   </div>
   <div class="discution">
@@ -22,8 +22,6 @@
       <div class="scroll">
         @if (!isTokenExist()) {
         <h3 class="alert-login">Please log in</h3>
-        } @if(!connectionState()) {
-        <h3 class="alert-login">Chat offline, try later</h3>
         }
         <div class="join-message"></div>
         <div class="messages">

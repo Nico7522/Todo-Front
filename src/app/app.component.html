@@ -3,11 +3,12 @@
     <app-nav-list />
   </mat-sidenav>
   <mat-sidenav-content>
-    <div class="background"></div>
     <app-header (openEmitter)="close()" />
     <ngx-spinner name="all" type="ball-scale-multiple"></ngx-spinner>
-    <div>
-      <router-outlet />
-    </div>
+    <div class="background"></div>
+
+    <router-outlet />
   </mat-sidenav-content>
 </mat-sidenav-container>
+
+<!-- <app-side-menu></app-side-menu> -->

@@ -15,6 +15,7 @@ import { AccountCreatedConfirmationComponent } from './account-created-confirmat
 import { TeamDisplayComponent } from './team-display/team-display.component';
 import { RouterModule } from '@angular/router';
 import { UserListComponent } from './user-list/user-list.component';
+import { SideMenuComponent } from './side-menu/side-menu.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { UserListComponent } from './user-list/user-list.component';
     AccountCreatedConfirmationComponent,
     TeamDisplayComponent,
     UserListComponent,
+    SideMenuComponent,
   ],
   imports: [
     CommonModule,
@@ -39,6 +41,7 @@ import { UserListComponent } from './user-list/user-list.component';
     InputPhoneComponent,
     TeamDisplayComponent,
     UserListComponent,
+    SideMenuComponent,
   ],
 })
 export class SharedModule {}

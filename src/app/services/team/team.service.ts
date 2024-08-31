@@ -1,5 +1,5 @@
 import { computed, inject, Injectable, signal } from '@angular/core';
-import { EMPTY, map, Observable, switchMap, tap } from 'rxjs';
+import { catchError, EMPTY, map, Observable, of, switchMap, tap } from 'rxjs';
 import { environment } from '../../environment';
 import { HttpClient } from '@angular/common/http';
 import { Team } from '../../interfaces/teams/team.interface';
@@ -23,7 +23,10 @@ export class TeamService {
       switchMap((userId) =>
         this.getTeamByUserId(userId).pipe(
           tap((team) => {
-            const members = this._teamMembers.set(team.users as UserStatus[]);
+            this._teamMembers.set(team.users as UserStatus[]);
+          }),
+          catchError(() => {
+            return EMPTY;
           })
         )
       )

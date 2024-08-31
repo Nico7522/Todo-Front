@@ -15,6 +15,8 @@ export class MyTeamComponent {
   teamId = this._authService.user()?.teamId;
   team = this._teamService.team;
   ngOnInit() {
+    console.log(this._authService.user()?.id);
+
     this._teamService.userId.set(this._authService.user()?.id ?? '');
   }
 }

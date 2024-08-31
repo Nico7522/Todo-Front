@@ -1,4 +1,4 @@
-import { Component, effect, inject } from '@angular/core';
+import { Component, effect, inject, signal } from '@angular/core';
 import { HubService } from '../../../services/hub/hub.service';
 import { AuthService } from '../../../services/auth/auth.service';
 import { FormControl } from '@angular/forms';
@@ -7,6 +7,7 @@ import { Message } from '../../../interfaces/message/message.interface';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { TeamService } from '../../../services/team/team.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
 
 const hidden = { transform: 'translateX(20%)' };
 const visible = { transform: 'translateX(0)' };
@@ -24,28 +25,37 @@ const timing = '0.3s ease-in';
   ],
 })
 export class ChatComponent {
-  test = false;
   private readonly _hubService = inject(HubService);
   private readonly _authService = inject(AuthService);
   private readonly _activatedRoute = inject(ActivatedRoute);
   private readonly _teamService = inject(TeamService);
   private readonly _spinnerService = inject(NgxSpinnerService);
+  private readonly _toastrService = inject(ToastrService);
   user = this._authService.user();
   teamId: string = '';
+  hubState = this._hubService.hubState;
   teamMembers = this._teamService.teamMembers;
   isTokenExist = this._authService.isTokenExist;
   messageList = this._hubService.messageList;
-  connectionState = this._hubService.connectionState;
 
   message = new FormControl('', { nonNullable: true });
   constructor() {
     this.teamId = this._activatedRoute.snapshot.params['teamId'];
     effect(() => {
-      if (this.connectionState() && this.teamMembers().length > 0) {
-        this._spinnerService.hide('teamMembers');
+      if (this.hubState().isConnected && this.teamMembers().length > 0) {
         if (this.user) {
           this._hubService.joinChatRoom(this.teamId, this.user.id);
         }
+      }
+
+      if (this.hubState().isLoading) {
+        this._spinnerService.show('all');
+      } else {
+        this._spinnerService.hide('all');
+      }
+
+      if (this.hubState().isError) {
+        this._toastrService.error('Server error');
       }
     });
   }
@@ -61,10 +71,10 @@ export class ChatComponent {
     }
   }
   ngOnInit() {
-    this._spinnerService.show('teamMembers');
-    if (!this._hubService.connectionState()) {
+    if (!this.hubState().isConnected) {
       this._hubService.connect();
     }
+
     this._teamService.userId.set(this.user?.id ?? '');
   }
 

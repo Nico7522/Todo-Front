@@ -3,9 +3,9 @@ import * as signalR from '@microsoft/signalr';
 import { Message } from '../../interfaces/message/message.interface';
 import { HttpClient } from '@angular/common/http';
 import { TeamService } from '../team/team.service';
-import { catchError, EMPTY, take } from 'rxjs';
 import { UserStatus } from '../../interfaces/users/user-status.interface';
 import { environment } from '../../environment';
+import { HubState } from '../../interfaces/hub-state/hub-state';
 
 @Injectable({
   providedIn: 'root',
@@ -14,18 +14,22 @@ export class HubService {
   private readonly _hubConnection: signalR.HubConnection;
   private readonly _httpC = inject(HttpClient);
   private readonly _teamService = inject(TeamService);
-  // Connection state
-  private _connectionState = signal<boolean>(false);
-  connectionState = this._connectionState.asReadonly();
 
   private _connectionId: string = '';
 
   // Message list
   private _messageList = signal<Message[]>([]);
   messageList = this._messageList.asReadonly();
+
+  private _hubState = signal<HubState>({
+    isConnected: false,
+    isError: false,
+    isLoading: true,
+  });
+  hubState = this._hubState.asReadonly();
   constructor() {
     this._hubConnection = new signalR.HubConnectionBuilder()
-      .withUrl('https://localhost:7109/chat')
+      .withUrl(`${environment.HUB_URL}`)
       .build();
   }
   connect() {
@@ -34,12 +38,20 @@ export class HubService {
         .start()
         .then(() => {
           console.log('Connected');
-          this._connectionState.set(true);
+          this._hubState.set({
+            isConnected: true,
+            isLoading: false,
+            isError: false,
+          });
           if (this._hubConnection.connectionId)
             this._connectionId = this._hubConnection.connectionId;
         })
         .catch((err) => {
-          this._connectionState.set(false);
+          this._hubState.set({
+            isConnected: false,
+            isLoading: false,
+            isError: true,
+          });
           console.log(err);
         });
     }

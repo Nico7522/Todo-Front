@@ -1,14 +1,48 @@
-<mat-sidenav-container fullscreen>
+<!-- <mat-sidenav-container fullscreen>
   <mat-sidenav #sidenav (click)="sidenav.close()">
     <app-nav-list />
   </mat-sidenav>
   <mat-sidenav-content>
+    <div class="background"></div>
     <app-header (openEmitter)="close()" />
     <ngx-spinner name="all" type="ball-scale-multiple"></ngx-spinner>
-    <div class="background"></div>
-
-    <router-outlet />
+    <div>
+      <router-outlet />
+    </div>
   </mat-sidenav-content>
-</mat-sidenav-container>
+</mat-sidenav-container> -->
 
-<!-- <app-side-menu></app-side-menu> -->
+<div>
+  <mat-sidenav-container fullscreen class="sidenav-full">
+    <mat-sidenav
+      #menu
+      mode="side"
+      position="start"
+      role="navigation"
+      class="sidenav-wv"
+    >
+      <app-side-menu></app-side-menu>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <mat-sidenav-container class="sidenav-full">
+        <mat-sidenav
+          [opened]="false"
+          #principalMenu
+          opened
+          mode="side"
+          position="start"
+          role="navigation"
+          class="sidenav-wv"
+        >
+          <app-nav-list />
+        </mat-sidenav>
+        <mat-sidenav-content>
+          <app-header (togglePrincipalMenuEmitter)="togglePrincipalMenu()" />
+          <ngx-spinner name="all" type="ball-scale-multiple"></ngx-spinner>
+
+          <div><router-outlet /></div>
+        </mat-sidenav-content>
+      </mat-sidenav-container>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

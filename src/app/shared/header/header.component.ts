@@ -10,9 +10,9 @@ export class HeaderComponent {
 
   isTokenExist: Signal<string | null> = this._authService.isTokenExist;
 
-  @Output() openEmitter = new EventEmitter<boolean>();
-  openMenu() {
-    this.openEmitter.emit(true);
+  @Output() togglePrincipalMenuEmitter = new EventEmitter<boolean>();
+  togglePrincipalMenu() {
+    this.togglePrincipalMenuEmitter.emit(true);
   }
 
   openLogoutConfirmationDialog() {

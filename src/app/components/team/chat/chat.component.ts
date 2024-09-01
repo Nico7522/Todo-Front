@@ -55,6 +55,8 @@ export class ChatComponent {
       }
 
       if (this.hubState().isError) {
+        console.log('error');
+
         this._toastrService.error('Server error');
       }
     });

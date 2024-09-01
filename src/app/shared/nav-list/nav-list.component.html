@@ -9,14 +9,14 @@
     <span class="aligned-with-icon">Profile</span>
   </a>
 
-  <a mat-list-item routerLink="/task">
+  <a (click)="openMenu('Task')" mat-list-item>
     <mat-icon>task</mat-icon>
-    <span class="aligned-with-icon">My tasks</span>
+    <span class="aligned-with-icon">Tasks</span>
   </a>
-
-  <a mat-list-item routerLink="/team/my-team">
+  <!-- mat-list-item routerLink="/team/my-team" -->
+  <a (click)="openMenu('Team')" mat-list-item>
     <mat-icon>groups</mat-icon>
-    <span class="aligned-with-icon">My Team</span>
+    <span class="aligned-with-icon">Team</span>
   </a>
   <a class="hide" (click)="openLogoutConfirmationDialog()" mat-list-item>
     <mat-icon>exit_to_app</mat-icon>

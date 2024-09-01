@@ -1,14 +1,4 @@
-@if (teamId) {
-<div>
-  <button
-    mat-flat-button
-    color="primary"
-    routerLink="/team/my-team/{{ teamId }}/chat"
-  >
-    Join chat
-  </button>
-</div>
-} @else {
+@if (!teamId) {
 
 <div class="no-team">
   <h2>Team</h2>

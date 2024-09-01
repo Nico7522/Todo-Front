@@ -34,6 +34,11 @@ export class HubService {
   }
   connect() {
     if (this._hubConnection.state === 'Disconnected') {
+      this._hubState.set({
+        isConnected: false,
+        isLoading: true,
+        isError: false,
+      });
       this._hubConnection
         .start()
         .then(() => {

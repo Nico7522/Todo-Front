@@ -3,6 +3,8 @@ import { AuthService } from '../../services/auth/auth.service';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginComponent } from '../../components/login/login.component';
 import { LogoutConfirmationComponent } from '../../components/logout-confirmation/logout-confirmation.component';
+import { MenuService } from '../../services/menu/menu.service';
+import { Menu } from '../../interfaces/menu.type';
 
 @Component({
   selector: 'app-nav-list',
@@ -11,6 +13,7 @@ import { LogoutConfirmationComponent } from '../../components/logout-confirmatio
 })
 export class NavListComponent {
   private readonly _authService = inject(AuthService);
+  menuService = inject(MenuService);
   readonly dialog = inject(MatDialog);
   openDialog() {
     this.dialog.open(LoginComponent, {
@@ -22,5 +25,14 @@ export class NavListComponent {
 
   openLogoutConfirmationDialog() {
     this._authService.openLogoutConfirmationDialog();
+  }
+
+  openMenu(menuType: Menu) {
+    if (this.menuService.openedMenu() !== menuType) {
+      this.menuService.setOpenedMenu(menuType);
+      this.menuService.setIsMenuOpen(false);
+    }
+    let state = this.menuService.isMenuOpen() ? false : true;
+    this.menuService.setIsMenuOpen(state);
   }
 }

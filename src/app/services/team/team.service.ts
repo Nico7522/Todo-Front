@@ -41,8 +41,6 @@ export class TeamService {
   }
 
   refreshMembersList(membersList: UserStatus[]) {
-    console.log(membersList);
-
     membersList.forEach((u) => {
       let user = this._teamMembers().find((m) => m.id === u.id);
       if (user) {

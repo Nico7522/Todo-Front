@@ -18,6 +18,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatTabsModule } from '@angular/material/tabs';
 import { CdkMenu, CdkMenuItem, CdkMenuTrigger } from '@angular/cdk/menu';
+import { MatMenuModule } from '@angular/material/menu';
 const material = [
   MatToolbarModule,
   MatIconModule,
@@ -37,6 +38,7 @@ const material = [
   CdkMenu,
   CdkMenuItem,
   CdkMenuTrigger,
+  MatMenuModule,
 ];
 
 @NgModule({

@@ -1,5 +1,6 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, effect, inject, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
+import { MenuService } from './services/menu/menu.service';
 
 @Component({
   selector: 'app-root',
@@ -7,9 +8,20 @@ import { MatSidenav } from '@angular/material/sidenav';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  @ViewChild('sidenav') sidenav!: MatSidenav;
+  private readonly _menuService = inject(MenuService);
+  @ViewChild('menu') menu!: MatSidenav;
+  @ViewChild('principalMenu') principalMenu!: MatSidenav;
 
-  close() {
-    this.sidenav.open();
+  constructor() {
+    effect(() => {
+      if (this._menuService.isMenuOpen()) {
+        this.menu.open();
+      } else {
+        this.menu.close();
+      }
+    });
+  }
+  togglePrincipalMenu() {
+    this.principalMenu.toggle();
   }
 }

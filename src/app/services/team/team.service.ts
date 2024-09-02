@@ -1,11 +1,19 @@
 import { computed, inject, Injectable, signal } from '@angular/core';
-import { catchError, EMPTY, map, Observable, of, switchMap, tap } from 'rxjs';
+import {
+  catchError,
+  EMPTY,
+  finalize,
+  map,
+  Observable,
+  of,
+  switchMap,
+  tap,
+} from 'rxjs';
 import { environment } from '../../environment';
 import { HttpClient } from '@angular/common/http';
 import { Team } from '../../interfaces/teams/team.interface';
 import { UserStatus } from '../../interfaces/users/user-status.interface';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
-import { setLocalStorageMembersList } from '../../utils/methods';
 
 @Injectable({
   providedIn: 'root',
@@ -16,6 +24,9 @@ export class TeamService {
   private _teamMembers = signal<UserStatus[]>([]);
   teamMembers = this._teamMembers.asReadonly();
 
+  private readonly _errorMessage = signal<string>('');
+  errorMessage = this._errorMessage;
+
   userId = signal<string>('');
 
   team = toSignal(
@@ -25,7 +36,9 @@ export class TeamService {
           tap((team) => {
             this._teamMembers.set(team.users as UserStatus[]);
           }),
+          finalize(() => ({})),
           catchError(() => {
+            this._errorMessage.set('Server error, please try later');
             return EMPTY;
           })
         )

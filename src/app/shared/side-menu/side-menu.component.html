@@ -20,7 +20,11 @@
     <span class="aligned-with-icon">My old teams</span>
   </a>
 
-  <a mat-list-item routerLink="/team/my-team/{{ teamId }}/chat">
+  <a
+    (click)="closeMenu()"
+    mat-list-item
+    routerLink="/team/my-team/{{ teamId }}/chat"
+  >
     <mat-icon>groups</mat-icon>
     <span class="aligned-with-icon">Join chat</span>
   </a>

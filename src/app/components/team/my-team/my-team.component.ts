@@ -1,6 +1,7 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, effect, inject } from '@angular/core';
 import { AuthService } from '../../../services/auth/auth.service';
 import { TeamService } from '../../../services/team/team.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-my-team',
@@ -10,11 +11,21 @@ import { TeamService } from '../../../services/team/team.service';
 export class MyTeamComponent {
   private readonly _authService = inject(AuthService);
   private readonly _teamService = inject(TeamService);
-  actualTeamErrorMessage: string = '';
-  oldTeamErrorMessage: string = '';
+  private readonly _spinnerService = inject(NgxSpinnerService);
+
+  constructor() {
+    effect(() => {
+      if (this.errorMessage()) this._spinnerService.hide('all');
+
+      if (this.team()) this._spinnerService.hide('all');
+    });
+  }
+
   teamId = this._authService.user()?.teamId;
+  errorMessage = this._teamService.errorMessage;
   team = this._teamService.team;
   ngOnInit() {
+    this._spinnerService.show('all');
     this._teamService.userId.set(this._authService.user()?.id ?? '');
   }
 }

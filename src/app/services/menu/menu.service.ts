@@ -1,5 +1,5 @@
-import { effect, Injectable, signal } from '@angular/core';
-import { Menu } from '../../interfaces/menu.type';
+import { Injectable, signal } from '@angular/core';
+import { Menu } from '../../interfaces/menu/menu.type';
 
 @Injectable({
   providedIn: 'root',

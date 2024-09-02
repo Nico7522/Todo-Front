@@ -2,9 +2,8 @@ import { Component, inject } from '@angular/core';
 import { AuthService } from '../../services/auth/auth.service';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginComponent } from '../../components/login/login.component';
-import { LogoutConfirmationComponent } from '../../components/logout-confirmation/logout-confirmation.component';
 import { MenuService } from '../../services/menu/menu.service';
-import { Menu } from '../../interfaces/menu.type';
+import { Menu } from '../../interfaces/menu/menu.type';
 
 @Component({
   selector: 'app-nav-list',

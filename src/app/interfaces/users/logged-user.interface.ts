@@ -5,4 +5,5 @@ export interface LoggedUser {
   teamId: string;
   firstname: string;
   lastname: string;
+  tokenExp: number;
 }

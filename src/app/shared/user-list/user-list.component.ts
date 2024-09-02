@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { UserStatus } from '../../interfaces/users/user-status.interface';
-import { setLocalStorageMembersList } from '../../utils/methods';
 
 @Component({
   selector: 'app-user-list',

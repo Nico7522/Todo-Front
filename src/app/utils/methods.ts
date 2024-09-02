@@ -1,9 +1,5 @@
-import { UserStatus } from '../interfaces/users/user-status.interface';
+export const isTokenExpiress = (tokenExpTime: number): boolean => {
+  if (new Date(tokenExpTime * 1000) < new Date()) return true;
 
-export const setLocalStorageMembersList = (membersList: UserStatus[]) => {
-  if (!localStorage.getItem('membersList')) {
-    localStorage.removeItem('membersList');
-  }
-  let jsonObject = JSON.stringify(membersList);
-  localStorage.setItem('membersList', jsonObject);
+  return false;
 };

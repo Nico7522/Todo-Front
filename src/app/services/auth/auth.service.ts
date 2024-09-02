@@ -67,6 +67,11 @@ export class AuthService {
     this._router.navigate(['/']);
   }
 
+  disconnectUser() {
+    localStorage.removeItem('token');
+    this._isTokenExist.set(null);
+  }
+
   confirmAccount(userId: string, token: string): Observable<any> {
     const params = new HttpParams().set('userId', userId).set('token', token);
 
@@ -99,6 +104,7 @@ export class AuthService {
         teamId: jwt['TeamId'],
         firstname: jwt['Firstname'],
         lastname: jwt['Lastname'],
+        tokenExp: jwt['exp'],
       };
     }
 

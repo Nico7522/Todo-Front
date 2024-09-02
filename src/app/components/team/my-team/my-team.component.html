@@ -1,16 +1,10 @@
-@if (!teamId) {
-
-<div class="no-team">
-  <h2>Team</h2>
-  <h3>You are not currently in any team</h3>
-</div>
-}
-
 <main>
   <div class="actual-team box-shadow">
     <h2 class="primary">Actual Team</h2>
-    @if (actualTeamErrorMessage) {
-    <h3 class="mat-subtitle-1 error">{{ actualTeamErrorMessage }}</h3>
+    @if (!teamId) {
+    <h3 class="mat-subtitle-1">You are not currently in any team</h3>
+    } @if (errorMessage()) {
+    <h3 class="mat-subtitle-1 error">{{ errorMessage() }}</h3>
     } @if (team()) {
     <app-team-display [team]="team()"></app-team-display>
 

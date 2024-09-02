@@ -176,19 +176,6 @@ form {
   flex-direction: column;
 }
 
-.background {
-  margin: 0;
-  // background-image: url("../public/images/background.jpg");
-  background: #d8d5d5;
-  min-height: 150vh;
-  background-size: cover;
-  position: fixed;
-  width: 100%;
-  z-index: -1;
-  // filter: opacity(0.2);
-  background-position: center;
-}
-
 .white {
   color: white;
 }
@@ -197,10 +184,6 @@ form {
   padding: 0px !important;
 }
 
-html,
-body {
-  height: 100%;
-}
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;

@@ -19,6 +19,7 @@ import { DatePipe } from '@angular/common';
 import { AccountConfirmationComponent } from './components/account-confirmation/account-confirmation.component';
 import { LogoutConfirmationComponent } from './components/logout-confirmation/logout-confirmation.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { HomeComponent } from './components/home/home.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,6 +27,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     RegisterComponent,
     AccountConfirmationComponent,
     LogoutConfirmationComponent,
+    HomeComponent,
   ],
   imports: [
     AppRoutingModule,

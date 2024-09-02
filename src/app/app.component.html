@@ -36,11 +36,13 @@
         >
           <app-nav-list />
         </mat-sidenav>
-        <mat-sidenav-content>
+        <mat-sidenav-content class="principal">
+          <!-- <div class="background"></div> -->
+
           <app-header (togglePrincipalMenuEmitter)="togglePrincipalMenu()" />
           <ngx-spinner name="all" type="ball-scale-multiple"></ngx-spinner>
 
-          <div><router-outlet /></div>
+          <router-outlet />
         </mat-sidenav-content>
       </mat-sidenav-container>
     </mat-sidenav-content>

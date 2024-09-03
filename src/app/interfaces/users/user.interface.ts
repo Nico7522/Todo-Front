@@ -6,4 +6,5 @@ export interface User {
   phoneNumber: string;
   hiredate: Date;
   birthdate: Date;
+  tasks: any[];
 }

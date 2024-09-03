@@ -1,10 +1,40 @@
 <div class="background"></div>
 <div class="wrapper">
+  @if (isTokenExist()) {
+  <div class="dashboard box-shadow">
+    <h2 class="primary white mat-headline-6">Your Dashboard</h2>
+    <div class="total">
+      <div class="action">
+        <button mat-raised-button color="primary">Send my Presence</button>
+        <h3 class="error">{{ errorMessage }}</h3>
+      </div>
+      <div class="resume">
+        <mat-tab-group>
+          <mat-tab label="Task">
+            <mat-accordion>
+              @if (user$ | async; as user) { @if (user.tasks.length > 0) { @for
+              (task of user.tasks; track $index) {
+              <app-task-expension-panel [task]="task" />
+              } } @else {
+              <h3>You have no task for the moment</h3>
+              } }
+            </mat-accordion>
+          </mat-tab>
+          <mat-tab label="Team"> Content 2 </mat-tab>
+          <mat-tab label="My notes"> Content 3 </mat-tab>
+        </mat-tab-group>
+      </div>
+    </div>
+  </div>
+
+  } @else {
   <div class="auth box-shadow">
     <h2 class="primary white mat-headline-6">Connection</h2>
     <div class="button">
       <button mat-raised-button color="primary">Login</button>
-      <button mat-raised-button color="warn">Register</button>
+      <button mat-raised-button color="primary">Register</button>
     </div>
   </div>
+
+  }
 </div>

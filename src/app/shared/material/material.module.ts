@@ -19,6 +19,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatTabsModule } from '@angular/material/tabs';
 import { CdkMenu, CdkMenuItem, CdkMenuTrigger } from '@angular/cdk/menu';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatExpansionModule } from '@angular/material/expansion';
+
 const material = [
   MatToolbarModule,
   MatIconModule,
@@ -39,6 +41,7 @@ const material = [
   CdkMenuItem,
   CdkMenuTrigger,
   MatMenuModule,
+  MatExpansionModule,
 ];
 
 @NgModule({

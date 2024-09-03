@@ -37,24 +37,34 @@ export class ChatComponent {
   teamMembers = this._teamService.teamMembers;
   isTokenExist = this._authService.isTokenExist;
   messageList = this._hubService.messageList;
+  state = this._hubService.state;
 
   message = new FormControl('', { nonNullable: true });
   constructor() {
     this.teamId = this._activatedRoute.snapshot.params['teamId'];
     effect(() => {
-      if (this.hubState().isConnected && this.teamMembers().length > 0) {
+      if (this.state() === 'success' && this.teamMembers().length > 0) {
         if (this.user) {
           this._hubService.joinChatRoom(this.teamId, this.user.id);
         }
       }
 
-      if (this.hubState().isLoading) {
+      // if (this.hubState().isLoading) {
+      //   this._spinnerService.show('all');
+      // } else {
+      //   this._spinnerService.hide('all');
+      // }
+      // if (this.hubState().isError) {
+      //   this._toastrService.error('Server error');
+      // }
+
+      if (this.state() === 'loading') {
         this._spinnerService.show('all');
       } else {
         this._spinnerService.hide('all');
       }
 
-      if (this.hubState().isError) {
+      if (this.state() === 'error') {
         this._toastrService.error('Server error');
       }
     });

@@ -6,6 +6,7 @@ import { TeamService } from '../team/team.service';
 import { UserStatus } from '../../interfaces/users/user-status.interface';
 import { environment } from '../../environment';
 import { HubState } from '../../interfaces/hub-state/hub-state';
+import { State } from '../../interfaces/state/state.type';
 
 @Injectable({
   providedIn: 'root',
@@ -27,6 +28,9 @@ export class HubService {
     isLoading: true,
   });
   hubState = this._hubState.asReadonly();
+
+  private _state = signal<State>('loading');
+  state = this._state.asReadonly();
   constructor() {
     this._hubConnection = new signalR.HubConnectionBuilder()
       .withUrl(`${environment.HUB_URL}`)
@@ -34,29 +38,31 @@ export class HubService {
   }
   connect() {
     if (this._hubConnection.state === 'Disconnected') {
-      this._hubState.set({
-        isConnected: false,
-        isLoading: true,
-        isError: false,
-      });
+      // this._hubState.set({
+      //   isConnected: false,
+      //   isLoading: true,
+      //   isError: false,
+      // });
       this._hubConnection
         .start()
         .then(() => {
           console.log('Connected');
-          this._hubState.set({
-            isConnected: true,
-            isLoading: false,
-            isError: false,
-          });
+          // this._hubState.set({
+          //   isConnected: true,
+          //   isLoading: false,
+          //   isError: false,
+          // });
+          this._state.set('success');
           if (this._hubConnection.connectionId)
             this._connectionId = this._hubConnection.connectionId;
         })
         .catch((err) => {
-          this._hubState.set({
-            isConnected: false,
-            isLoading: false,
-            isError: true,
-          });
+          // this._hubState.set({
+          //   isConnected: false,
+          //   isLoading: false,
+          //   isError: true,
+          // });
+          this._state.set('error');
           console.log(err);
         });
     }

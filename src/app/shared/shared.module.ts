@@ -16,6 +16,7 @@ import { TeamDisplayComponent } from './team-display/team-display.component';
 import { RouterModule } from '@angular/router';
 import { UserListComponent } from './user-list/user-list.component';
 import { SideMenuComponent } from './side-menu/side-menu.component';
+import { TaskExpensionPanelComponent } from './task-expension-panel/task-expension-panel.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { SideMenuComponent } from './side-menu/side-menu.component';
     TeamDisplayComponent,
     UserListComponent,
     SideMenuComponent,
+    TaskExpensionPanelComponent,
   ],
   imports: [
     CommonModule,
@@ -42,6 +44,7 @@ import { SideMenuComponent } from './side-menu/side-menu.component';
     TeamDisplayComponent,
     UserListComponent,
     SideMenuComponent,
+    TaskExpensionPanelComponent,
   ],
 })
 export class SharedModule {}

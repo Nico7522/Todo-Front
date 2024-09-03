@@ -2,10 +2,8 @@ import { computed, inject, Injectable, signal } from '@angular/core';
 import {
   catchError,
   EMPTY,
-  finalize,
-  map,
   Observable,
-  of,
+  shareReplay,
   switchMap,
   tap,
 } from 'rxjs';
@@ -14,6 +12,7 @@ import { HttpClient } from '@angular/common/http';
 import { Team } from '../../interfaces/teams/team.interface';
 import { UserStatus } from '../../interfaces/users/user-status.interface';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
+import { State } from '../../interfaces/state/state.type';
 
 @Injectable({
   providedIn: 'root',
@@ -23,6 +22,9 @@ export class TeamService {
   constructor() {}
   private _teamMembers = signal<UserStatus[]>([]);
   teamMembers = this._teamMembers.asReadonly();
+
+  private readonly _state = signal<State>('loading');
+  state = this._state.asReadonly();
 
   private readonly _errorMessage = signal<string>('');
   errorMessage = this._errorMessage;
@@ -34,11 +36,13 @@ export class TeamService {
       switchMap((userId) =>
         this.getTeamByUserId(userId).pipe(
           tap((team) => {
+            console.log('appel');
+            this._state.set('success');
             this._teamMembers.set(team.users as UserStatus[]);
           }),
-          finalize(() => ({})),
           catchError(() => {
-            this._errorMessage.set('Server error, please try later');
+            this._state.set('error');
+            // this._errorMessage.set('Server error, please try later');
             return EMPTY;
           })
         )
@@ -48,9 +52,9 @@ export class TeamService {
   );
 
   getTeamByUserId(userId: string): Observable<Team> {
-    return this._httpClient.get<Team>(
-      `${environment.API_URL}/user/${userId}/team`
-    );
+    return this._httpClient
+      .get<Team>(`${environment.API_URL}/user/${userId}/team`)
+      .pipe(shareReplay());
   }
 
   refreshMembersList(membersList: UserStatus[]) {

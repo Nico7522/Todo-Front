@@ -3,8 +3,8 @@
     <h2 class="primary">Actual Team</h2>
     @if (!teamId) {
     <h3 class="mat-subtitle-1">You are not currently in any team</h3>
-    } @if (errorMessage()) {
-    <h3 class="mat-subtitle-1 error">{{ errorMessage() }}</h3>
+    } @if (state() === "error") {
+    <h3 class="mat-subtitle-1 error">Server error, please try later</h3>
     } @if (team()) {
     <app-team-display [team]="team()"></app-team-display>
 

@@ -6,25 +6,91 @@ $heading-font-family: "Moderustic", sans-serif;
 $regular-font-family: "Moderustic", sans-serif;
 
 $m2-primary: (
-  50: #e0f3ea,
-  100: #b3e0c9,
-  200: #80cca6,
-  300: #4db882,
-  400: #26a867,
-  500: #00994c,
-  600: #009145,
-  700: #00863c,
-  800: #007c33,
-  900: #006b24,
-  A100: #c7ffc3,
-  A200: #96ff90,
-  A400: #66ff5d,
-  A700: #4eff44,
+  50: #ecf3f8,
+  100: #cee2ec,
+  200: #aecee0,
+  300: #8ebad4,
+  400: #75acca,
+  500: #5d9dc1,
+  600: #5595bb,
+  700: #4b8bb3,
+  800: #4181ab,
+  900: #306f9e,
+  A100: #ffffff,
+  A200: #d0f1ff,
+  A400: #9de2ff,
+  A700: #83dbff,
   contrast: (
     50: #000000,
     100: #000000,
     200: #000000,
     300: #000000,
+    400: #000000,
+    500: #000000,
+    600: #000000,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000,
+  ),
+);
+
+$m2-accent: (
+  50: #ecf2f5,
+  100: #cfdee5,
+  200: #b0c8d4,
+  300: #90b1c3,
+  400: #78a1b6,
+  500: #6090a9,
+  600: #5888a2,
+  700: #4e7d98,
+  800: #44738f,
+  900: #33617e,
+  A100: #e9faff,
+  A200: #b6edff,
+  A400: #83e1ff,
+  A700: #69daff,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #000000,
+    500: #000000,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000,
+  ),
+);
+
+$m2-error: (
+  50: #f7e0e0,
+  100: #ecb3b3,
+  200: #e08080,
+  300: #d34d4d,
+  400: #c92626,
+  500: #c00000,
+  600: #ba0000,
+  700: #b20000,
+  800: #aa0000,
+  900: #9c0000,
+  A100: #ffd5de,
+  A200: #ffa2b6,
+  A400: #ff6f8d,
+  A700: #ff5679,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #ffffff,
     400: #ffffff,
     500: #ffffff,
     600: #ffffff,
@@ -38,74 +104,8 @@ $m2-primary: (
   ),
 );
 
-$m2-accent: (
-  50: #f9fff7,
-  100: #f0ffec,
-  200: #e6ffe0,
-  300: #dbffd3,
-  400: #d4ffc9,
-  500: #ccffc0,
-  600: #c7ffba,
-  700: #c0ffb2,
-  800: #b9ffaa,
-  900: #adff9c,
-  A100: #ffffff,
-  A200: #ffffff,
-  A400: #ffffff,
-  A700: #ffffff,
-  contrast: (
-    50: #000000,
-    100: #000000,
-    200: #000000,
-    300: #000000,
-    400: #000000,
-    500: #000000,
-    600: #000000,
-    700: #000000,
-    800: #000000,
-    900: #000000,
-    A100: #000000,
-    A200: #000000,
-    A400: #000000,
-    A700: #000000,
-  ),
-);
-
-$m2-error: (
-  50: #ffe7e7,
-  100: #ffc2c2,
-  200: #ff9999,
-  300: #ff7070,
-  400: #ff5252,
-  500: #ff3333,
-  600: #ff2e2e,
-  700: #ff2727,
-  800: #ff2020,
-  900: #ff1414,
-  A100: #ffffff,
-  A200: #ffffff,
-  A400: #ffe6ea,
-  A700: #ffcdd4,
-  contrast: (
-    50: #000000,
-    100: #000000,
-    200: #000000,
-    300: #000000,
-    400: #000000,
-    500: #ffffff,
-    600: #ffffff,
-    700: #ffffff,
-    800: #ffffff,
-    900: #ffffff,
-    A100: #000000,
-    A200: #000000,
-    A400: #000000,
-    A700: #000000,
-  ),
-);
-
 $primary: mat.define-palette($m2-primary, 800);
-$accent: mat.define-palette($m2-accent, 900);
+$accent: mat.define-palette($m2-accent, 600);
 $warn: mat.define-palette($m2-error, 900);
 
 $warn: mat.define-palette($m2-error);
@@ -139,11 +139,11 @@ $my-typography: mat.define-typography-config(
 );
 @include mat.typography-hierarchy($my-typography);
 .primary {
-  background: rgb(121, 207, 104);
+  background: rgb(65, 129, 171);
   background: linear-gradient(
     90deg,
-    rgba(121, 207, 104, 1) 5%,
-    rgba(0, 124, 51, 1) 87%
+    rgba(65, 129, 171, 1) 41%,
+    rgba(88, 136, 162, 1) 67%
   );
 }
 

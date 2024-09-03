@@ -14,12 +14,6 @@ div {
 h2 {
   color: white;
   padding: 10px;
-  background: rgb(121, 207, 104);
-  background: linear-gradient(
-    90deg,
-    rgba(121, 207, 104, 1) 5%,
-    rgba(0, 124, 51, 1) 87%
-  );
 }
 
 h3 {
@@ -35,7 +29,6 @@ main {
 
 .actual-team {
   width: 70%;
-  border: 1px solid green;
   margin: auto;
   background: white;
   padding: 0;

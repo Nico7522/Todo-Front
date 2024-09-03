@@ -17,6 +17,7 @@ import { RouterModule } from '@angular/router';
 import { UserListComponent } from './user-list/user-list.component';
 import { SideMenuComponent } from './side-menu/side-menu.component';
 import { TaskExpensionPanelComponent } from './task-expension-panel/task-expension-panel.component';
+import { ErrorAlertComponent } from './error-alert/error-alert.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { TaskExpensionPanelComponent } from './task-expension-panel/task-expensi
     UserListComponent,
     SideMenuComponent,
     TaskExpensionPanelComponent,
+    ErrorAlertComponent,
   ],
   imports: [
     CommonModule,
@@ -45,6 +47,7 @@ import { TaskExpensionPanelComponent } from './task-expension-panel/task-expensi
     UserListComponent,
     SideMenuComponent,
     TaskExpensionPanelComponent,
+    ErrorAlertComponent,
   ],
 })
 export class SharedModule {}

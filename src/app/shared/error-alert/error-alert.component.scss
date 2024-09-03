@@ -1,0 +1,16 @@
+.error-alert {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+  height: 100px;
+  background: rgb(197, 122, 122);
+  color: rgb(168, 5, 5);
+  position: absolute;
+  text-align: center;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 5px;
+}

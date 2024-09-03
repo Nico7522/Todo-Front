@@ -1,3 +1,5 @@
+import { Team } from '../teams/team.interface';
+
 export interface User {
   id: string;
   email: string;
@@ -7,4 +9,5 @@ export interface User {
   hiredate: Date;
   birthdate: Date;
   tasks: any[];
+  team: Team;
 }

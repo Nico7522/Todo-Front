@@ -7,6 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { emailRegex, passwordRegex } from '../../utils/regex';
 import { hasErrorAndTouched } from '../../utils/validators';
+import { Error } from '../../enums/error.enum';
 
 @Component({
   selector: 'app-login',
@@ -49,7 +50,7 @@ export class LoginComponent {
           catchError((err) => {
             this._spinnerService.hide('login');
             let errorMessage =
-              err.status === 400 ? 'Bad credentials' : 'Server error';
+              err.status === 400 ? Error.BADCREDENTIALS : Error.SERVERERROR;
             this._toastrService.error(errorMessage, 'Error');
             return EMPTY;
           })

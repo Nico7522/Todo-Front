@@ -21,4 +21,9 @@ import {
 })
 export class ErrorAlertComponent {
   @Input() errorMessage: string = '';
+  removed: boolean = false;
+
+  removeDiv() {
+    this.removed = true;
+  }
 }

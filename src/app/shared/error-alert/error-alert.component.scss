@@ -14,3 +14,13 @@
   transform: translate(-50%, -50%);
   border-radius: 5px;
 }
+
+.remove {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: 1px solid rgb(168, 5, 5);
+  padding-right: 2px;
+  padding-left: 2px;
+  cursor: pointer;
+}

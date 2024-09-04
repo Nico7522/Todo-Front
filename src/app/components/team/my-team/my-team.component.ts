@@ -2,6 +2,7 @@ import { Component, computed, effect, inject } from '@angular/core';
 import { AuthService } from '../../../services/auth/auth.service';
 import { TeamService } from '../../../services/team/team.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-my-team',
@@ -15,10 +16,6 @@ export class MyTeamComponent {
   state = this._teamService.state;
   constructor() {
     effect(() => {
-      // if (this.errorMessage()) this._spinnerService.hide('all');
-
-      // if (this.team()) this._spinnerService.hide('all');
-
       if (this.state() === 'loading') {
         this._spinnerService.show('all');
       } else {
@@ -28,9 +25,9 @@ export class MyTeamComponent {
   }
 
   teamId = this._authService.user()?.teamId;
-  // errorMessage = this._teamService.errorMessage;
+
   team = this._teamService.team;
   ngOnInit() {
-    this._teamService.userId.set(this._authService.user()?.id ?? '');
+    this._teamService.setUserId(this._authService.user()?.id ?? '');
   }
 }

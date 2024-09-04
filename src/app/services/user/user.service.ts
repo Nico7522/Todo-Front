@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../environment';
-import { Observable } from 'rxjs';
+import { Observable, shareReplay } from 'rxjs';
 import { User } from '../../interfaces/users/user.interface';
 
 @Injectable({

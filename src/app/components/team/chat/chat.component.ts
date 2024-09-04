@@ -49,15 +49,6 @@ export class ChatComponent {
         }
       }
 
-      // if (this.hubState().isLoading) {
-      //   this._spinnerService.show('all');
-      // } else {
-      //   this._spinnerService.hide('all');
-      // }
-      // if (this.hubState().isError) {
-      //   this._toastrService.error('Server error');
-      // }
-
       if (this.state() === 'loading') {
         this._spinnerService.show('all');
       } else {
@@ -85,7 +76,7 @@ export class ChatComponent {
       this._hubService.connect();
     }
 
-    this._teamService.userId.set(this.user?.id ?? '');
+    this._teamService.setUserId(this.user?.id ?? '');
   }
 
   ngOnDestroy() {

@@ -1,7 +1,15 @@
-import { computed, inject, Injectable, signal } from '@angular/core';
+import {
+  computed,
+  inject,
+  Injectable,
+  Injector,
+  OnInit,
+  signal,
+} from '@angular/core';
 import {
   catchError,
   EMPTY,
+  filter,
   Observable,
   shareReplay,
   switchMap,
@@ -20,6 +28,7 @@ import { State } from '../../interfaces/state/state.type';
 export class TeamService {
   private readonly _httpClient = inject(HttpClient);
   constructor() {}
+
   private _teamMembers = signal<UserStatus[]>([]);
   teamMembers = this._teamMembers.asReadonly();
 
@@ -29,27 +38,30 @@ export class TeamService {
   private readonly _errorMessage = signal<string>('');
   errorMessage = this._errorMessage;
 
-  userId = signal<string>('');
+  private _userId = signal<string>('');
+  userId = this._userId.asReadonly();
 
-  team = toSignal(
-    toObservable(this.userId).pipe(
-      switchMap((userId) =>
-        this.getTeamByUserId(userId).pipe(
-          tap((team) => {
-            console.log('appel');
-            this._state.set('success');
-            this._teamMembers.set(team.users as UserStatus[]);
-          }),
-          catchError(() => {
-            this._state.set('error');
-            // this._errorMessage.set('Server error, please try later');
-            return EMPTY;
-          })
-        )
+  team$ = toObservable(this.userId).pipe(
+    filter((userId) => userId !== ''),
+    switchMap((userId) =>
+      this.getTeamByUserId(userId).pipe(
+        tap((team) => {
+          this._state.set('success');
+          this._teamMembers.set(team.users as UserStatus[]);
+        }),
+        catchError(() => {
+          this._state.set('error');
+
+          // this._errorMessage.set('Server error, please try later');
+          return EMPTY;
+        })
       )
-    ),
-    { initialValue: null }
+    )
   );
+
+  team = toSignal(this.team$, {
+    initialValue: null,
+  });
 
   getTeamByUserId(userId: string): Observable<Team> {
     return this._httpClient
@@ -64,5 +76,9 @@ export class TeamService {
         user.isOnline = u.isOnline;
       }
     });
+  }
+
+  setUserId(userId: string) {
+    this._userId.set(userId);
   }
 }

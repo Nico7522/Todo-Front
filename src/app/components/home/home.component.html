@@ -1,7 +1,7 @@
 <div class="background"></div>
-@if (errorMessage()) {
+<!-- @if (errorMessage()) {
 <app-error-alert [errorMessage]="errorMessage()" />
-}
+} -->
 <div class="wrapper">
   @if (isTokenExist()) {
   <div class="dashboard box-shadow">
@@ -14,8 +14,8 @@
         <mat-tab-group>
           <mat-tab label="Task">
             <mat-accordion>
-              @if (user$ | async; as user) { @if (user.tasks.length > 0) { @for
-              (task of user.tasks; track $index) {
+              @if (user$ | async; as user) { @if (user.tasks.length > 0) {
+              @for(task of user.tasks; track $index) {
               <app-task-expension-panel [task]="task" />
               } } @else {
               <h3>You have no task for the moment</h3>
@@ -24,7 +24,7 @@
           </mat-tab>
           <mat-tab label="Team">
             @if (team$ | async; as team) {
-            <app-team-display [team]="team$ | async" />
+            <app-team-display [team]="team" />
 
             } @else if(!errorMessage) {
             <h3>No team</h3>

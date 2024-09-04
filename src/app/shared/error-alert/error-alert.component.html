@@ -1,3 +1,7 @@
+@if (!removed) {
 <div [@inAnimation] class="error-alert">
+  <div (click)="removeDiv()" class="remove">X</div>
   <h4>{{ errorMessage }}</h4>
 </div>
+
+}

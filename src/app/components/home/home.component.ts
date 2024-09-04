@@ -1,10 +1,11 @@
 import { Component, inject, signal } from '@angular/core';
 import { AuthService } from '../../services/auth/auth.service';
 import { UserService } from '../../services/user/user.service';
-import { catchError, EMPTY, switchMap, tap } from 'rxjs';
+import { catchError, EMPTY, share, shareReplay, switchMap, tap } from 'rxjs';
 import { TeamService } from '../../services/team/team.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Error } from '../../enums/error.enum';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-home',
@@ -16,14 +17,20 @@ export class HomeComponent {
   private readonly _userService = inject(UserService);
   private readonly _teamService = inject(TeamService);
   private readonly _spinnerService = inject(NgxSpinnerService);
+  private readonly _toastrService = inject(ToastrService);
   errorMessage = signal<string>('');
 
   isTokenExist = this._authService.isTokenExist;
   user = this._authService.user;
   user$ = this.getUserById(this.user()?.id ?? '').pipe(
+    shareReplay(),
     tap(() => this._spinnerService.hide('all')),
     catchError(() => {
       this._spinnerService.hide('all');
+      console.log('called');
+      if (!this._toastrService.currentlyActive)
+        this._toastrService.error(Error.SERVERERROR);
+
       this.errorMessage.set(Error.SERVERERROR);
       return EMPTY;
     })

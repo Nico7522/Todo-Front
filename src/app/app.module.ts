@@ -20,6 +20,7 @@ import { AccountConfirmationComponent } from './components/account-confirmation/
 import { LogoutConfirmationComponent } from './components/logout-confirmation/logout-confirmation.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { HomeComponent } from './components/home/home.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +29,7 @@ import { HomeComponent } from './components/home/home.component';
     AccountConfirmationComponent,
     LogoutConfirmationComponent,
     HomeComponent,
+    DashboardComponent,
   ],
   imports: [
     AppRoutingModule,

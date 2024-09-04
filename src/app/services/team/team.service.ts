@@ -64,9 +64,9 @@ export class TeamService {
   });
 
   getTeamByUserId(userId: string): Observable<Team> {
-    return this._httpClient
-      .get<Team>(`${environment.API_URL}/user/${userId}/team`)
-      .pipe(shareReplay());
+    return this._httpClient.get<Team>(
+      `${environment.API_URL}/user/${userId}/team`
+    );
   }
 
   refreshMembersList(membersList: UserStatus[]) {

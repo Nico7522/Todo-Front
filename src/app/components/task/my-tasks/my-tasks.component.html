@@ -1,0 +1,11 @@
+<main class="box-shadow">
+  <h2 class="primary white mat-headline-6">Your tasks</h2>
+  <div class="wrapper">
+    <mat-accordion>
+      @if(task$ | async; as tasks) { @for (task of tasks; track $index) {
+      <app-task-expension-panel [task]="task" />
+
+      } }
+    </mat-accordion>
+  </div>
+</main>

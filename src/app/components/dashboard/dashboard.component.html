@@ -3,12 +3,15 @@
   <div class="total">
     <div class="action">
       <button mat-raised-button color="primary">Send my Presence</button>
+      <button mat-raised-button color="primary">Go to tasks</button>
+      <button mat-raised-button color="primary">Go to team</button>
     </div>
     <div class="resume">
       <mat-tab-group>
         <mat-tab label="Task">
           <mat-accordion>
             @if (user$ | async; as user) { @if (user.tasks.length > 0) {
+            <h3>Task overview</h3>
             @for(task of user.tasks; track $index) {
             <app-task-expension-panel [task]="task" />
             } } @else {

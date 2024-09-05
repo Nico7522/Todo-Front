@@ -82,10 +82,18 @@ export class DashboardComponent {
       let spliceArray = prevNote.splice(index, 1);
       return prevNote;
     });
+    this.setOnLocalStorage(this.notes(), 'notes');
   }
 
   ngOnInit() {
+    console.log(this.user()?.id);
+
     let notes = localStorage.getItem('notes');
     if (notes) this.notes.set(JSON.parse(notes));
+  }
+
+  setOnLocalStorage<T>(item: T, key: string): void {
+    localStorage.removeItem(key);
+    localStorage.setItem(key, JSON.stringify(item));
   }
 }

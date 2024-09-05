@@ -15,18 +15,19 @@
     <span class="aligned-with-icon">My team</span>
   </a>
 
-  <a mat-list-item routerLink="/task">
+  <a mat-list-item routerLink="/">
     <mat-icon>task</mat-icon>
     <span class="aligned-with-icon">My old teams</span>
   </a>
-
+  @if (teamId()) {
   <a
     (click)="closeMenu()"
     mat-list-item
-    routerLink="/team/my-team/{{ teamId }}/chat"
+    routerLink="/team/my-team/{{ teamId() }}/chat"
   >
-    <mat-icon>groups</mat-icon>
+    <mat-icon>chat</mat-icon>
     <span class="aligned-with-icon">Join chat</span>
   </a>
-  }
+
+  } }
 </mat-nav-list>

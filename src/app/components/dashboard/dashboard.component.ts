@@ -7,6 +7,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { Error } from '../../enums/error.enum';
 import { toObservable } from '@angular/core/rxjs-interop';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-dashboard',
@@ -23,6 +24,8 @@ export class DashboardComponent {
   subject = new Subject<void>();
   constructor() {}
 
+  notes = signal<string[]>([]);
+  newNote = new FormControl('');
   isTokenExist = this._authService.isTokenExist;
   user = this._authService.user;
 
@@ -64,5 +67,25 @@ export class DashboardComponent {
 
   private getTeamByUserId(userId: string) {
     return this._teamService.getTeamByUserId(userId);
+  }
+
+  saveNote() {
+    this.notes.update((prevNotes) => [
+      ...prevNotes,
+      this.newNote.value as string,
+    ]);
+    localStorage.setItem('notes', JSON.stringify(this.notes()));
+  }
+
+  deleteNote(index: number) {
+    this.notes.update((prevNote) => {
+      let spliceArray = prevNote.splice(index, 1);
+      return prevNote;
+    });
+  }
+
+  ngOnInit() {
+    let notes = localStorage.getItem('notes');
+    if (notes) this.notes.set(JSON.parse(notes));
   }
 }

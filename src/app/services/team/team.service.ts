@@ -1,20 +1,5 @@
-import {
-  computed,
-  inject,
-  Injectable,
-  Injector,
-  OnInit,
-  signal,
-} from '@angular/core';
-import {
-  catchError,
-  EMPTY,
-  filter,
-  Observable,
-  shareReplay,
-  switchMap,
-  tap,
-} from 'rxjs';
+import { inject, Injectable, signal } from '@angular/core';
+import { catchError, EMPTY, filter, Observable, switchMap, tap } from 'rxjs';
 import { environment } from '../../environment';
 import { HttpClient } from '@angular/common/http';
 import { Team } from '../../interfaces/teams/team.interface';
@@ -49,10 +34,8 @@ export class TeamService {
           this._state.set('success');
           this._teamMembers.set(team.users as UserStatus[]);
         }),
-        catchError(() => {
+        catchError((err) => {
           this._state.set('error');
-
-          // this._errorMessage.set('Server error, please try later');
           return EMPTY;
         })
       )

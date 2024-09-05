@@ -1,5 +1,4 @@
-import { Component, effect, inject, ViewChild } from '@angular/core';
-import { MatDrawer } from '@angular/material/sidenav';
+import { Component, computed, inject } from '@angular/core';
 import { MenuService } from '../../services/menu/menu.service';
 import { AuthService } from '../../services/auth/auth.service';
 
@@ -11,7 +10,7 @@ import { AuthService } from '../../services/auth/auth.service';
 export class SideMenuComponent {
   private readonly _menuService = inject(MenuService);
   private readonly _authService = inject(AuthService);
-  teamId = this._authService.user()?.teamId;
+  teamId = computed(() => this._authService.user()?.teamId);
   openedMenu = this._menuService.openedMenu;
   closeMenu() {
     this._menuService.setIsMenuOpen(false);

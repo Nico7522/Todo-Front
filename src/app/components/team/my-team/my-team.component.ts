@@ -16,7 +16,7 @@ export class MyTeamComponent {
   state = this._teamService.state;
   constructor() {
     effect(() => {
-      if (this.state() === 'loading') {
+      if (this.state() === 'loading' && this._authService.user()?.teamId) {
         this._spinnerService.show('all');
       } else {
         this._spinnerService.hide('all');
@@ -28,6 +28,8 @@ export class MyTeamComponent {
 
   team = this._teamService.team;
   ngOnInit() {
-    this._teamService.setUserId(this._authService.user()?.id ?? '');
+    if (this._authService.user()?.teamId) {
+      this._teamService.setUserId(this._authService.user()?.id ?? '');
+    }
   }
 }

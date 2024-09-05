@@ -52,9 +52,47 @@ button {
   margin-top: -120px;
 }
 
-.total {
+mat-form-field {
+  width: 100%;
+}
+
+.text-area {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  height: 520px;
+}
+.aligned-with-icon {
+  position: relative;
+  margin-left: 5px;
+}
+
+mat-icon {
+  color: #9c0000;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.note {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.note:hover {
+  background: #e9e4e4;
+}
+
+.notes {
+  margin-left: 10px;
+  max-height: 370px;
+  overflow: scroll;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.form {
+  display: flex;
 }
 
 @media screen and (max-width: 750px) {
@@ -63,5 +101,9 @@ button {
   }
   h3 {
     margin-left: 0px;
+  }
+
+  .form {
+    flex-direction: column;
   }
 }

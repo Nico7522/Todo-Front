@@ -24,7 +24,32 @@
           <h3>No team</h3>
           }
         </mat-tab>
-        <mat-tab label="My notes"> Content 3 </mat-tab>
+        <mat-tab class="notes" label="My notes">
+          <div class="text-area">
+            <div class="notes">
+              @for (note of notes(); track $index) {
+              <div class="note">
+                <span class="aligned-with-icon">{{ note }} </span
+                ><mat-icon (click)="deleteNote($index)">delete</mat-icon>
+              </div>
+              }
+            </div>
+            <div class="form">
+              <mat-form-field class="example-full-width">
+                <mat-label>Leave your message</mat-label>
+                <textarea
+                  [formControl]="newNote"
+                  required
+                  matInput
+                  placeholder="Hello ..."
+                ></textarea>
+              </mat-form-field>
+              <button (click)="saveNote()" mat-raised-button color="primary">
+                Send
+              </button>
+            </div>
+          </div>
+        </mat-tab>
       </mat-tab-group>
     </div>
   </div>

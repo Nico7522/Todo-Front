@@ -7,8 +7,12 @@
   <div class="auth box-shadow">
     <h2 class="primary white mat-headline-6">Connection</h2>
     <div class="button">
-      <button mat-raised-button color="primary">Login</button>
-      <button mat-raised-button color="primary">Register</button>
+      <button mat-raised-button color="primary" (click)="opendialog()">
+        Login
+      </button>
+      <button mat-raised-button color="primary" routerLink="/register">
+        Register
+      </button>
     </div>
   </div>
 

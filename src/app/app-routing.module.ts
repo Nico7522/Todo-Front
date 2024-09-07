@@ -4,6 +4,8 @@ import { RegisterComponent } from './components/register/register.component';
 import { AccountConfirmationComponent } from './components/account-confirmation/account-confirmation.component';
 import { authGuard } from './guards/auth/auth.guard';
 import { HomeComponent } from './components/home/home.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { ResetPasswordConfirmComponent } from './components/reset-password-confirm/reset-password-confirm.component';
 
 const routes: Routes = [
   {
@@ -21,6 +23,14 @@ const routes: Routes = [
   {
     path: 'confirmaccount',
     component: AccountConfirmationComponent,
+  },
+  {
+    path: 'reset-password',
+    component: ResetPasswordComponent,
+  },
+  {
+    path: 'reset-password-confirm',
+    component: ResetPasswordConfirmComponent,
   },
   {
     path: 'team',

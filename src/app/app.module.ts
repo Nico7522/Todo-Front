@@ -21,6 +21,8 @@ import { LogoutConfirmationComponent } from './components/logout-confirmation/lo
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { HomeComponent } from './components/home/home.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { ResetPasswordConfirmComponent } from './components/reset-password-confirm/reset-password-confirm.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +32,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     LogoutConfirmationComponent,
     HomeComponent,
     DashboardComponent,
+    ResetPasswordComponent,
+    ResetPasswordConfirmComponent,
   ],
   imports: [
     AppRoutingModule,

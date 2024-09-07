@@ -58,4 +58,8 @@ export class LoginComponent {
         .subscribe();
     }
   }
+
+  closeDialog() {
+    this.dialogRef.close();
+  }
 }

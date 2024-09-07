@@ -9,6 +9,7 @@
           <mat-label id="email">Email</mat-label>
           <input
             formControlName="email"
+            autocomplete="email"
             matInput
             type="text"
             name="email"
@@ -26,6 +27,7 @@
           <mat-label id="firstname">Firstname</mat-label>
           <input
             formControlName="firstname"
+            autocomplete="given-name"
             matInput
             type="text"
             name="firstname"
@@ -41,6 +43,7 @@
           <mat-label id="lastname">Lastname</mat-label>
           <input
             formControlName="lastname"
+            autocomplete="family-name"
             matInput
             type="text"
             name="lastname"
@@ -55,6 +58,7 @@
         <mat-form-field>
           <mat-label id="password">Password</mat-label>
           <input
+            autocomplete="new-password"
             formControlName="password"
             matInput
             [type]="passwordFieldHide ? 'password' : 'text'"
@@ -78,6 +82,7 @@
           <mat-label id="passwordConfirm">Confirm password</mat-label>
           <input
             formControlName="passwordConfirm"
+            autocomplete="new-password"
             matInput
             type="password"
             name="passwordConfirm"

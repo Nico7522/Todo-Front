@@ -28,7 +28,7 @@
   </a>
 
   } @if(!isTokenExist()) {
-  <a routerLink="/register" mat-list-item>
+  <a routerLink="/auth/register" mat-list-item>
     <mat-icon>person_add</mat-icon>
     <span class="aligned-with-icon">Register</span>
   </a>
@@ -38,4 +38,9 @@
   </a>
 
   }
+
+  <a routerLink="/about-us" mat-list-item>
+    <mat-icon>info</mat-icon>
+    <span class="aligned-with-icon">About us</span>
+  </a>
 </mat-nav-list>

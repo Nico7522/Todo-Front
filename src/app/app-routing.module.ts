@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { RegisterComponent } from './components/register/register.component';
-import { AccountConfirmationComponent } from './components/account-confirmation/account-confirmation.component';
+import { AccountConfirmationComponent } from './components/auth/account-confirmation/account-confirmation.component';
 import { authGuard } from './guards/auth/auth.guard';
 import { HomeComponent } from './components/home/home.component';
-import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
-import { ResetPasswordConfirmComponent } from './components/reset-password-confirm/reset-password-confirm.component';
+import { ResetPasswordConfirmComponent } from './components/auth/reset-password-confirm/reset-password-confirm.component';
+import { AboutUsComponent } from './components/about-us/about-us.component';
 
 const routes: Routes = [
   {
@@ -16,21 +15,10 @@ const routes: Routes = [
     path: 'home',
     component: HomeComponent,
   },
+
   {
-    path: 'register',
-    component: RegisterComponent,
-  },
-  {
-    path: 'confirmaccount',
-    component: AccountConfirmationComponent,
-  },
-  {
-    path: 'reset-password',
-    component: ResetPasswordComponent,
-  },
-  {
-    path: 'reset-password-confirm',
-    component: ResetPasswordConfirmComponent,
+    path: 'about-us',
+    component: AboutUsComponent,
   },
   {
     path: 'team',
@@ -39,9 +27,14 @@ const routes: Routes = [
       import('./components/team/team.module').then((m) => m.TeamModule),
   },
   {
-    path: 'task',
+    path: 'tasks',
     loadChildren: () =>
       import('./components/task/task.module').then((m) => m.TaskModule),
+  },
+  {
+    path: 'auth',
+    loadChildren: () =>
+      import('./components/auth/auth.module').then((m) => m.AuthModule),
   },
 ];
 

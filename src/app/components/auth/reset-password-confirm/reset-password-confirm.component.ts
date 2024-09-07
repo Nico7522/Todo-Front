@@ -6,14 +6,14 @@ import {
   NonNullableFormBuilder,
   Validators,
 } from '@angular/forms';
-import { passwordRegex } from '../../utils/regex';
+import { passwordRegex } from '../../../utils/regex';
 import {
   ConfirmPasswordStateMatcher,
   hasErrorAndTouched,
   passwordMatch,
-} from '../../utils/validators';
-import { UserService } from '../../services/user/user.service';
-import { ResetPasswordConfirmForm } from '../../interfaces/forms/resetpasswordconfirm-form.interface';
+} from '../../../utils/validators';
+import { UserService } from '../../../services/user/user.service';
+import { ResetPasswordConfirmForm } from '../../../interfaces/forms/resetpasswordconfirm-form.interface';
 import { ActivatedRoute } from '@angular/router';
 import HttpParameterCodec, {
   HttpParams,
@@ -22,11 +22,7 @@ import HttpParameterCodec, {
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { catchError, EMPTY, finalize, tap } from 'rxjs';
-import { Error } from '../../enums/error.enum';
-interface Form {
-  password: string;
-  passwordConfirm: string;
-}
+import { Error } from '../../../enums/error.enum';
 
 @Component({
   selector: 'app-reset-password-confirm',

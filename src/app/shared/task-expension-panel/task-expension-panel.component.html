@@ -3,7 +3,8 @@
   <mat-expansion-panel-header>
     <mat-panel-title>{{ task.title }}</mat-panel-title>
     <mat-panel-description>
-      URGENT <mat-icon>account_circle</mat-icon>
+      {{ task.priority | priority }}
+      <mat-icon>{{ task.isComplete ? "check_circle" : "pending" }}</mat-icon>
     </mat-panel-description>
   </mat-expansion-panel-header>
   <p>{{ task.description }}</p>

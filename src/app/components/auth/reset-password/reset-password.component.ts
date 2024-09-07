@@ -1,12 +1,12 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { emailRegex } from '../../utils/regex';
-import { hasErrorAndTouched } from '../../utils/validators';
-import { UserService } from '../../services/user/user.service';
+import { emailRegex } from '../../../utils/regex';
+import { hasErrorAndTouched } from '../../../utils/validators';
+import { UserService } from '../../../services/user/user.service';
 import { catchError, EMPTY, finalize, tap } from 'rxjs';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { Error } from '../../enums/error.enum';
+import { Error } from '../../../enums/error.enum';
 
 @Component({
   selector: 'app-reset-password',

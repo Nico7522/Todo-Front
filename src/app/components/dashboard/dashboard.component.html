@@ -3,9 +3,13 @@
   <div class="total">
     <div class="action">
       <button mat-raised-button color="primary">Send my Presence</button>
-      <button mat-raised-button color="primary">Go to tasks</button>
+      <button mat-raised-button color="primary" routerLink="/tasks/my-tasks">
+        My tasks
+      </button>
       @if (user()?.teamId) {
-      <button mat-raised-button color="primary">Go to team</button>
+      <button mat-raised-button color="primary" routerLink="/team/my-team">
+        My team
+      </button>
 
       }
     </div>

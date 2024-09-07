@@ -11,26 +11,26 @@ import {
   NonNullableFormBuilder,
   Validators,
 } from '@angular/forms';
-import { emailRegex, passwordRegex } from '../../utils/regex';
+import { emailRegex, passwordRegex } from '../../../utils/regex';
 import {
   ConfirmPasswordStateMatcher,
   hasErrorAndTouched,
   HireDateStateMatcher,
   passwordMatch,
   validHireDate,
-} from '../../utils/validators';
+} from '../../../utils/validators';
 import {
   InputPhoneComponent,
   MyTel,
-} from '../../shared/input-phone/input-phone.component';
-import { RegisterForm } from '../../interfaces/forms/register-from.interface';
-import { AuthService } from '../../services/auth/auth.service';
+} from '../../../shared/input-phone/input-phone.component';
+import { RegisterForm } from '../../../interfaces/forms/register-from.interface';
+import { AuthService } from '../../../services/auth/auth.service';
 import { DatePipe } from '@angular/common';
 import { catchError, EMPTY, map } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { MatDialog } from '@angular/material/dialog';
-import { AccountCreatedConfirmationComponent } from '../../shared/account-created-confirmation/account-created-confirmation.component';
+import { AccountCreatedConfirmationComponent } from '../../../shared/account-created-confirmation/account-created-confirmation.component';
 
 @Component({
   selector: 'app-register',

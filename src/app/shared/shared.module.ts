@@ -18,6 +18,7 @@ import { UserListComponent } from './user-list/user-list.component';
 import { SideMenuComponent } from './side-menu/side-menu.component';
 import { TaskExpensionPanelComponent } from './task-expension-panel/task-expension-panel.component';
 import { ErrorAlertComponent } from './error-alert/error-alert.component';
+import { PriorityPipe } from '../pipes/priority/priority.pipe';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { ErrorAlertComponent } from './error-alert/error-alert.component';
     SideMenuComponent,
     TaskExpensionPanelComponent,
     ErrorAlertComponent,
+    PriorityPipe,
   ],
   imports: [
     CommonModule,
@@ -48,6 +50,7 @@ import { ErrorAlertComponent } from './error-alert/error-alert.component';
     SideMenuComponent,
     TaskExpensionPanelComponent,
     ErrorAlertComponent,
+    PriorityPipe,
   ],
 })
 export class SharedModule {}

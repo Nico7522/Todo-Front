@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
@@ -11,29 +10,23 @@ import {
   provideHttpClient,
   withInterceptorsFromDi,
 } from '@angular/common/http';
-import { RegisterComponent } from './components/register/register.component';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { DatePipe } from '@angular/common';
-import { AccountConfirmationComponent } from './components/account-confirmation/account-confirmation.component';
 import { LogoutConfirmationComponent } from './components/logout-confirmation/logout-confirmation.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { HomeComponent } from './components/home/home.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
-import { ResetPasswordConfirmComponent } from './components/reset-password-confirm/reset-password-confirm.component';
+import { AboutUsComponent } from './components/about-us/about-us.component';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent,
-    AccountConfirmationComponent,
     LogoutConfirmationComponent,
     HomeComponent,
     DashboardComponent,
-    ResetPasswordComponent,
-    ResetPasswordConfirmComponent,
+    AboutUsComponent,
   ],
   imports: [
     AppRoutingModule,

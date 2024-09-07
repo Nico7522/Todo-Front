@@ -4,7 +4,7 @@ export interface Task {
   description: string;
   creationDate: Date;
   closingDate: Date;
-  property: number;
+  priority: number;
   isComplete: boolean;
   userId: string;
   teamId: string;

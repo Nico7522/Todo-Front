@@ -6,9 +6,10 @@ import { TaskComponent } from './task.component';
 import { MyTasksComponent } from './my-tasks/my-tasks.component';
 import { MaterialModule } from '../../shared/material/material.module';
 import { SharedModule } from '../../shared/shared.module';
+import { TaskDetailsComponent } from './task-details/task-details.component';
 
 @NgModule({
-  declarations: [TaskComponent, MyTasksComponent],
+  declarations: [TaskComponent, MyTasksComponent, TaskDetailsComponent],
   imports: [CommonModule, TaskRoutingModule, MaterialModule, SharedModule],
 })
 export class TaskModule {}

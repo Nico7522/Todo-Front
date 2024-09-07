@@ -3,7 +3,7 @@
   <form [formGroup]="loginForm">
     <mat-form-field>
       <mat-label>Email</mat-label>
-      <input formControlName="email" matInput />
+      <input formControlName="email" matInput autocomplete="email" />
       @if (hasErrorAndTouched(loginForm, 'email', 'required')) {
       <mat-error>Required</mat-error>
       } @if (hasErrorAndTouched(loginForm, 'email', 'pattern')) {
@@ -14,6 +14,7 @@
     <mat-form-field>
       <mat-label>Password</mat-label>
       <input
+        autocomplete="current-password"
         [type]="hide ? 'password' : 'text'"
         formControlName="password"
         matInput
@@ -27,7 +28,7 @@
       <mat-error>Password invalid</mat-error>
       }
     </mat-form-field>
-    <a routerLink="/reset-password" (click)="closeDialog()"
+    <a routerLink="/auth/reset-password" (click)="closeDialog()"
       >Forgot password ?</a
     >
     <button

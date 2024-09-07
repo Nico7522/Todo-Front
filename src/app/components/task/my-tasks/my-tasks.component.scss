@@ -1,6 +1,5 @@
 main {
   width: 90%;
-  height: 700px;
   background: white;
   margin: 50px auto;
   padding: 0;
@@ -14,4 +13,15 @@ h2 {
 
 .wrapper {
   margin-top: -10px;
+}
+
+th,
+td {
+  text-align: center;
+}
+
+.advancement {
+  font-size: 2rem;
+  width: auto;
+  height: auto;
 }

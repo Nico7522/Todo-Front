@@ -20,6 +20,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { CdkMenu, CdkMenuItem, CdkMenuTrigger } from '@angular/cdk/menu';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatTableModule } from '@angular/material/table';
 
 const material = [
   MatToolbarModule,
@@ -42,6 +43,7 @@ const material = [
   CdkMenuTrigger,
   MatMenuModule,
   MatExpansionModule,
+  MatTableModule,
 ];
 
 @NgModule({

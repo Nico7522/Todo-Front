@@ -21,6 +21,8 @@ import { CdkMenu, CdkMenuItem, CdkMenuTrigger } from '@angular/cdk/menu';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTableModule } from '@angular/material/table';
+import { MatSelectModule } from '@angular/material/select';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 const material = [
   MatToolbarModule,
@@ -44,6 +46,8 @@ const material = [
   MatMenuModule,
   MatExpansionModule,
   MatTableModule,
+  MatSelectModule,
+  MatCheckboxModule,
 ];
 
 @NgModule({

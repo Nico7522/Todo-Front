@@ -2,9 +2,7 @@ import { Component, computed, inject, signal } from '@angular/core';
 import { AuthService } from '../../../services/auth/auth.service';
 import { UserService } from '../../../services/user/user.service';
 import { catchError, EMPTY, finalize, map, Observable } from 'rxjs';
-import { toSignal } from '@angular/core/rxjs-interop';
 import { Task } from '../../../interfaces/tasks/task.interface';
-import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { TaskDetailsComponent } from '../task-details/task-details.component';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -26,11 +24,24 @@ export class MyTasksComponent {
   tasks = signal<Task[]>([]);
   errorMessage = signal<string>('');
   searchQuery = signal<string>('');
+  priority = signal<string>('');
+  isComplete = signal<boolean | null>(null);
   filteredTasks = computed(() => {
     const sq = this.searchQuery();
-    return this.tasks().filter((x) =>
-      x.title.toLowerCase().includes(sq.toLowerCase())
+    const priority = this.priority();
+    const isComplete = this.isComplete();
+    let filter = this.tasks().filter(
+      (x) =>
+        x.title.toLowerCase().includes(sq.toLowerCase()) &&
+        x.priority.toString().includes(priority)
     );
+    if (isComplete) {
+      filter = filter.filter((x) =>
+        isComplete ? x.isComplete === isComplete : x
+      );
+    }
+
+    return filter;
   });
   task$ = this._userService.getUserById(this.user()?.id ?? '').pipe(
     map((u) => {
@@ -51,6 +62,15 @@ export class MyTasksComponent {
   );
   onSearchUpdated(sq: string) {
     this.searchQuery.set(sq);
+  }
+
+  onPriorityUpdated(priority: string) {
+    this.priority.set(priority);
+  }
+
+  onTaskDoneChange(value: boolean) {
+    this.isComplete.set(value ? value : null);
+    console.log(this.isComplete());
   }
   displayedColumns: string[] = ['title', 'priority', 'details', 'advancement'];
 

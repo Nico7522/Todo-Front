@@ -1,1 +1,36 @@
-<p>task-details works!</p>
+<h2 class="primary">Task details</h2>
+<main class="mat-typography">
+  @if (task$ | async; as task) {
+  <h3>Description</h3>
+  <p>
+    {{ task.description }}
+  </p>
+
+  <h3>Priority</h3>
+  <p>{{ task.priority | priority }}</p>
+  <h3>Creation date</h3>
+  <p>
+    {{ task.creationDate | date }}
+  </p>
+
+  <h3>Closing date</h3>
+  <p>
+    {{ task.closingDate ? task.closingDate : "No closing date" }}
+  </p>
+
+  <h3>Advancement</h3>
+  <p>{{ task.isComplete ? "Done" : "Undone" }}</p>
+
+  <mat-dialog-actions align="start">
+    <button mat-raised-button color="warn" mat-dialog-close>Cancel</button>
+    <button mat-raised-button color="primary">Complete task</button>
+  </mat-dialog-actions>
+  }@else {
+  <div class="empty"></div>
+  }
+  <ngx-spinner
+    name="task-details"
+    [fullScreen]="false"
+    type="ball-scale-multiple"
+  ></ngx-spinner>
+</main>

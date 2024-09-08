@@ -2,14 +2,9 @@
 
 @include mat.core();
 
-.bebas-neue-regular {
-  font-family: "Bebas Neue", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-}
-
 $heading-font-family: "Moderustic", sans-serif;
 $regular-font-family: "Moderustic", sans-serif;
+$special-font-familty: "Bebas Neue", sans-serif;
 
 $m2-primary: (
   50: #ecf3f8,
@@ -140,7 +135,13 @@ $my-typography: mat.define-typography-config(
   $font-family: $regular-font-family,
   $headline-5: mat.define-typography-level(30px, 32px, 400),
   $headline-6: mat.define-typography-level(25px, 32px, 400),
-  $subtitle-1: mat.define-typography-level(20px, 32px, 400),
+  $subtitle-1:
+    mat.define-typography-level(
+      $font-family: $special-font-familty,
+      $font-size: 24px,
+      $font-weight: 400,
+      $letter-spacing: 1px,
+    ),
   $subtitle-2: mat.define-typography-level(15px, 32px, 400),
 );
 @include mat.typography-hierarchy($my-typography);

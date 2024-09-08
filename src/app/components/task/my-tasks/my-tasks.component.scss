@@ -11,8 +11,8 @@ h2 {
   padding-bottom: 10px;
 }
 
-.wrapper {
-  margin-top: -10px;
+.table {
+  overflow: auto;
 }
 
 th,
@@ -24,4 +24,8 @@ td {
   font-size: 2rem;
   width: auto;
   height: auto;
+}
+
+span > .mat-icon {
+  margin-left: 5px;
 }

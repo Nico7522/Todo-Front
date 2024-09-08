@@ -1,38 +1,11 @@
 <main class="box-shadow">
   <h2 class="primary white mat-headline-6">Your tasks</h2>
   <div class="wrapper">
-    <div class="filter">
-      <mat-form-field>
-        <span matPrefix> <mat-icon>search</mat-icon> </span>
-        <input
-          #searchQuery
-          (input)="onSearchUpdated(searchQuery.value)"
-          type="search"
-          matInput
-          placeholder="Search"
-          name="search"
-        />
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Priority</mat-label>
-        <mat-select
-          #priority
-          (selectionChange)="onPriorityUpdated(priority.value)"
-        >
-          <mat-option value="">All</mat-option>
-          <mat-option value="0">Low</mat-option>
-          <mat-option value="1">Medium</mat-option>
-          <mat-option value="2">High</mat-option>
-          <mat-option value="3">Urgent</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <mat-checkbox
-        #isComplete
-        (change)="onTaskDoneChange(isComplete.checked)"
-        class="example-margin"
-        >Tasks Done</mat-checkbox
-      >
-    </div>
+    <app-tasks-filter
+      (onSearchUpdatedEmmiter)="onSearchUpdated($event)"
+      (onPriorityUpdatedEmmiter)="onPriorityUpdated($event)"
+      (onTaskDoneChangeEmmiter)="onTaskDoneChange($event)"
+    />
     @if(task$ | async) {
     <div class="table">
       <table

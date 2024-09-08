@@ -25,7 +25,7 @@ export class MyTasksComponent {
   errorMessage = signal<string>('');
   searchQuery = signal<string>('');
   priority = signal<string>('');
-  isComplete = signal<boolean | null>(null);
+  isComplete = signal<boolean>(false);
   filteredTasks = computed(() => {
     const sq = this.searchQuery();
     const priority = this.priority();
@@ -69,7 +69,7 @@ export class MyTasksComponent {
   }
 
   onTaskDoneChange(value: boolean) {
-    this.isComplete.set(value ? value : null);
+    this.isComplete.set(value);
     console.log(this.isComplete());
   }
   displayedColumns: string[] = ['title', 'priority', 'details', 'advancement'];

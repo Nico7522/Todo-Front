@@ -1,0 +1,18 @@
+.filter {
+  display: flex;
+}
+
+.filter > mat-form-field {
+  padding-left: 5px;
+}
+
+@media screen and (max-width: 500px) {
+  .filter {
+    flex-direction: column;
+  }
+
+  mat-form-field {
+    padding-left: 0px;
+    width: 70%;
+  }
+}

@@ -13,5 +13,14 @@ export class TaskService {
   getTaskById(taskId: string): Observable<Task> {
     return this._httpClient.get<Task>(`${environment.API_URL}/todo/${taskId}`);
   }
+
+  completeTask(taskId: string, duration: number) {
+    return this._httpClient.put(
+      `${environment.API_URL}/task/${taskId}/complete`,
+      {
+        duration,
+      }
+    );
+  }
   constructor() {}
 }

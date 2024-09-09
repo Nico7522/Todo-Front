@@ -23,7 +23,13 @@
 
   <mat-dialog-actions align="start">
     <button mat-raised-button color="warn" mat-dialog-close>Cancel</button>
-    <button mat-raised-button color="primary">Complete task</button>
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="openCompleteTaskDialog()"
+    >
+      Complete task
+    </button>
   </mat-dialog-actions>
   }@else {
   <div class="empty"></div>

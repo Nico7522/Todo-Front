@@ -1,0 +1,22 @@
+<h3 class="subtitle-1 primary">Enter the task duration</h3>
+<mat-form-field>
+  <mat-label id="email">Task duration in minute ?</mat-label>
+  <input
+    [formControl]="duration"
+    matInput
+    type="number"
+    name="duration"
+    id="duration"
+  />
+</mat-form-field>
+<mat-dialog-actions>
+  <button
+    mat-raised-button
+    color="primary"
+    [disabled]="!duration.valid"
+    (click)="validate()"
+  >
+    Validate
+  </button>
+  <button mat-raised-button [matDialogClose] color="warn">Close</button>
+</mat-dialog-actions>

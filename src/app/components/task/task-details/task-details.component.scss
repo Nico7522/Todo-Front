@@ -1,6 +1,3 @@
-main {
-  overflow: hidden;
-}
 h2 {
   color: white;
   padding: 10px;
@@ -22,4 +19,13 @@ p {
 
 button {
   z-index: 10;
+}
+
+div {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: self-start;
+  width: 100%;
+  height: 100%;
 }

@@ -8,6 +8,7 @@ import { LoginComponent } from './components/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import {
   provideHttpClient,
+  withInterceptors,
   withInterceptorsFromDi,
 } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
@@ -19,6 +20,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { HomeComponent } from './components/home/home.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
+import { httpInterceptor } from './interceptors/http.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +41,7 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
   ],
   providers: [
     provideAnimationsAsync(),
-    provideHttpClient(withInterceptorsFromDi()),
+    provideHttpClient(withInterceptors([httpInterceptor])),
     provideNativeDateAdapter(),
     DatePipe,
   ],

@@ -42,9 +42,10 @@
         <ng-container matColumnDef="advancement">
           <th mat-header-cell *matHeaderCellDef>Advancement</th>
           <td mat-cell *matCellDef="let task">
-            <mat-icon class="advancement">{{
-              task.isComplete ? "checked_circle" : "pending"
-            }}</mat-icon>
+            <mat-icon
+              [ngClass]="task.isComplete ? 'task-done' : 'task-undone'"
+              >{{ task.isComplete ? "check_circle" : "pending" }}</mat-icon
+            >
           </td>
         </ng-container>
 

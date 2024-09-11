@@ -20,8 +20,14 @@ td {
   text-align: center;
 }
 
-.advancement {
+.task-undone {
   font-size: 2rem;
+  width: auto;
+  height: auto;
+}
+
+.task-done {
+  font-size: 1.9rem;
   width: auto;
   height: auto;
 }

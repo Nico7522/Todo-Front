@@ -1,9 +1,9 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, Inject, inject, signal } from '@angular/core';
 import { AuthService } from '../../../services/auth/auth.service';
 import { UserService } from '../../../services/user/user.service';
 import { catchError, EMPTY, finalize, map, Observable } from 'rxjs';
 import { Task } from '../../../interfaces/tasks/task.interface';
-import { MatDialog } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { TaskDetailsComponent } from '../task-details/task-details.component';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
@@ -70,17 +70,26 @@ export class MyTasksComponent {
 
   onTaskDoneChange(value: boolean) {
     this.isComplete.set(value);
-    console.log(this.isComplete());
   }
   displayedColumns: string[] = ['title', 'priority', 'details', 'advancement'];
 
   openTaskDetailsDialog(taskId: string) {
-    this._dialog.open(TaskDetailsComponent, {
+    let ref = this._dialog.open(TaskDetailsComponent, {
       width: '600px',
+      height: '600px',
       data: taskId,
     });
-  }
 
+    ref.afterClosed().subscribe((completedTaskId: string) => {
+      this.tasks.update((tasks) => {
+        let completedTask = tasks.find((t) => t.id === completedTaskId);
+        if (completedTask) {
+          completedTask.isComplete = true;
+        }
+        return tasks;
+      });
+    });
+  }
   ngOnInit() {
     this._spinnerService.show('all');
   }

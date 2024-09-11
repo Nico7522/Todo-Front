@@ -8,9 +8,16 @@
     name="duration"
     id="duration"
   />
+  @if (duration.hasError('min')) {
+  <mat-error>Invalid duration</mat-error>
+
+  }
 </mat-form-field>
 <mat-dialog-actions>
+  <button mat-raised-button [matDialogClose] color="warn">Close</button>
   <button
+    [ngClass]="isLoading() ? 'spinner' : ''"
+    [disabled]="!duration.valid || isLoading()"
     mat-raised-button
     color="primary"
     [disabled]="!duration.valid"
@@ -18,5 +25,4 @@
   >
     Validate
   </button>
-  <button mat-raised-button [matDialogClose] color="warn">Close</button>
 </mat-dialog-actions>

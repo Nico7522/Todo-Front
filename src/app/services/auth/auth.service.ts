@@ -71,6 +71,7 @@ export class AuthService {
   disconnectUser() {
     localStorage.removeItem('token');
     this._isTokenExist.set(null);
+    this._router.navigate(['/']);
   }
 
   confirmAccount(userId: string, token: string): Observable<any> {

@@ -16,7 +16,7 @@ export class TaskService {
 
   completeTask(taskId: string, duration: number) {
     return this._httpClient.put(
-      `${environment.API_URL}/task/${taskId}/complete`,
+      `${environment.API_URL}/todo/${taskId}/complete`,
       {
         duration,
       }

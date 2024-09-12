@@ -9,9 +9,8 @@
     @if (teamMembers().length > 0) {
     <app-user-list
       [users]="teamMembers()"
-      [text]="'Offline'"
-      [icon]="'radio_button_checked'"
       [iconColor]="'green'"
+      [onChatPage]="true"
     ></app-user-list>
     }
     <div class="member-list"></div>

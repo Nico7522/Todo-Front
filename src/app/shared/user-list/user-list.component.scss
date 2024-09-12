@@ -11,3 +11,14 @@
 .attendance > span {
   margin-right: 10px;
 }
+
+.chat-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chat-status > span {
+  margin-right: 10px;
+  margin-top: 5px;
+}

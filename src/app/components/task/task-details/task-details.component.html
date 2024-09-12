@@ -116,7 +116,6 @@
   <mat-dialog-actions align="start">
     <button mat-raised-button color="warn" mat-dialog-close>Cancel</button>
     <button
-      [disabled]="task.isComplete"
       mat-raised-button
       color="primary"
       (click)="openCompleteTaskDialog()"

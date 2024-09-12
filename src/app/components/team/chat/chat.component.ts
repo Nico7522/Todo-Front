@@ -72,7 +72,7 @@ export class ChatComponent {
     }
   }
   ngOnInit() {
-    if (!this.hubState().isConnected) {
+    if (this.state() !== 'success') {
       this._hubService.connect();
     }
 

@@ -2,14 +2,24 @@
 <mat-list role="list">
   <mat-list-item>
     <span matListItemLine>{{ user.lastname }} {{ user.firstname }}</span>
+    @if (!onChatPage) {
+    <span class="chat-status" matListItemMeta>
+      <span>
+        {{ user.isPresent ? "Present" : "Absent" }}
+      </span>
+      <mat-icon [ngClass]="user.isPresent ? 'green-icon' : ''">person</mat-icon>
+    </span>
+    }@else {
     <span class="attendance" matListItemMeta>
       <span>
         {{ user.isOnline ? "Online" : "Offline" }}
       </span>
-      <mat-icon [ngClass]="user.isOnline ? 'green-icon' : ''">{{
-        icon
-      }}</mat-icon></span
-    >
+      <mat-icon [ngClass]="user.isOnline ? 'green-icon' : ''"
+        >check_circle</mat-icon
+      >
+    </span>
+
+    }
   </mat-list-item>
 </mat-list>
 

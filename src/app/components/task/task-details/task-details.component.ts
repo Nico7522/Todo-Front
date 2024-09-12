@@ -16,6 +16,7 @@ import { CompleteTaskDialogComponent } from './complete-task-dialog/complete-tas
   selector: 'app-task-details',
   templateUrl: './task-details.component.html',
   styleUrl: './task-details.component.scss',
+  providers: [TaskService],
 })
 export class TaskDetailsComponent {
   constructor(@Inject(MAT_DIALOG_DATA) public taskId: string) {}
@@ -25,7 +26,6 @@ export class TaskDetailsComponent {
   private readonly _spinnerService = inject(NgxSpinnerService);
   private readonly _toastrService = inject(ToastrService);
   task$ = this._taskService.getTaskById(this.taskId).pipe(
-    tap((task) => console.log(task)),
     catchError((err) => {
       if (err.status === 404) {
         this._toastrService.error(Error.TASKNOTFOUND);

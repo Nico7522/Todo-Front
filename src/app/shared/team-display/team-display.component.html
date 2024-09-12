@@ -3,11 +3,7 @@
 <mat-tab-group>
   <mat-tab label="Users">
     <h4 class="mat-subtitle-2">Total members : {{ team.users.length }}</h4>
-    <app-user-list
-      [users]="teamMembers()"
-      [text]="'Present'"
-      [icon]="'check_circle'"
-    ></app-user-list>
+    <app-user-list [users]="teamMembers()"></app-user-list>
   </mat-tab>
   <mat-tab label="Tasks"
     ><h4 class="mat-subtitle-2">Total Tasks : {{ team.tasks.length }}</h4>

@@ -1,4 +1,11 @@
-import { Component, computed, inject, Signal, signal } from '@angular/core';
+import {
+  Component,
+  computed,
+  effect,
+  inject,
+  Signal,
+  signal,
+} from '@angular/core';
 import { catchError, EMPTY, filter, Subject, switchMap, tap } from 'rxjs';
 import { AuthService } from '../../services/auth/auth.service';
 import { UserService } from '../../services/user/user.service';
@@ -8,6 +15,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Error } from '../../enums/error.enum';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { FormControl } from '@angular/forms';
+import { HubService } from '../../services/hub/hub.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,11 +26,26 @@ export class DashboardComponent {
   private readonly _authService = inject(AuthService);
   private readonly _userService = inject(UserService);
   private readonly _teamService = inject(TeamService);
+  private readonly _hubService = inject(HubService);
   private readonly _spinnerService = inject(NgxSpinnerService);
   private readonly _toastrService = inject(ToastrService);
   errorMessage = signal<string>('');
+  team = this._teamService.team;
+  state = this._hubService.state;
   subject = new Subject<void>();
-  constructor() {}
+  constructor() {
+    effect(() => {
+      if (this.state() === 'success') {
+        this.sendPresence();
+      }
+
+      if (this._teamService.state() === 'error') {
+        console.log('cc ici');
+
+        this._toastrService.error(Error.TEAMNOTFETCH);
+      }
+    });
+  }
 
   notes = signal<string[]>([]);
   newNote = new FormControl('');
@@ -31,6 +54,8 @@ export class DashboardComponent {
 
   user$ = this.getUserById(this.user()?.id ?? '').pipe(
     tap(() => {
+      this._teamService.setUserId(this.user()?.id ?? '');
+
       this._spinnerService.hide('all');
     }),
     catchError((err) => {
@@ -46,20 +71,20 @@ export class DashboardComponent {
       return EMPTY;
     })
   );
-  team$ = this.user$.pipe(
-    switchMap((user) =>
-      this.getTeamByUserId(user.id).pipe(
-        catchError((err) => {
-          if (err.status === 404) {
-            this._toastrService.error(Error.TEAMNOTFETCH);
-          } else {
-            this._toastrService.error(Error.SERVERERROR);
-          }
-          return EMPTY;
-        })
-      )
-    )
-  );
+  // team$ = this.user$.pipe(
+  //   switchMap((user) =>
+  //     this.getTeamByUserId(user.id).pipe(
+  //       catchError((err) => {
+  //         if (err.status === 404) {
+  //           this._toastrService.error(Error.TEAMNOTFETCH);
+  //         } else {
+  //           this._toastrService.error(Error.SERVERERROR);
+  //         }
+  //         return EMPTY;
+  //       })
+  //     )
+  //   )
+  // );
 
   private getUserById(userId: string) {
     return this._userService.getUserById(userId);
@@ -86,8 +111,6 @@ export class DashboardComponent {
   }
 
   ngOnInit() {
-    console.log(this.user()?.id);
-
     let notes = localStorage.getItem('notes');
     if (notes) this.notes.set(JSON.parse(notes));
   }
@@ -95,5 +118,13 @@ export class DashboardComponent {
   setOnLocalStorage<T>(item: T, key: string): void {
     localStorage.removeItem(key);
     localStorage.setItem(key, JSON.stringify(item));
+  }
+
+  sendPresence() {
+    if (this.state() !== 'success') {
+      this._hubService.connect();
+    } else {
+      this._hubService.sendPresence(this.user()?.id ?? '');
+    }
   }
 }

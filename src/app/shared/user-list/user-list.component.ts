@@ -8,9 +8,8 @@ import { UserStatus } from '../../interfaces/users/user-status.interface';
 })
 export class UserListComponent {
   @Input() users: UserStatus[] | null = null;
-  @Input() text: string = '';
-  @Input() icon: string = '';
   @Input() iconColor: string = '';
+  @Input() onChatPage: boolean = false;
 
   ngOnInit() {}
 }

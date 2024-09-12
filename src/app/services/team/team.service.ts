@@ -53,12 +53,40 @@ export class TeamService {
   }
 
   refreshMembersList(membersList: UserStatus[]) {
+    let actualList: UserStatus[] = JSON.parse(
+      JSON.stringify(this._teamMembers())
+    );
     membersList.forEach((u) => {
-      let user = this._teamMembers().find((m) => m.id === u.id);
+      let user = actualList.find((m) => m.id === u.id);
       if (user) {
         user.isOnline = u.isOnline;
       }
+
+      this._teamMembers.set(actualList);
     });
+  }
+
+  refreshPresence(membersList: UserStatus[]) {
+    // let actualList: UserStatus[] = JSON.parse(
+    //   JSON.stringify(this._teamMembers())
+    // );
+    // membersList.forEach((u) => {
+    //   let user = actualList.find((m) => m.id === u.id);
+    //   if (user) {
+    //     user.isPresent = u.isPresent;
+    //   }
+
+    //   this._teamMembers.set(actualList);
+    // });
+    let updatedArray: UserStatus[] = [];
+    membersList.forEach((m) => {
+      updatedArray = this._teamMembers().map((x) =>
+        x.id === m.id
+          ? { ...x, isPresent: m.isPresent, isOnline: m.isOnline }
+          : x
+      );
+    });
+    this._teamMembers.set(updatedArray);
   }
 
   setUserId(userId: string) {

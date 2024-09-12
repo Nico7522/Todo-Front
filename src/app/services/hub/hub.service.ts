@@ -38,35 +38,23 @@ export class HubService {
   }
   connect() {
     if (this._hubConnection.state === 'Disconnected') {
-      // this._hubState.set({
-      //   isConnected: false,
-      //   isLoading: true,
-      //   isError: false,
-      // });
       this._hubConnection
         .start()
         .then(() => {
           console.log('Connected');
-          // this._hubState.set({
-          //   isConnected: true,
-          //   isLoading: false,
-          //   isError: false,
-          // });
+
           this._state.set('success');
           if (this._hubConnection.connectionId)
             this._connectionId = this._hubConnection.connectionId;
         })
         .catch((err) => {
-          // this._hubState.set({
-          //   isConnected: false,
-          //   isLoading: false,
-          //   isError: true,
-          // });
           this._state.set('error');
           console.log(err);
         });
     }
     this._hubConnection.on('JoinChatRoom', (membersList: UserStatus[]) => {
+      console.log(membersList);
+
       this._teamService.refreshMembersList(membersList);
     });
 
@@ -83,6 +71,12 @@ export class HubService {
         ]);
       }
     );
+
+    this._hubConnection.on('SendPresence', (membersList: UserStatus[]) => {
+      console.log(membersList);
+
+      this._teamService.refreshPresence(membersList);
+    });
   }
   joinChatRoom(teamId: string, userId: string) {
     this._httpC
@@ -112,6 +106,12 @@ export class HubService {
       .post(`${environment.API_URL}/hub/sendmessage/${teamId}`, {
         ...messageForm,
       })
+      .subscribe();
+  }
+
+  sendPresence(userId: string) {
+    this._httpC
+      .post(`${environment.API_URL}/hub/${userId}/setpresence`, null)
       .subscribe();
   }
 }

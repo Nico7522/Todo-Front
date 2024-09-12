@@ -2,7 +2,9 @@
   <h2 class="primary white mat-headline-6">Your Dashboard</h2>
   <div class="total">
     <div class="action">
-      <button mat-raised-button color="primary">Send my Presence</button>
+      <button mat-raised-button color="primary" (click)="sendPresence()">
+        Send my Presence
+      </button>
       <button mat-raised-button color="primary" routerLink="/tasks/my-tasks">
         My tasks
       </button>
@@ -27,8 +29,8 @@
           </mat-accordion>
         </mat-tab>
         <mat-tab label="Team">
-          @if (team$ | async; as team) {
-          <app-team-display [team]="team" />
+          @if (team()) {
+          <app-team-display [team]="team()" />
 
           } @else if(!errorMessage) {
           <h3>No team</h3>

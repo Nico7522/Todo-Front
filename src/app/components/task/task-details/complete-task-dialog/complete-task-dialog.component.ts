@@ -28,24 +28,21 @@ export class CompleteTaskDialogComponent {
     if (this.duration.valid) {
       this.isLoading.set(true);
 
-      this._taskService
-        .completeTask(this.taskId, +this.duration.value)
-        .pipe(
-          tap(() => {
-            this._toastrService.success('Task completed');
-            this._dialogRef.close(this.taskId);
-          }),
-          catchError((err) => {
-            if (err.status === 500) {
-              this._toastrService.error(Error.SERVERERROR);
-            } else {
-              this._toastrService.error('Task could not be updated');
-            }
-            return EMPTY;
-          }),
-          finalize(() => this.isLoading.set(false))
-        )
-        .subscribe();
+      this._taskService.completeTask(this.taskId, +this.duration.value).pipe(
+        tap(() => {
+          this._toastrService.success('Task completed');
+          this._dialogRef.close(this.taskId);
+        }),
+        catchError((err) => {
+          if (err.status === 500) {
+            this._toastrService.error(Error.SERVERERROR);
+          } else {
+            this._toastrService.error('Task could not be updated');
+          }
+          return EMPTY;
+        }),
+        finalize(() => this.isLoading.set(false))
+      );
     }
   }
 }

@@ -5,7 +5,10 @@
     <h3 class="mat-subtitle-1">You are not currently in any team</h3>
     } @if (state() === "error") {
     <h3 class="mat-subtitle-1 error">Server error, please try later</h3>
-    } @if (team()) {
+    } @if (team()) { @if (team()?.leaderId === user()?.id) {
+    <button mat-raised-button color="primary">Add a task</button>
+    <button mat-raised-button color="primary">Manage users</button>
+    }
     <app-team-display [team]="team()"></app-team-display>
 
     }

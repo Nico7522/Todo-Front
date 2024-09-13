@@ -1,16 +1,12 @@
 .completed {
-  position: relative;
-  margin-right: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.completed-icon {
-  position: absolute;
-  margin-top: 10px;
-  margin-left: 8px;
-}
-
-.green-icon {
-  color: green;
+.mdc-list-item--with-trailing-meta.mdc-list-item--with-two-lines
+  .mdc-list-item__end {
+  display: flex;
 }
 
 h3 {

@@ -12,14 +12,8 @@
       <mat-list-item>
         <span matListItemTitle>{{ task.title }}</span>
         <span matListItemLine>{{ task.description }}</span>
-        <div class="attendance completed" matListItemMeta>
-          <span>{{ task.isComplete ? "Completed" : "Uncompleted" }}</span>
-          <mat-icon
-            [ngClass]="
-              task.isComplete ? 'green-icon completed-icon' : ' completed-icon'
-            "
-            >check_circle</mat-icon
-          >
+        <div matListItemMeta>
+          <app-list-item-meta [task]="task" />
         </div>
       </mat-list-item>
     </mat-list>

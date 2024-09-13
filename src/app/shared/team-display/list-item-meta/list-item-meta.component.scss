@@ -1,0 +1,16 @@
+div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.delete-icon {
+  color: #9c0000;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.green-icon {
+  color: green;
+}

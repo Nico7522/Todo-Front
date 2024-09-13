@@ -14,6 +14,9 @@ export class MyTeamComponent {
   private readonly _teamService = inject(TeamService);
   private readonly _spinnerService = inject(NgxSpinnerService);
   state = this._teamService.state;
+  teamId = this._authService.user()?.teamId;
+  team = this._teamService.team;
+  user = this._authService.user;
   constructor() {
     effect(() => {
       if (this.state() === 'loading' && this._authService.user()?.teamId) {
@@ -24,9 +27,6 @@ export class MyTeamComponent {
     });
   }
 
-  teamId = this._authService.user()?.teamId;
-
-  team = this._teamService.team;
   ngOnInit() {
     if (this._authService.user()?.teamId) {
       this._teamService.setUserId(this._authService.user()?.id ?? '');

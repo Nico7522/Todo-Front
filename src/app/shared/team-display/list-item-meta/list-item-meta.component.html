@@ -1,0 +1,20 @@
+@if (task) {
+<div>
+  <span>{{ task.isComplete ? "Completed" : "Uncompleted" }}</span>
+  <mat-icon
+    [ngClass]="
+      task.isComplete ? 'green-icon completed-icon' : ' completed-icon'
+    "
+    >check_circle</mat-icon
+  >
+  <mat-icon (click)="deleteTask()" class="delete-icon">delete</mat-icon>
+  <mat-checkbox
+    #checkbox
+    [checked]="task.isComplete"
+    [disabled]="task.isComplete"
+    (change)="completeTask($event, task.id)"
+    class="checkbox"
+  ></mat-checkbox>
+</div>
+
+}

@@ -24,6 +24,11 @@ export class AppComponent {
         this.menu.open();
       } else {
         this.menu.close();
+        this.principalMenu.close();
+      }
+
+      if (this._menuService.closePrincipalMenu()) {
+        this.principalMenu.close();
       }
     });
     const user = this._authService.user();

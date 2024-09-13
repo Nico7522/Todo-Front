@@ -31,17 +31,13 @@ export class DashboardComponent {
   private readonly _toastrService = inject(ToastrService);
   errorMessage = signal<string>('');
   team = this._teamService.team;
-  state = this._hubService.state;
+  hubState = this._hubService.state;
+  teamState = this._teamService.state;
+  isLoading = signal<boolean>(false);
   subject = new Subject<void>();
   constructor() {
     effect(() => {
-      if (this.state() === 'success') {
-        this.sendPresence();
-      }
-
-      if (this._teamService.state() === 'error') {
-        console.log('cc ici');
-
+      if (this.teamState() === 'error') {
         this._toastrService.error(Error.TEAMNOTFETCH);
       }
     });
@@ -55,7 +51,6 @@ export class DashboardComponent {
   user$ = this.getUserById(this.user()?.id ?? '').pipe(
     tap(() => {
       this._teamService.setUserId(this.user()?.id ?? '');
-
       this._spinnerService.hide('all');
     }),
     catchError((err) => {
@@ -71,27 +66,9 @@ export class DashboardComponent {
       return EMPTY;
     })
   );
-  // team$ = this.user$.pipe(
-  //   switchMap((user) =>
-  //     this.getTeamByUserId(user.id).pipe(
-  //       catchError((err) => {
-  //         if (err.status === 404) {
-  //           this._toastrService.error(Error.TEAMNOTFETCH);
-  //         } else {
-  //           this._toastrService.error(Error.SERVERERROR);
-  //         }
-  //         return EMPTY;
-  //       })
-  //     )
-  //   )
-  // );
 
   private getUserById(userId: string) {
     return this._userService.getUserById(userId);
-  }
-
-  private getTeamByUserId(userId: string) {
-    return this._teamService.getTeamByUserId(userId);
   }
 
   saveNote() {
@@ -121,10 +98,21 @@ export class DashboardComponent {
   }
 
   sendPresence() {
-    if (this.state() !== 'success') {
-      this._hubService.connect();
+    this.isLoading.set(true);
+    if (this.hubState() !== 'success') {
+      this._hubService
+        .connect()
+        .then(() => {
+          this._hubService.sendPresence(this.user()?.id ?? '');
+          this._toastrService.success('Presence has been sent');
+        })
+        .catch(() => {
+          this._toastrService.error("Couldn't connect to the server");
+        })
+        .finally(() => this.isLoading.set(false));
     } else {
       this._hubService.sendPresence(this.user()?.id ?? '');
+      this.isLoading.set(false);
     }
   }
 }

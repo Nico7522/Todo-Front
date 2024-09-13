@@ -28,8 +28,7 @@
         <mat-sidenav
           [opened]="false"
           #principalMenu
-          opened
-          mode="side"
+          mode="over"
           position="start"
           role="navigation"
           class="sidenav-wv"
@@ -37,10 +36,11 @@
           <app-nav-list />
         </mat-sidenav>
         <mat-sidenav-content class="principal">
-          <!-- <div class="background"></div> -->
-
-          <app-header (togglePrincipalMenuEmitter)="togglePrincipalMenu()" />
-          <ngx-spinner name="all" type="ball-scale-multiple"></ngx-spinner>
+          <div>
+            <div class="background"></div>
+            <app-header (togglePrincipalMenuEmitter)="togglePrincipalMenu()" />
+            <ngx-spinner name="all" type="ball-scale-multiple"></ngx-spinner>
+          </div>
 
           <router-outlet />
         </mat-sidenav-content>

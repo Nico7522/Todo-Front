@@ -16,7 +16,7 @@
 <mat-dialog-actions>
   <button mat-raised-button [matDialogClose] color="warn">Close</button>
   <button
-    [ngClass]="isLoading() ? 'spinner' : ''"
+    [class.spinner]="isLoading()"
     [disabled]="!duration.valid || isLoading()"
     mat-raised-button
     color="primary"

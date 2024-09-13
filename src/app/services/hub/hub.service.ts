@@ -36,46 +36,47 @@ export class HubService {
       .withUrl(`${environment.HUB_URL}`)
       .build();
   }
-  connect() {
-    if (this._hubConnection.state === 'Disconnected') {
-      this._hubConnection
-        .start()
-        .then(() => {
-          console.log('Connected');
-
-          this._state.set('success');
-          if (this._hubConnection.connectionId)
-            this._connectionId = this._hubConnection.connectionId;
-        })
-        .catch((err) => {
-          this._state.set('error');
-          console.log(err);
-        });
-    }
-    this._hubConnection.on('JoinChatRoom', (membersList: UserStatus[]) => {
-      console.log(membersList);
-
-      this._teamService.refreshMembersList(membersList);
-    });
-
-    this._hubConnection.on('LeftChatRoom', (membersList: UserStatus[]) => {
-      this._teamService.refreshMembersList(membersList);
-    });
-
-    this._hubConnection.on(
-      'ReceiveMessage',
-      (message: string, firstname: string, lastname: string) => {
-        this._messageList.update((prev) => [
-          ...prev,
-          { message, firstname, lastname },
-        ]);
+  connect(): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      if (this._hubConnection.state === 'Disconnected') {
+        this._hubConnection
+          .start()
+          .then(() => {
+            console.log('Connected');
+            this._state.set('success');
+            if (this._hubConnection.connectionId)
+              this._connectionId = this._hubConnection.connectionId;
+            resolve(true);
+          })
+          .catch((err) => {
+            this._state.set('error');
+            console.log(err);
+            reject(false);
+          });
       }
-    );
+      this._hubConnection.on('JoinChatRoom', (membersList: UserStatus[]) => {
+        this._teamService.refreshMembersList(membersList);
+      });
 
-    this._hubConnection.on('SendPresence', (membersList: UserStatus[]) => {
-      console.log(membersList);
+      this._hubConnection.on('LeftChatRoom', (membersList: UserStatus[]) => {
+        this._teamService.refreshMembersList(membersList);
+      });
 
-      this._teamService.refreshPresence(membersList);
+      this._hubConnection.on(
+        'ReceiveMessage',
+        (message: string, firstname: string, lastname: string) => {
+          this._messageList.update((prev) => [
+            ...prev,
+            { message, firstname, lastname },
+          ]);
+        }
+      );
+
+      this._hubConnection.on('SendPresence', (membersList: UserStatus[]) => {
+        console.log(membersList);
+
+        this._teamService.refreshMembersList(membersList);
+      });
     });
   }
   joinChatRoom(teamId: string, userId: string) {

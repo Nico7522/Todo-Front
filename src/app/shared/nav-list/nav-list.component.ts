@@ -34,4 +34,8 @@ export class NavListComponent {
     let state = this.menuService.isMenuOpen() ? false : true;
     this.menuService.setIsMenuOpen(state);
   }
+
+  closePrincipalMenu() {
+    this.menuService.setClosePrincipalMenu();
+  }
 }

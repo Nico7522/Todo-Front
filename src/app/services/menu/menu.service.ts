@@ -17,5 +17,13 @@ export class MenuService {
     this._openedMenu.set(menuType);
   }
 
+  private _closePrincipalMenu = signal<boolean>(false);
+  closePrincipalMenu = this._closePrincipalMenu.asReadonly();
+
+  setClosePrincipalMenu() {
+    this._closePrincipalMenu.set(true);
+    this._closePrincipalMenu.set(false);
+  }
+
   constructor() {}
 }

@@ -1,71 +1,4 @@
 <h2 class="primary">Task details</h2>
-<!-- <main class="mat-typography">
-  @if (task$ | async; as task) {
-  <mat-grid-list cols="2" rowHeight="120px">
-    <mat-grid-tile [colspan]="1">
-      <div>
-        <h3>Description</h3>
-        <p>
-          {{ task.description }}
-        </p>
-      </div>
-    </mat-grid-tile>
-    <mat-grid-tile [colspan]="1">
-      <div>
-        <h3>Priority</h3>
-        <p>{{ task.priority | priority }}</p>
-      </div>
-    </mat-grid-tile>
-    <mat-grid-tile [colspan]="1">
-      <div>
-        <h3>Creation date</h3>
-        <p>
-          {{ task.creationDate | date }}
-        </p>
-      </div>
-    </mat-grid-tile>
-    <mat-grid-tile [colspan]="1">
-      <div>
-        <h3>Closing date</h3>
-        <p>
-          {{ task.closingDate ? (task.closingDate | date) : "No closing date" }}
-        </p>
-      </div>
-    </mat-grid-tile>
-    <mat-grid-tile [colspan]="1">
-      <div>
-        <h3>Advancement</h3>
-        <p>{{ task.isComplete ? "Done" : "Undone" }}</p>
-      </div>
-    </mat-grid-tile>
-    <mat-grid-tile [colspan]="1">
-      <div>
-        <h3>Duration</h3>
-        <p>{{ task.duration }}</p>
-      </div>
-    </mat-grid-tile>
-  </mat-grid-list>
-
-  <mat-dialog-actions align="start">
-    <button mat-raised-button color="warn" mat-dialog-close>Cancel</button>
-    <button
-      [disabled]="task.isComplete"
-      mat-raised-button
-      color="primary"
-      (click)="openCompleteTaskDialog()"
-    >
-      Complete task
-    </button>
-  </mat-dialog-actions>
-  }@else {
-  <div class="empty"></div>
-  }
-  <ngx-spinner
-    name="task-details"
-    [fullScreen]="false"
-    type="ball-scale-multiple"
-  ></ngx-spinner>
-</main> -->
 
 <main class="mat-typography">
   @if (task$ | async; as task) {
@@ -116,6 +49,7 @@
   <mat-dialog-actions align="start">
     <button mat-raised-button color="warn" mat-dialog-close>Cancel</button>
     <button
+      [disabled]="task.isComplete"
       mat-raised-button
       color="primary"
       (click)="openCompleteTaskDialog()"

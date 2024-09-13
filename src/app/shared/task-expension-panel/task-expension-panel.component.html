@@ -4,7 +4,9 @@
     <mat-panel-title>{{ task.title }}</mat-panel-title>
     <mat-panel-description>
       {{ task.priority | priority }}
-      <mat-icon>{{ task.isComplete ? "check_circle" : "pending" }}</mat-icon>
+      <mat-icon [class.green-icon]="task.isComplete">{{
+        task.isComplete ? "check_circle" : "pending"
+      }}</mat-icon>
     </mat-panel-description>
   </mat-expansion-panel-header>
   <p>{{ task.description }}</p>

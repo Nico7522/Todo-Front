@@ -2,7 +2,13 @@
   <h2 class="primary white mat-headline-6">Your Dashboard</h2>
   <div class="total">
     <div class="action">
-      <button mat-raised-button color="primary" (click)="sendPresence()">
+      <button
+        [class.spinner]="isLoading()"
+        [disabled]="isLoading()"
+        mat-raised-button
+        color="primary"
+        (click)="sendPresence()"
+      >
         Send my Presence
       </button>
       <button mat-raised-button color="primary" routerLink="/tasks/my-tasks">

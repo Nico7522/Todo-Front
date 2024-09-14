@@ -8,8 +8,8 @@ import {
 import { Task } from '../../../interfaces/tasks/task.interface';
 import { MatDialog } from '@angular/material/dialog';
 import { MatCheckbox } from '@angular/material/checkbox';
-import { CompleteTaskDialogComponent } from '../../../components/task/task-details/complete-task-dialog/complete-task-dialog.component';
-import { DeleteTaskConfirmationModalComponent } from '../../delete-task-confirmation-modal/delete-task-confirmation-modal.component';
+import { CompleteTaskDialogComponent } from '../../tasks-display/complete-task-dialog/complete-task-dialog.component';
+import { ConfirmationModalComponent } from '../../confirmation-modal/confirmation-modal.component';
 
 @Component({
   selector: 'app-list-item-meta',
@@ -36,7 +36,7 @@ export class ListItemMetaComponent {
   }
 
   deleteTask() {
-    let ref = this._dialog.open(DeleteTaskConfirmationModalComponent, {
+    let ref = this._dialog.open(ConfirmationModalComponent, {
       height: '200px',
       width: '600px',
     });

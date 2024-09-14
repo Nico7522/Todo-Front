@@ -9,8 +9,7 @@ import {
 } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { Error } from '../../../enums/error.enum';
-import { DialogRef } from '@angular/cdk/dialog';
-import { CompleteTaskDialogComponent } from './complete-task-dialog/complete-task-dialog.component';
+import { CompleteTaskDialogComponent } from '../complete-task-dialog/complete-task-dialog.component';
 
 @Component({
   selector: 'app-task-details',

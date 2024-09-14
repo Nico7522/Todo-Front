@@ -15,7 +15,6 @@ import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { DatePipe } from '@angular/common';
-import { LogoutConfirmationComponent } from './components/logout-confirmation/logout-confirmation.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { HomeComponent } from './components/home/home.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -25,7 +24,6 @@ import { httpInterceptor } from './interceptors/http.interceptor';
   declarations: [
     AppComponent,
     LoginComponent,
-    LogoutConfirmationComponent,
     HomeComponent,
     DashboardComponent,
     AboutUsComponent,

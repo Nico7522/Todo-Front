@@ -8,7 +8,11 @@
     />
     @if(task$ | async) {
     <div class="table">
-      <table
+      <app-tasks-display
+        [tasks]="filteredTasks()"
+        (taskToUpdateEmmiter)="onTaskToUpdate($event)"
+      />
+      <!-- <table
         mat-table
         [dataSource]="filteredTasks()"
         M
@@ -56,7 +60,7 @@
             No data matching the filter.
           </td>
         </tr>
-      </table>
+      </table> -->
     </div>
 
     } @else {

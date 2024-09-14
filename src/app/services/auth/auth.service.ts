@@ -7,8 +7,8 @@ import { LoggedUser } from '../../interfaces/users/logged-user.interface';
 import { RegisterForm } from '../../interfaces/forms/register-from.interface';
 import { ToastrService } from 'ngx-toastr';
 import { MatDialog } from '@angular/material/dialog';
-import { LogoutConfirmationComponent } from '../../components/logout-confirmation/logout-confirmation.component';
 import { Router } from '@angular/router';
+import { ConfirmationModalComponent } from '../../shared/confirmation-modal/confirmation-modal.component';
 
 @Injectable({
   providedIn: 'root',
@@ -48,7 +48,7 @@ export class AuthService {
   }
 
   openLogoutConfirmationDialog() {
-    const dialogRef = this.dialog.open(LogoutConfirmationComponent, {
+    const dialogRef = this.dialog.open(ConfirmationModalComponent, {
       height: '200px',
       width: '600px',
     });

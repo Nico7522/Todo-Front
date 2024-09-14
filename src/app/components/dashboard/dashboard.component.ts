@@ -6,14 +6,13 @@ import {
   Signal,
   signal,
 } from '@angular/core';
-import { catchError, EMPTY, filter, Subject, switchMap, tap } from 'rxjs';
+import { catchError, EMPTY, Subject, tap } from 'rxjs';
 import { AuthService } from '../../services/auth/auth.service';
 import { UserService } from '../../services/user/user.service';
 import { TeamService } from '../../services/team/team.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { Error } from '../../enums/error.enum';
-import { toObservable } from '@angular/core/rxjs-interop';
 import { FormControl } from '@angular/forms';
 import { HubService } from '../../services/hub/hub.service';
 

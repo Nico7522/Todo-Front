@@ -7,17 +7,15 @@
   </mat-tab>
   <mat-tab label="Tasks"
     ><h4 class="mat-subtitle-2">Total Tasks : {{ team.tasks.length }}</h4>
-    @for (task of team.tasks; track $index) {
-    <mat-list role="list">
-      <mat-list-item>
-        <span matListItemTitle>{{ task.title }}</span>
-        <span matListItemLine>{{ task.description }}</span>
-        <div matListItemMeta>
-          <app-list-item-meta [task]="task" />
-        </div>
-      </mat-list-item>
-    </mat-list>
-    }
+    <app-tasks-filter
+      (onSearchUpdatedEmmiter)="onSearchUpdated($event)"
+      (onPriorityUpdatedEmmiter)="onPriorityUpdated($event)"
+      (onTaskDoneChangeEmmiter)="onTaskDoneChange($event)"
+    />
+    <app-tasks-display
+      [tasks]="filteredTasks()"
+      (taskToUpdateEmmiter)="onTaskUpdated($event)"
+    />
   </mat-tab>
   <mat-tab label="Notes">
     <div>

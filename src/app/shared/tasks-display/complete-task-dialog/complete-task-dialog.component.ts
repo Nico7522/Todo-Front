@@ -1,10 +1,10 @@
 import { Component, Inject, inject, signal } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { TaskService } from '../../../../services/task/task.service';
+import { TaskService } from '../../../services/task/task.service';
 import { catchError, EMPTY, finalize, tap } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
-import { Error } from '../../../../enums/error.enum';
+import { Error } from '../../../enums/error.enum';
 
 @Component({
   selector: 'app-complete-task-dialog',

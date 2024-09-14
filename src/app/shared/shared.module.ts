@@ -20,7 +20,12 @@ import { TaskExpensionPanelComponent } from './task-expension-panel/task-expensi
 import { ErrorAlertComponent } from './error-alert/error-alert.component';
 import { PriorityPipe } from '../pipes/priority/priority.pipe';
 import { ListItemMetaComponent } from './team-display/list-item-meta/list-item-meta.component';
-import { DeleteTaskConfirmationModalComponent } from './delete-task-confirmation-modal/delete-task-confirmation-modal.component';
+import { ConfirmationModalComponent } from './confirmation-modal/confirmation-modal.component';
+import { TasksDisplayComponent } from './tasks-display/tasks-display.component';
+import { TaskModule } from '../components/task/task.module';
+import { TasksFilterComponent } from './tasks-filter/tasks-filter.component';
+import { TaskDetailsComponent } from './tasks-display/task-details/task-details.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -35,7 +40,10 @@ import { DeleteTaskConfirmationModalComponent } from './delete-task-confirmation
     ErrorAlertComponent,
     PriorityPipe,
     ListItemMetaComponent,
-    DeleteTaskConfirmationModalComponent,
+    ConfirmationModalComponent,
+    TasksDisplayComponent,
+    TasksFilterComponent,
+    TaskDetailsComponent,
   ],
   imports: [
     CommonModule,
@@ -45,6 +53,7 @@ import { DeleteTaskConfirmationModalComponent } from './delete-task-confirmation
     ReactiveFormsModule,
     RouterModule,
     FormsModule,
+    NgxSpinnerModule,
   ],
   exports: [
     HeaderComponent,
@@ -57,6 +66,9 @@ import { DeleteTaskConfirmationModalComponent } from './delete-task-confirmation
     ErrorAlertComponent,
     PriorityPipe,
     FormsModule,
+    TasksDisplayComponent,
+    TasksFilterComponent,
+    TaskDetailsComponent,
   ],
 })
 export class SharedModule {}

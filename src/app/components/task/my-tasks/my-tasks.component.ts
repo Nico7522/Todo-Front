@@ -4,7 +4,7 @@ import { UserService } from '../../../services/user/user.service';
 import { catchError, EMPTY, finalize, map, Observable } from 'rxjs';
 import { Task } from '../../../interfaces/tasks/task.interface';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
-import { TaskDetailsComponent } from '../task-details/task-details.component';
+import { TaskDetailsComponent } from '../../../shared/tasks-display/task-details/task-details.component';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { Error } from '../../../enums/error.enum';
@@ -72,24 +72,13 @@ export class MyTasksComponent {
     this.isComplete.set(value);
   }
   displayedColumns: string[] = ['title', 'priority', 'details', 'advancement'];
-
-  openTaskDetailsDialog(taskId: string) {
-    let ref = this._dialog.open(TaskDetailsComponent, {
-      width: '600px',
-      height: '600px',
-      data: taskId,
-    });
-
-    ref.afterClosed().subscribe((completedTaskId: string) => {
-      this.tasks.update((tasks) => {
-        let completedTask = tasks.find((t) => t.id === completedTaskId);
-        if (completedTask) {
-          completedTask.isComplete = true;
-        }
-        return tasks;
-      });
-    });
+  onTaskToUpdate(taskId: string) {
+    let updatedTasks = this.tasks().map((task) =>
+      task.id === taskId ? { ...task, isComplete: true } : task
+    );
+    this.tasks.set(updatedTasks);
   }
+
   ngOnInit() {
     this._spinnerService.show('all');
   }

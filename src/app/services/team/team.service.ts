@@ -6,6 +6,7 @@ import { Team } from '../../interfaces/teams/team.interface';
 import { UserStatus } from '../../interfaces/users/user-status.interface';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { State } from '../../interfaces/state/state.type';
+import { Task } from '../../interfaces/tasks/task.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -16,6 +17,16 @@ export class TeamService {
 
   private _teamMembers = signal<UserStatus[]>([]);
   teamMembers = this._teamMembers.asReadonly();
+
+  private _teamTasks = signal<Task[]>([]);
+  teamTasks = this._teamTasks.asReadonly();
+
+  updateTeamTasks(completedTaskId: string) {
+    let updatedTasks = this._teamTasks().map((task) =>
+      task.id === completedTaskId ? { ...task, isComplete: true } : task
+    );
+    this._teamTasks.set(updatedTasks);
+  }
 
   private readonly _state = signal<State>('loading');
   state = this._state.asReadonly();
@@ -33,6 +44,7 @@ export class TeamService {
         tap((team) => {
           this._state.set('success');
           this._teamMembers.set(team.users as UserStatus[]);
+          this._teamTasks.set(team.tasks);
         }),
         catchError((err) => {
           this._state.set('error');

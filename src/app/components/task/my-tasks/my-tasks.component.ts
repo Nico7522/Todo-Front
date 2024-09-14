@@ -8,6 +8,7 @@ import { TaskDetailsComponent } from '../../../shared/tasks-display/task-details
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { Error } from '../../../enums/error.enum';
+import { filterArray } from '../../../utils/methods';
 
 @Component({
   selector: 'app-my-tasks',
@@ -30,18 +31,7 @@ export class MyTasksComponent {
     const sq = this.searchQuery();
     const priority = this.priority();
     const isComplete = this.isComplete();
-    let filter = this.tasks().filter(
-      (x) =>
-        x.title.toLowerCase().includes(sq.toLowerCase()) &&
-        x.priority.toString().includes(priority)
-    );
-    if (isComplete) {
-      filter = filter.filter((x) =>
-        isComplete ? x.isComplete === isComplete : x
-      );
-    }
-
-    return filter;
+    return filterArray(this.tasks, sq, priority, isComplete);
   });
   task$ = this._userService.getUserById(this.user()?.id ?? '').pipe(
     map((u) => {
@@ -73,6 +63,7 @@ export class MyTasksComponent {
   }
   displayedColumns: string[] = ['title', 'priority', 'details', 'advancement'];
   onTaskToUpdate(taskId: string) {
+    // TODO : faire le update task ici.
     let updatedTasks = this.tasks().map((task) =>
       task.id === taskId ? { ...task, isComplete: true } : task
     );

@@ -11,6 +11,7 @@ import { TeamService } from '../../services/team/team.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CompleteTaskDialogComponent } from '../tasks-display/complete-task-dialog/complete-task-dialog.component';
 import { MatCheckbox, MatCheckboxChange } from '@angular/material/checkbox';
+import { filterArray } from '../../utils/methods';
 
 @Component({
   selector: 'app-team-display',
@@ -27,8 +28,7 @@ export class TeamDisplayComponent {
   @Input() team: Team | null = null;
 
   onTaskUpdated(completedTaskId: string) {
-    // let task = this.filteredTasks()?.find((t) => t.id === completedTaskId);
-    // if (task) task.isComplete = true;
+    // TODO : faire l'update des tasksByTeam ici.
     this._teamService.updateTeamTasks(completedTaskId);
   }
 
@@ -36,18 +36,7 @@ export class TeamDisplayComponent {
     const sq = this.searchQuery();
     const priority = this.priority();
     const isComplete = this.isComplete();
-    let filter = this.teamTasks().filter(
-      (x) =>
-        x.title.toLowerCase().includes(sq.toLowerCase()) &&
-        x.priority.toString().includes(priority)
-    );
-    if (isComplete) {
-      filter = filter?.filter((x) =>
-        isComplete ? x.isComplete === isComplete : x
-      );
-    }
-
-    return filter;
+    return filterArray(this.teamTasks, sq, priority, isComplete);
   });
 
   onSearchUpdated(sq: string) {

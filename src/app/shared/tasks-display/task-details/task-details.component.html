@@ -47,15 +47,22 @@
   </mat-grid-list>
 
   <mat-dialog-actions align="start">
-    <button mat-raised-button color="warn" mat-dialog-close>Cancel</button>
-    <button
-      [disabled]="task.isComplete"
-      mat-raised-button
-      color="primary"
-      (click)="openCompleteTaskDialog()"
-    >
-      Complete task
-    </button>
+    <div class="buttons">
+      <div>
+        <button mat-raised-button color="warn" mat-dialog-close>Cancel</button>
+        <button
+          [disabled]="task.isComplete"
+          mat-raised-button
+          color="primary"
+          (click)="openCompleteTaskDialog()"
+        >
+          Complete task
+        </button>
+      </div>
+      <button (click)="deleteTask()" class="delete" mat-mini-fab color="warn">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
   </mat-dialog-actions>
   }@else {
   <div class="empty"></div>

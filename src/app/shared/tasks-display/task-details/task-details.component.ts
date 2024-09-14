@@ -10,6 +10,7 @@ import {
 import { ToastrService } from 'ngx-toastr';
 import { Error } from '../../../enums/error.enum';
 import { CompleteTaskDialogComponent } from '../complete-task-dialog/complete-task-dialog.component';
+import { ConfirmationModalComponent } from '../../confirmation-modal/confirmation-modal.component';
 
 @Component({
   selector: 'app-task-details',
@@ -48,6 +49,15 @@ export class TaskDetailsComponent {
         this._dialogRef.close(taskId);
       }
     });
+  }
+
+  deleteTask() {
+    let ref = this._dialog.open(ConfirmationModalComponent, {
+      height: '200px',
+      width: '600px',
+    });
+
+    ref.afterClosed().subscribe((res) => console.log(res));
   }
   ngOnInit() {
     this._spinnerService.show('task-details');

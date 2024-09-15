@@ -13,6 +13,7 @@
       (onTaskDoneChangeEmmiter)="onTaskDoneChange($event)"
     />
     <app-tasks-display
+      [tasksInTeam]="true"
       [tasks]="filteredTasks()"
       (taskToUpdateEmmiter)="onTaskUpdated($event)"
     />

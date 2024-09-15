@@ -22,5 +22,9 @@ export class TaskService {
       }
     );
   }
+
+  deleteTask(taskId: string) {
+    return this._httpClient.delete(`${environment.API_URL}/todo/${taskId}`);
+  }
   constructor() {}
 }

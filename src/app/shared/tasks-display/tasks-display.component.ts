@@ -11,6 +11,7 @@ import { TaskDetailsComponent } from './task-details/task-details.component';
 export class TasksDisplayComponent {
   private readonly _dialog = inject(MatDialog);
   @Input() tasks: Task[] = [];
+  @Input() tasksInTeam: boolean = false;
   @Output() taskToUpdateEmmiter = new EventEmitter<string>();
   emitTaskToUpdate(completedTaskId: string) {
     this.taskToUpdateEmmiter.emit(completedTaskId);
@@ -19,7 +20,7 @@ export class TasksDisplayComponent {
     let ref = this._dialog.open(TaskDetailsComponent, {
       width: '600px',
       height: '600px',
-      data: taskId,
+      data: { taskId: taskId, taskInTeam: this.tasksInTeam },
     });
 
     ref.afterClosed().subscribe((completedTaskId: string) => {

@@ -63,7 +63,6 @@ export class MyTasksComponent {
   }
   displayedColumns: string[] = ['title', 'priority', 'details', 'advancement'];
   onTaskToUpdate(taskId: string) {
-    // TODO : faire le update task ici.
     let updatedTasks = this.tasks().map((task) =>
       task.id === taskId ? { ...task, isComplete: true } : task
     );

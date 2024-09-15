@@ -11,6 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Error } from '../../../enums/error.enum';
 import { CompleteTaskDialogComponent } from '../complete-task-dialog/complete-task-dialog.component';
 import { ConfirmationModalComponent } from '../../confirmation-modal/confirmation-modal.component';
+import { TaskModalData } from '../../../interfaces/tasks/task-modal-data.interface';
 
 @Component({
   selector: 'app-task-details',
@@ -19,13 +20,13 @@ import { ConfirmationModalComponent } from '../../confirmation-modal/confirmatio
   providers: [TaskService],
 })
 export class TaskDetailsComponent {
-  constructor(@Inject(MAT_DIALOG_DATA) public taskId: string) {}
+  constructor(@Inject(MAT_DIALOG_DATA) public data: TaskModalData) {}
   private readonly _dialogRef = inject(MatDialogRef<TaskDetailsComponent>);
   private readonly _dialog = inject(MatDialog);
   private readonly _taskService = inject(TaskService);
   private readonly _spinnerService = inject(NgxSpinnerService);
   private readonly _toastrService = inject(ToastrService);
-  task$ = this._taskService.getTaskById(this.taskId).pipe(
+  task$ = this._taskService.getTaskById(this.data.taskId).pipe(
     catchError((err) => {
       if (err.status === 404) {
         this._toastrService.error(Error.TASKNOTFOUND);
@@ -41,7 +42,7 @@ export class TaskDetailsComponent {
   openCompleteTaskDialog() {
     let ref = this._dialog.open(CompleteTaskDialogComponent, {
       width: '300px',
-      data: this.taskId,
+      data: this.data,
     });
 
     ref.afterClosed().subscribe((taskId) => {
@@ -57,7 +58,10 @@ export class TaskDetailsComponent {
       width: '600px',
     });
 
-    ref.afterClosed().subscribe((res) => console.log(res));
+    ref.afterClosed().subscribe((res) => {
+      if (res) {
+      }
+    });
   }
   ngOnInit() {
     this._spinnerService.show('task-details');

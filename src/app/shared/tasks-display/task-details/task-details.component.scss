@@ -45,13 +45,25 @@ div {
   margin-right: auto;
 }
 
-@media screen and (max-width: 430px) {
+.unassign {
+  width: 30%;
+  margin-right: auto;
+}
+
+@media screen and (max-width: 720px) {
+  .unassign {
+    width: 47%;
+  }
+}
+@media screen and (max-width: 525px) {
   .buttons {
     flex-direction: column;
     align-items: center;
     justify-content: center;
   }
-
+  .unassign {
+    width: 50%;
+  }
   .buttons > div {
     flex-direction: column;
     align-items: start;

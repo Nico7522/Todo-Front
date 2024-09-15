@@ -5,6 +5,9 @@ import { TaskService } from '../../../services/task/task.service';
 import { catchError, EMPTY, finalize, tap } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { Error } from '../../../enums/error.enum';
+import { TeamService } from '../../../services/team/team.service';
+import { AuthService } from '../../../services/auth/auth.service';
+import { TaskModalData } from '../../../interfaces/tasks/task-modal-data.interface';
 
 @Component({
   selector: 'app-complete-task-dialog',
@@ -16,9 +19,12 @@ export class CompleteTaskDialogComponent {
     MatDialogRef<CompleteTaskDialogComponent>
   );
   private readonly _taskService = inject(TaskService);
+  private readonly _teamService = inject(TeamService);
+  private readonly _authService = inject(AuthService);
   private readonly _toastrService = inject(ToastrService);
   isLoading = signal<boolean>(false);
-  constructor(@Inject(MAT_DIALOG_DATA) public taskId: string) {}
+  user = this._authService.user;
+  constructor(@Inject(MAT_DIALOG_DATA) public data: TaskModalData) {}
 
   duration = new FormControl('', {
     nonNullable: true,
@@ -27,25 +33,57 @@ export class CompleteTaskDialogComponent {
   validate() {
     if (this.duration.valid) {
       this.isLoading.set(true);
-
-      this._taskService
-        .completeTask(this.taskId, +this.duration.value)
-        .pipe(
-          tap(() => {
-            this._toastrService.success('Task completed');
-            this._dialogRef.close(this.taskId);
-          }),
-          catchError((err) => {
-            if (err.status === 500) {
-              this._toastrService.error(Error.SERVERERROR);
-            } else {
-              this._toastrService.error('Task could not be updated');
-            }
-            return EMPTY;
-          }),
-          finalize(() => this.isLoading.set(false))
-        )
-        .subscribe();
+      if (this.data.taskInTeam) {
+        this.completeTeamTask();
+      } else {
+        this.completeTask();
+      }
     }
+  }
+
+  private completeTask() {
+    this._taskService
+      .completeTask(this.data.taskId, +this.duration.value)
+      .pipe(
+        tap(() => {
+          this._toastrService.success('Task completed');
+          this._dialogRef.close(this.data.taskId);
+        }),
+        catchError((err) => {
+          if (err.status === 400 || err.status === 403) {
+            this._toastrService.error(err.error);
+          } else {
+            this._toastrService.error(Error.SERVERERROR);
+          }
+          return EMPTY;
+        }),
+        finalize(() => this.isLoading.set(false))
+      )
+      .subscribe();
+  }
+
+  private completeTeamTask() {
+    this._teamService
+      .updateTaskTeam(
+        this.user()?.teamId ?? '',
+        this.data.taskId,
+        +this.duration.value
+      )
+      .pipe(
+        tap(() => {
+          this._toastrService.success('Task completed');
+          this._dialogRef.close(this.data.taskId);
+        }),
+        catchError((err) => {
+          if (err.status === 400 || err.status === 403 || err.status === 404) {
+            this._toastrService.error(err.error);
+          } else {
+            this._toastrService.error(Error.SERVERERROR);
+          }
+          return EMPTY;
+        }),
+        finalize(() => this.isLoading.set(false))
+      )
+      .subscribe();
   }
 }

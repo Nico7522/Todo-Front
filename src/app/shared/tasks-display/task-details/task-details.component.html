@@ -59,9 +59,16 @@
           Complete task
         </button>
       </div>
+      @if (data.taskInTeam) {
+      <button class="unassign" mat-raised-button color="warn">
+        Unassign task
+      </button>
+      } @else {
       <button (click)="deleteTask()" class="delete" mat-mini-fab color="warn">
         <mat-icon>delete</mat-icon>
       </button>
+
+      }
     </div>
   </mat-dialog-actions>
   }@else {

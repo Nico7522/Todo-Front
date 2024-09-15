@@ -80,4 +80,13 @@ export class TeamService {
   setUserId(userId: string) {
     this._userId.set(userId);
   }
+
+  updateTaskTeam(teamId: string, taskId: string, duration: number) {
+    return this._httpClient.put(
+      `${environment.API_URL}/team/${teamId}/task/${taskId}/complete`,
+      {
+        duration,
+      }
+    );
+  }
 }

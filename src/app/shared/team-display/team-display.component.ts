@@ -12,6 +12,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { CompleteTaskDialogComponent } from '../tasks-display/complete-task-dialog/complete-task-dialog.component';
 import { MatCheckbox, MatCheckboxChange } from '@angular/material/checkbox';
 import { filterArray } from '../../utils/methods';
+import { TaskAction } from '../../interfaces/tasks/action.type';
 
 @Component({
   selector: 'app-team-display',
@@ -27,9 +28,12 @@ export class TeamDisplayComponent {
   teamTasks = this._teamService.teamTasks;
   @Input() team: Team | null = null;
 
-  onTaskUpdated(completedTaskId: string) {
-    // TODO : faire l'update des tasksByTeam ici.
-    this._teamService.updateTeamTasks(completedTaskId);
+  onTaskUpdated(action: TaskAction) {
+    this._teamService.updateTeamTasks(action);
+  }
+
+  onTaskUnassigned(action: TaskAction) {
+    this._teamService.updateTeamTasks(action);
   }
 
   filteredTasks = computed(() => {

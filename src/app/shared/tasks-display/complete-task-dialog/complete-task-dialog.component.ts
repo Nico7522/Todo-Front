@@ -8,6 +8,7 @@ import { Error } from '../../../enums/error.enum';
 import { TeamService } from '../../../services/team/team.service';
 import { AuthService } from '../../../services/auth/auth.service';
 import { TaskModalData } from '../../../interfaces/tasks/task-modal-data.interface';
+import { TaskAction } from '../../../interfaces/tasks/action.type';
 
 @Component({
   selector: 'app-complete-task-dialog',
@@ -22,6 +23,7 @@ export class CompleteTaskDialogComponent {
   private readonly _teamService = inject(TeamService);
   private readonly _authService = inject(AuthService);
   private readonly _toastrService = inject(ToastrService);
+
   isLoading = signal<boolean>(false);
   user = this._authService.user;
   constructor(@Inject(MAT_DIALOG_DATA) public data: TaskModalData) {}
@@ -47,7 +49,11 @@ export class CompleteTaskDialogComponent {
       .pipe(
         tap(() => {
           this._toastrService.success('Task completed');
-          this._dialogRef.close(this.data.taskId);
+          let action: TaskAction = {
+            taskId: this.data.taskId,
+            action: 'complete',
+          };
+          this._dialogRef.close(action);
         }),
         catchError((err) => {
           if (err.status === 400 || err.status === 403) {
@@ -64,7 +70,7 @@ export class CompleteTaskDialogComponent {
 
   private completeTeamTask() {
     this._teamService
-      .updateTaskTeam(
+      .completeTeamTask(
         this.user()?.teamId ?? '',
         this.data.taskId,
         +this.duration.value
@@ -72,7 +78,11 @@ export class CompleteTaskDialogComponent {
       .pipe(
         tap(() => {
           this._toastrService.success('Task completed');
-          this._dialogRef.close(this.data.taskId);
+          let action: TaskAction = {
+            taskId: this.data.taskId,
+            action: 'complete',
+          };
+          this._dialogRef.close(action);
         }),
         catchError((err) => {
           if (err.status === 400 || err.status === 403 || err.status === 404) {

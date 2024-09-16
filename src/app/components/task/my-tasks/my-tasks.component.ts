@@ -9,6 +9,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { Error } from '../../../enums/error.enum';
 import { filterArray } from '../../../utils/methods';
+import { TaskAction } from '../../../interfaces/tasks/action.type';
 
 @Component({
   selector: 'app-my-tasks',
@@ -62,11 +63,17 @@ export class MyTasksComponent {
     this.isComplete.set(value);
   }
   displayedColumns: string[] = ['title', 'priority', 'details', 'advancement'];
-  onTaskToUpdate(taskId: string) {
-    let updatedTasks = this.tasks().map((task) =>
-      task.id === taskId ? { ...task, isComplete: true } : task
-    );
-    this.tasks.set(updatedTasks);
+  onTaskToUpdate(action: TaskAction) {
+    if (action.action === 'complete') {
+      let updatedTasks = this.tasks().map((task) =>
+        task.id === action.taskId ? { ...task, isComplete: true } : task
+      );
+      this.tasks.set(updatedTasks);
+    } else {
+      this.tasks.update((tasks) => {
+        return tasks.filter((t) => t.id !== action.taskId);
+      });
+    }
   }
 
   ngOnInit() {

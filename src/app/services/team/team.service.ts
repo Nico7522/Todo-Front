@@ -7,6 +7,7 @@ import { UserStatus } from '../../interfaces/users/user-status.interface';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { State } from '../../interfaces/state/state.type';
 import { Task } from '../../interfaces/tasks/task.interface';
+import { TaskAction } from '../../interfaces/tasks/action.type';
 
 @Injectable({
   providedIn: 'root',
@@ -21,11 +22,17 @@ export class TeamService {
   private _teamTasks = signal<Task[]>([]);
   teamTasks = this._teamTasks.asReadonly();
 
-  updateTeamTasks(completedTaskId: string) {
-    let updatedTasks = this._teamTasks().map((task) =>
-      task.id === completedTaskId ? { ...task, isComplete: true } : task
-    );
-    this._teamTasks.set(updatedTasks);
+  updateTeamTasks(action: TaskAction) {
+    if (action.action === 'unassign') {
+      this._teamTasks.update((tasks) => {
+        return tasks.filter((t) => t.id !== action.taskId);
+      });
+    } else {
+      let updatedTasks = this._teamTasks().map((task) =>
+        task.id === action.taskId ? { ...task, isComplete: true } : task
+      );
+      this._teamTasks.set(updatedTasks);
+    }
   }
 
   private readonly _state = signal<State>('loading');
@@ -81,12 +88,18 @@ export class TeamService {
     this._userId.set(userId);
   }
 
-  updateTaskTeam(teamId: string, taskId: string, duration: number) {
+  completeTeamTask(teamId: string, taskId: string, duration: number) {
     return this._httpClient.put(
       `${environment.API_URL}/team/${teamId}/task/${taskId}/complete`,
       {
-        duration,
+        duration: duration,
       }
+    );
+  }
+
+  unassignTaskFormTeam(teamId: string, taskId: string) {
+    return this._httpClient.delete(
+      `${environment.API_URL}/team/${teamId}/task/${taskId}`
     );
   }
 }

@@ -15,7 +15,9 @@
     <app-tasks-display
       [tasksInTeam]="true"
       [tasks]="filteredTasks()"
-      (taskToUpdateEmmiter)="onTaskUpdated($event)"
+      (taskToUpdateEmitter)="onTaskUpdated($event)"
+      (taskToUnassignEmitter)="onTaskUnassigned($event)"
+      [leaderId]="team.leaderId"
     />
   </mat-tab>
   <mat-tab label="Notes">

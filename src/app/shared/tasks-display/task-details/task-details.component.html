@@ -56,29 +56,7 @@
   </mat-grid-list>
 
   } @else{
-  <div class="form" @fadeInOut>
-    <mat-form-field>
-      <mat-label id="title">Title</mat-label>
-      <input matInput type="text" name="title" id="title" />
-    </mat-form-field>
-
-    <mat-form-field>
-      <mat-label id="description">Description</mat-label>
-      <input matInput type="text" name="description" id="description" />
-    </mat-form-field>
-
-    <mat-form-field>
-      <mat-label>Priority</mat-label>
-      <mat-select>
-        <mat-option value="">All</mat-option>
-        <mat-option value="0">Low</mat-option>
-        <mat-option value="1">Medium</mat-option>
-        <mat-option value="2">High</mat-option>
-        <mat-option value="3">Urgent</mat-option>
-      </mat-select>
-    </mat-form-field>
-    <button mat-raised-button color="primary">Validate</button>
-  </div>
+  <app-update-task @fadeInOut class="form" />
 
   }
 
@@ -94,11 +72,7 @@
         >
           Complete task
         </button>
-        <button
-          (click)="onUpdateMode.set(!onUpdateMode())"
-          mat-raised-button
-          color="accent"
-        >
+        <button (click)="toggleUpdateMode()" mat-raised-button color="accent">
           {{ onUpdateMode() ? "Details" : "Update task" }}
         </button>
       </div>

@@ -1,0 +1,28 @@
+<form [formGroup]="updateTaskForm">
+  <mat-form-field>
+    <mat-label id="title">Title</mat-label>
+    <input matInput type="text" formControlName="title" id="title" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label id="description">Description</mat-label>
+    <input
+      matInput
+      type="text"
+      formControlName="description"
+      id="description"
+    />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Priority</mat-label>
+    <mat-select formControlName="priority">
+      <mat-option value="">All</mat-option>
+      <mat-option value="0">Low</mat-option>
+      <mat-option value="1">Medium</mat-option>
+      <mat-option value="2">High</mat-option>
+      <mat-option value="3">Urgent</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button mat-raised-button color="primary">Validate</button>
+</form>

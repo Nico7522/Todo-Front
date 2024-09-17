@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
-import { CommonModule, DatePipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { MaterialModule } from './material/material.module';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
-import { AppRoutingModule } from '../app-routing.module';
 import { NavListComponent } from './nav-list/nav-list.component';
 import {
   InputPhoneComponent,
@@ -22,10 +21,10 @@ import { PriorityPipe } from '../pipes/priority/priority.pipe';
 import { ListItemMetaComponent } from './team-display/list-item-meta/list-item-meta.component';
 import { ConfirmationModalComponent } from './confirmation-modal/confirmation-modal.component';
 import { TasksDisplayComponent } from './tasks-display/tasks-display.component';
-import { TaskModule } from '../components/task/task.module';
 import { TasksFilterComponent } from './tasks-filter/tasks-filter.component';
 import { TaskDetailsComponent } from './tasks-display/task-details/task-details.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { UpdateTaskComponent } from './tasks-display/update-task/update-task.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +43,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     TasksDisplayComponent,
     TasksFilterComponent,
     TaskDetailsComponent,
+    UpdateTaskComponent,
   ],
   imports: [
     CommonModule,

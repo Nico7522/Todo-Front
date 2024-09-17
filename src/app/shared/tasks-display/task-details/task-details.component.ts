@@ -43,6 +43,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   ],
 })
 export class TaskDetailsComponent {
+  showElement = signal<boolean>(false);
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: TaskModalData,
     private breakpointObserver: BreakpointObserver
@@ -58,8 +59,12 @@ export class TaskDetailsComponent {
   user = this._authService.user;
   isLeader = (this.data.leaderId = this.user()?.id);
   onUpdateMode = signal<boolean>(false);
+  block = signal<boolean>(false);
+  // Pour version absolute
   horizontalDisplay = signal<boolean>(false);
-
+  toggleUpdateMode() {
+    this.onUpdateMode.set(!this.onUpdateMode());
+  }
   task$ = this._taskService.getTaskById(this.data.taskId).pipe(
     catchError((err) => {
       if (err.status === 404) {
@@ -121,18 +126,24 @@ export class TaskDetailsComponent {
     });
   }
 
+  setHorizontalDislay() {
+    this.horizontalDisplay.set(true);
+  }
+
   ngOnInit() {
     this._spinnerService.show('task-details');
-
-    this.breakpointObserver
-      .observe('(max-width: 520px)')
-      .pipe(takeUntilDestroyed(this._destroyRef))
-      .subscribe((res) => {
-        if (res.matches) {
-          this.horizontalDisplay.set(true);
-        } else {
-          this.horizontalDisplay.set(false);
-        }
-      });
+    // if (window.innerWidth < 520) {
+    //   this.horizontalDisplay.set(true);
+    // }
+    // this.breakpointObserver
+    //   .observe('(max-width: 520px)')
+    //   .pipe(takeUntilDestroyed(this._destroyRef))
+    //   .subscribe((res) => {
+    //     if (res.matches) {
+    //       this.horizontalDisplay.set(true);
+    //     } else {
+    //       this.horizontalDisplay.set(false);
+    //     }
+    //   });
   }
 }

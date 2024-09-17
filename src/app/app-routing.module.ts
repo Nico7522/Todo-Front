@@ -5,6 +5,8 @@ import { authGuard } from './guards/auth/auth.guard';
 import { HomeComponent } from './components/home/home.component';
 import { ResetPasswordConfirmComponent } from './components/auth/reset-password-confirm/reset-password-confirm.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
+import { TaskDetailsComponent } from './shared/tasks-display/task-details/task-details.component';
+import { TestanimComponent } from './components/testanim/testanim.component';
 
 const routes: Routes = [
   {
@@ -19,6 +21,10 @@ const routes: Routes = [
   {
     path: 'about-us',
     component: AboutUsComponent,
+  },
+  {
+    path: 'test',
+    component: TestanimComponent,
   },
   {
     path: 'team',

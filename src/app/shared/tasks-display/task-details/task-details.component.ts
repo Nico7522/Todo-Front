@@ -1,4 +1,4 @@
-import { Component, Inject, inject, signal } from '@angular/core';
+import { Component, DestroyRef, Inject, inject, signal } from '@angular/core';
 import { TaskService } from '../../../services/task/task.service';
 import { catchError, EMPTY, finalize, tap } from 'rxjs';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -15,15 +15,38 @@ import { TaskModalData } from '../../../interfaces/tasks/task-modal-data.interfa
 import { AuthService } from '../../../services/auth/auth.service';
 import { TeamService } from '../../../services/team/team.service';
 import { TaskAction } from '../../../interfaces/tasks/action.type';
+import {
+  animate,
+  group,
+  query,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
+
+import { BreakpointObserver } from '@angular/cdk/layout';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-task-details',
   templateUrl: './task-details.component.html',
   styleUrl: './task-details.component.scss',
   providers: [TaskService],
+  animations: [
+    trigger('fadeInOut', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('0.2s ease-in', style({ opacity: 1 })),
+      ]),
+      transition(':leave', animate('0.2s', style({ opacity: 0 }))),
+    ]),
+  ],
 })
 export class TaskDetailsComponent {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: TaskModalData) {}
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: TaskModalData,
+    private breakpointObserver: BreakpointObserver
+  ) {}
   private readonly _dialogRef = inject(MatDialogRef<TaskDetailsComponent>);
   private readonly _dialog = inject(MatDialog);
   private readonly _taskService = inject(TaskService);
@@ -31,8 +54,12 @@ export class TaskDetailsComponent {
   private readonly _toastrService = inject(ToastrService);
   private readonly _authService = inject(AuthService);
   private readonly _teamService = inject(TeamService);
+  private readonly _destroyRef = inject(DestroyRef);
   user = this._authService.user;
   isLeader = (this.data.leaderId = this.user()?.id);
+  onUpdateMode = signal<boolean>(false);
+  horizontalDisplay = signal<boolean>(false);
+
   task$ = this._taskService.getTaskById(this.data.taskId).pipe(
     catchError((err) => {
       if (err.status === 404) {
@@ -93,7 +120,19 @@ export class TaskDetailsComponent {
       }
     });
   }
+
   ngOnInit() {
     this._spinnerService.show('task-details');
+
+    this.breakpointObserver
+      .observe('(max-width: 520px)')
+      .pipe(takeUntilDestroyed(this._destroyRef))
+      .subscribe((res) => {
+        if (res.matches) {
+          this.horizontalDisplay.set(true);
+        } else {
+          this.horizontalDisplay.set(false);
+        }
+      });
   }
 }

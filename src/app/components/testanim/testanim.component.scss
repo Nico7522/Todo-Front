@@ -1,31 +1,11 @@
-.mat-sidenav {
-  width: 200px;
-  padding: 0px;
-}
-.mat-drawer-content {
-  position: relative;
-  z-index: 1;
-  display: block;
-  height: 100vh;
-  overflow-x: hidden;
-  background: #d8d5d5;
-}
-
-.example-container {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: #eee;
-}
 .container {
   aspect-ratio: 1 / 1;
   color: white;
   font-size: 2em;
   position: relative;
   width: 33.334%;
-
+  height: 400px;
+  margin: auto;
   display: grid;
 }
 
@@ -38,10 +18,12 @@
 
   &:first-child {
     background-color: #6244b0;
+    height: 400px;
   }
 
   &:last-child {
     background-color: #ff495d;
+    height: 400px;
   }
 
   &:not(.active):not(.ng-animating) {

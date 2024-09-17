@@ -1,0 +1,51 @@
+<div [@crossfade]="step" class="container">
+  <div [class.active]="step === 1" class="box">
+    <h2>Div 1</h2>
+    <mat-form-field>
+      <mat-label id="title">Title</mat-label>
+      <input matInput type="text" name="title" id="title" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label id="description">Description</mat-label>
+      <input matInput type="text" name="description" id="description" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Priority</mat-label>
+      <mat-select>
+        <mat-option value="">All</mat-option>
+        <mat-option value="0">Low</mat-option>
+        <mat-option value="1">Medium</mat-option>
+        <mat-option value="2">High</mat-option>
+        <mat-option value="3">Urgent</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div [class.active]="step === 2" class="box">
+    <h2>Div 2</h2>
+    <mat-form-field>
+      <mat-label id="title">Title</mat-label>
+      <input matInput type="text" name="title" id="title" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label id="description">Description</mat-label>
+      <input matInput type="text" name="description" id="description" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Priority</mat-label>
+      <mat-select>
+        <mat-option value="">All</mat-option>
+        <mat-option value="0">Low</mat-option>
+        <mat-option value="1">Medium</mat-option>
+        <mat-option value="2">High</mat-option>
+        <mat-option value="3">Urgent</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</div>
+<button (click)="step = step === 1 ? 2 : 1">
+  {{ step === 1 ? "Next Step" : "Prev Step" }}
+</button>

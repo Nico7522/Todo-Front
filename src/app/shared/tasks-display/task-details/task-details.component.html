@@ -1,8 +1,8 @@
 <h2 class="primary">Task details</h2>
 
 <main class="mat-typography">
-  @if (task$ | async; as task) {
-  <mat-grid-list cols="2" rowHeight="90px">
+  @if (task$ | async; as task) { @if (!onUpdateMode()) {
+  <mat-grid-list class="list" @fadeInOut cols="2" rowHeight="90px">
     <mat-grid-tile [colspan]="2">
       <div>
         <h3>Description</h3>
@@ -23,6 +23,12 @@
           {{ task.creationDate | date }}
         </p>
       </div>
+      @if (horizontalDisplay()) {
+      <div>
+        <h3>Duration</h3>
+        <p>{{ task.duration }}</p>
+      </div>
+      }
     </mat-grid-tile>
     <mat-grid-tile [colspan]="2">
       <div>
@@ -38,15 +44,45 @@
         <p>{{ task.isComplete ? "Done" : "Undone" }}</p>
       </div>
     </mat-grid-tile>
+    @if (!horizontalDisplay()) {
     <mat-grid-tile [colspan]="1">
       <div>
         <h3>Duration</h3>
         <p>{{ task.duration }}</p>
       </div>
     </mat-grid-tile>
+
+    }
   </mat-grid-list>
 
-  <mat-dialog-actions align="start">
+  } @else{
+  <div class="form" @fadeInOut>
+    <mat-form-field>
+      <mat-label id="title">Title</mat-label>
+      <input matInput type="text" name="title" id="title" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label id="description">Description</mat-label>
+      <input matInput type="text" name="description" id="description" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Priority</mat-label>
+      <mat-select>
+        <mat-option value="">All</mat-option>
+        <mat-option value="0">Low</mat-option>
+        <mat-option value="1">Medium</mat-option>
+        <mat-option value="2">High</mat-option>
+        <mat-option value="3">Urgent</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-raised-button color="primary">Validate</button>
+  </div>
+
+  }
+
+  <mat-dialog-actions class="action" align="start">
     <div class="buttons">
       <div>
         <button mat-raised-button color="warn" mat-dialog-close>Cancel</button>
@@ -57,6 +93,13 @@
           (click)="openCompleteTaskDialog()"
         >
           Complete task
+        </button>
+        <button
+          (click)="onUpdateMode.set(!onUpdateMode())"
+          mat-raised-button
+          color="accent"
+        >
+          {{ onUpdateMode() ? "Details" : "Update task" }}
         </button>
       </div>
       @if (data.taskInTeam && isLeader) {

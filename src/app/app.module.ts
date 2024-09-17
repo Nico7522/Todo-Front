@@ -20,6 +20,7 @@ import { HomeComponent } from './components/home/home.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { httpInterceptor } from './interceptors/http.interceptor';
+import { TestanimComponent } from './components/testanim/testanim.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,6 +28,7 @@ import { httpInterceptor } from './interceptors/http.interceptor';
     HomeComponent,
     DashboardComponent,
     AboutUsComponent,
+    TestanimComponent,
   ],
   imports: [
     AppRoutingModule,

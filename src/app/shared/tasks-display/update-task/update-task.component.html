@@ -1,4 +1,4 @@
-<form [formGroup]="updateTaskForm">
+<form [formGroup]="updateTaskForm" (ngSubmit)="handleSubmit()">
   <mat-form-field>
     <mat-label id="title">Title</mat-label>
     <input matInput type="text" formControlName="title" id="title" />

@@ -97,6 +97,13 @@ export class TeamService {
     );
   }
 
+  updateTeamTask(teamId: string, taskId: string, updatedTask: Partial<Task>) {
+    return this._httpClient.put(
+      `${environment.API_URL}/team/${teamId}/task/${taskId}`,
+      updatedTask
+    );
+  }
+
   unassignTaskFormTeam(teamId: string, taskId: string) {
     return this._httpClient.delete(
       `${environment.API_URL}/team/${teamId}/task/${taskId}`

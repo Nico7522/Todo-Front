@@ -1,1 +1,98 @@
-<p>about-us works!</p>
+<main>
+  <div class="content">
+    <div class="box-shadow">
+      <div class="background-section"></div>
+      <h2 class="primary white">Who we are ?</h2>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt, ut
+        placeat dignissimos ab sunt dicta officia rerum? Dolorum corporis nemo
+        omnis facilis impedit vitae enim. Dignissimos suscipit facere, quo
+        corporis eaque
+      </p>
+      <img src="assets/entreprise.png" alt="" />
+      <div [class.visible]="visible()" class="box">
+        <div
+          (click)="visible() ? this.visible.set(false) : this.visible.set(true)"
+          class="show-more"
+        >
+          {{ visible() ? "Hide" : "Show more" }}
+        </div>
+        <p>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Asperiores
+          sapiente tenetur nemo officia deleniti omnis aperiam amet eius enim
+          tempora adipisci nesciunt doloremque incidunt fugiat, id mollitia
+          eaque cum non laborum perferendis repellat quibusdam! Ipsa minus
+          ratione hic unde. Distinctio quae laboriosam, a quia nemo voluptatem
+          deserunt eum sit repellendus incidunt officia in harum? Fugiat sequi
+          voluptatibus nesciunt ut unde, natus possimus ipsum molestiae nisi
+          error, ad ratione quaerat esse iure sit nam impedit nihil assumenda
+          aliquid corporis! Perspiciatis repellat error qui alias quod maxime
+          laboriosam, deserunt ipsum, dicta quibusdam accusantium, non
+          asperiores reprehenderit pariatur iusto voluptate quaerat veniam
+          distinctio.
+        </p>
+      </div>
+    </div>
+
+    <div class="box-shadow">
+      <div class="background-section"></div>
+
+      <h2 class="primary white">Contact us</h2>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt, ut
+        placeat dignissimos ab sunt dicta officia rerum? Dolorum corporis nemo
+        omnis facilis impedit vitae enim. Dignissimos suscipit facere, quo
+        corporis eaque
+      </p>
+    </div>
+
+    <div class="box-shadow">
+      <div class="background-section"></div>
+
+      <h2 class="primary white">F.A.Q</h2>
+      <mat-accordion>
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title> This is the expansion title </mat-panel-title>
+            <mat-panel-description>
+              This is a summary of the content
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p>This is the primary content of the panel.</p>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title> Self aware panel </mat-panel-title>
+            <mat-panel-description> Currently I am </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p>I'm visible because I am open</p>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </div>
+
+  <aside class="box-shadow">
+    <div class="projects">
+      <div class="background-section"></div>
+      <h2 class="primary white">Others projects</h2>
+      <mat-list>
+        <mat-list-item
+          ><a href="" target="_blank">Definateded</a></mat-list-item
+        >
+        <mat-divider></mat-divider>
+        <mat-list-item
+          ><a href="" target="_blank">Definateded</a></mat-list-item
+        >
+        <mat-divider></mat-divider>
+        <mat-list-item
+          ><a href="" target="_blank">Definateded</a></mat-list-item
+        >
+        <mat-divider></mat-divider>
+        <mat-list-item
+          ><a href="" target="_blank">Definateded</a></mat-list-item
+        >
+      </mat-list>
+    </div>
+    <img class="logo" src="assets/removed-logo.png" alt="" />
+  </aside>
+</main>

@@ -23,6 +23,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTableModule } from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDividerModule } from '@angular/material/divider';
 
 const material = [
   MatToolbarModule,
@@ -48,6 +49,7 @@ const material = [
   MatTableModule,
   MatSelectModule,
   MatCheckboxModule,
+  MatDividerModule,
 ];
 
 @NgModule({

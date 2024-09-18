@@ -33,7 +33,7 @@ export class TasksDisplayComponent {
   openTaskDetailsDialog(taskId: string) {
     let ref = this._dialog.open(TaskDetailsComponent, {
       width: '600px',
-      height: '600px',
+      height: '550px',
       data: {
         taskId: taskId,
         taskInTeam: this.tasksInTeam,

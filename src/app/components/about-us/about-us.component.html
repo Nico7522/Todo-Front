@@ -1,98 +1,85 @@
 <main>
-  <div class="content">
-    <div class="box-shadow">
-      <div class="background-section"></div>
-      <h2 class="primary white">Who we are ?</h2>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt, ut
-        placeat dignissimos ab sunt dicta officia rerum? Dolorum corporis nemo
-        omnis facilis impedit vitae enim. Dignissimos suscipit facere, quo
-        corporis eaque
-      </p>
-      <img src="assets/entreprise.png" alt="" />
-      <div [class.visible]="visible()" class="box">
-        <div
-          (click)="visible() ? this.visible.set(false) : this.visible.set(true)"
-          class="show-more"
-        >
-          {{ visible() ? "Hide" : "Show more" }}
-        </div>
-        <p>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Asperiores
-          sapiente tenetur nemo officia deleniti omnis aperiam amet eius enim
-          tempora adipisci nesciunt doloremque incidunt fugiat, id mollitia
-          eaque cum non laborum perferendis repellat quibusdam! Ipsa minus
-          ratione hic unde. Distinctio quae laboriosam, a quia nemo voluptatem
-          deserunt eum sit repellendus incidunt officia in harum? Fugiat sequi
-          voluptatibus nesciunt ut unde, natus possimus ipsum molestiae nisi
-          error, ad ratione quaerat esse iure sit nam impedit nihil assumenda
-          aliquid corporis! Perspiciatis repellat error qui alias quod maxime
-          laboriosam, deserunt ipsum, dicta quibusdam accusantium, non
-          asperiores reprehenderit pariatur iusto voluptate quaerat veniam
-          distinctio.
-        </p>
+  <div class="background-section"></div>
+  <div class="content-1">
+    <h2>Who We Are ?</h2>
+    <img src="assets/entreprise.png" alt="" />
+    <div [class.visible]="visible()" class="box">
+      <div
+        (click)="visible() ? this.visible.set(false) : this.visible.set(true)"
+        class="show-more"
+      >
+        <mat-icon>{{
+          visible() ? "keyboard_double_arrow_up" : "keyboard_double_arrow_down"
+        }}</mat-icon>
       </div>
-    </div>
-
-    <div class="box-shadow">
-      <div class="background-section"></div>
-
-      <h2 class="primary white">Contact us</h2>
       <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt, ut
-        placeat dignissimos ab sunt dicta officia rerum? Dolorum corporis nemo
-        omnis facilis impedit vitae enim. Dignissimos suscipit facere, quo
-        corporis eaque
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Asperiores
+        sapiente tenetur nemo officia deleniti omnis aperiam amet eius enim
+        tempora adipisci nesciunt doloremque incidunt fugiat, id mollitia eaque
+        cum non laborum perferendis repellat quibusdam! Ipsa minus ratione hic
+        unde. Distinctio quae laboriosam, a quia nemo voluptatem deserunt eum
+        sit repellendus incidunt officia in harum? Fugiat sequi voluptatibus
+        nesciunt ut unde, natus possimus ipsum molestiae nisi error, ad ratione
+        quaerat esse iure sit nam impedit nihil assumenda aliquid corporis!
+        Perspiciatis repellat error qui alias quod maxime laboriosam, deserunt
+        ipsum, dicta quibusdam accusantium, non asperiores reprehenderit
+        pariatur iusto voluptate quaerat veniam distinctio.
       </p>
-    </div>
-
-    <div class="box-shadow">
-      <div class="background-section"></div>
-
-      <h2 class="primary white">F.A.Q</h2>
-      <mat-accordion>
-        <mat-expansion-panel hideToggle>
-          <mat-expansion-panel-header>
-            <mat-panel-title> This is the expansion title </mat-panel-title>
-            <mat-panel-description>
-              This is a summary of the content
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-          <p>This is the primary content of the panel.</p>
-        </mat-expansion-panel>
-        <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <mat-panel-title> Self aware panel </mat-panel-title>
-            <mat-panel-description> Currently I am </mat-panel-description>
-          </mat-expansion-panel-header>
-          <p>I'm visible because I am open</p>
-        </mat-expansion-panel>
-      </mat-accordion>
     </div>
   </div>
+  <div class="content-2">
+    <h2>Why Choose Us ?</h2>
+    <p>
+      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Asperiores
+      sapiente tenetur nemo officia deleniti omnis aperiam amet eius enim
+      tempora adipisci nesciunt doloremque incidunt fugiat, id mollitia eaque
+      cum non laborum perferendis repellat quibusdam! Ipsa minus ratione hic
+      unde. Distinctio quae laboriosam, a quia nemo voluptatem deserunt eum sit
+      repellendus incidunt officia in harum? Fugiat sequi voluptatibus nesciunt
+      ut unde, natus possimus ipsum molestiae nisi error, ad ratione quaerat
+      esse iure sit nam impedit nihil assumenda aliquid corporis! Perspiciatis
+      repellat error qui alias quod maxime laboriosam, deserunt ipsum, dicta
+      quibusdam accusantium, non asperiores reprehenderit pariatur iusto
+      voluptate quaerat veniam distinctio.
+    </p>
+  </div>
 
-  <aside class="box-shadow">
-    <div class="projects">
-      <div class="background-section"></div>
-      <h2 class="primary white">Others projects</h2>
-      <mat-list>
-        <mat-list-item
-          ><a href="" target="_blank">Definateded</a></mat-list-item
-        >
-        <mat-divider></mat-divider>
-        <mat-list-item
-          ><a href="" target="_blank">Definateded</a></mat-list-item
-        >
-        <mat-divider></mat-divider>
-        <mat-list-item
-          ><a href="" target="_blank">Definateded</a></mat-list-item
-        >
-        <mat-divider></mat-divider>
-        <mat-list-item
-          ><a href="" target="_blank">Definateded</a></mat-list-item
-        >
-      </mat-list>
+  <div class="content-3">
+    <div class="informations">
+      <div class="address">
+        <div>
+          <h3>Address</h3>
+          <p>701 Mulberry Street Houston</p>
+          <p>TX, Texas, 7777</p>
+        </div>
+        <div>
+          <h3>View on Map</h3>
+          <mat-icon>visibility</mat-icon>
+        </div>
+      </div>
+      <div class="others-info">
+        <div class="email-phone">
+          <div>
+            <h3>Email</h3>
+            <p>nico.daddabbo7100gmail.com</p>
+          </div>
+          <div>
+            <h3>Phone Number</h3>
+            <p>0477 77 77 77</p>
+          </div>
+        </div>
+        <div class="social-media">
+          <div>
+            <h3>Follow Us !</h3>
+            <div class="social-media-logo-container">
+              <img class="social-media-img" src="assets/2227.jpg" alt="" />
+              <img class="social-media-img" src="assets/linkedin.png" alt="" />
+              <img class="social-media-img" src="assets/facebook.png" alt="" />
+              <img class="social-media-img" src="assets/twitter.png" alt="" />
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <img class="logo" src="assets/removed-logo.png" alt="" />
-  </aside>
+  </div>
 </main>

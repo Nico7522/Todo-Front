@@ -206,6 +206,13 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+.noto-serif-font {
+  font-size: 3rem;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+}
 
 @keyframes spinner {
   to {

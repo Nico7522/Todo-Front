@@ -1,8 +1,15 @@
 main {
-  display: flex;
-  justify-content: space-around;
+  // display: flex;
+  // justify-content: space-around;
+  // width: 100%;
+  // margin: 15px auto;
+  position: relative;
   width: 100%;
-  margin: 15px auto;
+}
+
+img {
+  margin: 35px auto;
+  display: block;
 }
 
 .content {
@@ -37,14 +44,64 @@ aside {
   z-index: -1;
 }
 
-h2,
+h2 {
+  font-family: "Noto Serif", serif;
+  font-size: 2.5rem;
+  padding-top: 50px;
+  font-style: italic;
+}
+
 h3 {
-  padding-top: 5px;
-  padding-bottom: 5px;
+  font-size: 2rem;
+  font-family: "Protest Guerrilla", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  padding-bottom: 25px;
 }
 
 p {
-  padding: 10px;
+  margin-left: 100px;
+  margin-right: 100px;
+}
+
+.informations {
+  display: flex;
+  width: 100%;
+  padding-top: 40px;
+  padding-bottom: 30px;
+  background: #4181ab;
+  color: white;
+}
+.address {
+  width: 50%;
+  margin-left: 50px;
+  display: flex;
+  justify-content: space-around;
+}
+.address > div > p {
+  font-size: 1.7rem;
+  text-align: start;
+  padding: 10px 0px 0px 0px;
+  margin-left: 0;
+}
+.address > div > h3 {
+  text-align: start;
+}
+
+.show-more > mat-icon {
+  font-size: 1.2rem;
+}
+mat-icon {
+  font-size: 2rem;
+  width: auto;
+  height: auto;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+.content-3 {
+  margin-top: 70px;
 }
 
 .box-shadow {
@@ -57,6 +114,60 @@ div {
   text-align: center;
 }
 
+.others-info {
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: self-start;
+}
+
+.email-phone {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.social-media {
+  display: flex;
+  flex-direction: column;
+
+  justify-content: space-around;
+}
+
+.social-media > div > h3 {
+  text-align: center;
+}
+
+.social-media > div > p {
+  font-size: 1.7rem;
+  text-align: start;
+  margin: 0;
+}
+
+.email-phone > div > h3 {
+  text-align: start;
+}
+
+.email-phone > div:nth-child(2) > h3 {
+  text-align: start;
+  margin-top: 40px;
+}
+.email-phone > div > p {
+  font-size: 1.7rem;
+  text-align: start;
+  margin: 0;
+}
+
+.social-media-logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.social-media-img {
+  width: 50px;
+  height: 50px;
+}
 .show-more {
   position: absolute;
   bottom: 0;
@@ -69,8 +180,7 @@ div {
 .box {
   position: relative;
   display: grid;
-  margin-block-start: 1em;
-  padding: 1em 1.5em;
+  padding-bottom: 1em;
   place-items: center;
 
   &:not(.visible) p {
